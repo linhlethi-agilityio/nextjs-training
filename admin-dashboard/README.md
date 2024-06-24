@@ -8,6 +8,16 @@ Admin dashboard is a comprehensive e-commerce web application designed to facili
 
 - [Requirement](https://docs.google.com/document/d/1SAulTFGSEix6ipkvLHxj1iG-sUFop49e6MpBWTIz6dA/edit#heading=h.o7xf3cb9ntt2)
 
+## Features
+
+Build application of Admin dashboard with features below:
+
+- Show list order
+- CRUD order
+- Pagination order
+- Search order
+- Sort ID Order, Status, Created Date, Deadline, Price by asc and des
+
 ## Design
 
 - [Admin dashboard](<https://www.figma.com/design/6FU922LFWAIasJWYIfuq7z/Admin-Dashboard-(Community)?node-id=16-57&t=aE8yEjoY7EOzTNMq-0>)
