@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BrandLogo component should match snapshot for BrandLogo 1`] = `
+<div>
+  <header
+    class="sticky top-0 h-12 border-b bg-white"
+  >
+    <nav
+      class="container mx-auto h-full flex justify-between items-center"
+    >
+      <div>
+        abc
+      </div>
+    </nav>
+  </header>
+</div>
+`;
