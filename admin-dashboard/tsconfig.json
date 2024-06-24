@@ -18,18 +18,7 @@
       }
     ],
     "paths": {
-      "@themes": ["./src/themes"],
-      "@components": ["./src/components"],
-      "@providers": ["./src/providers"],
-      "@constants": ["./src/constants"],
-      "@assets": ["./src/assets"],
-      "@types": ["./src/types"],
-      "@utils": ["./src/utils"],
-      "@mocks": ["./src/mocks"],
-      "@services": ["./src/services"],
-      "@apis": ["./src/apis"],
-      "@hooks": ["./src/hooks"],
-      "@stores": ["./src/stores"]
+      "@/*": ["./src/*"]
     }
   },
   "include": [
@@ -37,7 +26,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "jest.config.ts"
+    "./jest.setup.ts"
   ],
   "exclude": ["node_modules"]
 }
