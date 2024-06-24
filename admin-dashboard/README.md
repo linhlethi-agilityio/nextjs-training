@@ -18,6 +18,18 @@ Build application of Admin dashboard with features below:
 - Search order
 - Sort ID Order, Status, Created Date, Deadline, Price by asc and des
 
+## Requirement
+
+- Apply knowledge learning Nextjs
+- Apply streaming data
+- Apply caching data
+- CRUD order
+- Search product
+- Filter order
+- Handle pagination
+- Unit test coverage should greater than 80%
+- Pagespeed score 98%
+
 ## Design
 
 - [Admin dashboard](<https://www.figma.com/design/6FU922LFWAIasJWYIfuq7z/Admin-Dashboard-(Community)?node-id=16-57&t=aE8yEjoY7EOzTNMq-0>)
