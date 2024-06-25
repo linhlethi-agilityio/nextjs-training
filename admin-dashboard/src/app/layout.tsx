@@ -1,20 +1,12 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 
-// Components
-import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
+// Providers
+import { ChakraUIProvider } from '@/providers';
 
 export const metadata: Metadata = {
-  title: 'Next.js Boilerplate',
-  description: 'Next.js 14+ boilerplate app',
-  icons: [
-    {
-      rel: 'icon',
-      url: '/favicon.ico',
-    },
-  ],
+  title: 'Admin Dashboard',
+  description:
+    'Admin dashboard is a comprehensive e-commerce web application designed to facilitate online shopping.',
 };
 
 export default function RootLayout({
@@ -24,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <ChakraUIProvider>{children}</ChakraUIProvider>
+      </body>
     </html>
   );
 }
