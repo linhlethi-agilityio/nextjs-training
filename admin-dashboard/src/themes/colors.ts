@@ -31,6 +31,7 @@ export const colors = {
   positive: generateShades(systemColors.auburn),
 
   // Texts
+  textDark: systemColors.raisinBlack,
   textPrimary: brandColors.primary,
   textLight: systemColors.white,
   textDefault: systemColors.darkGray,

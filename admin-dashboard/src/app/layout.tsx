@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Button } from '@chakra-ui/react';
 
 // Providers
 import { ChakraUIProvider } from '@/providers';
@@ -18,10 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ChakraUIProvider>
-          <Button>abc</Button>
-          {children}
-        </ChakraUIProvider>
+        <ChakraUIProvider>{children}</ChakraUIProvider>
       </body>
     </html>
   );

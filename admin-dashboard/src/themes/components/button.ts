@@ -2,28 +2,25 @@ import { defineStyleConfig } from '@chakra-ui/react';
 
 export const Button = defineStyleConfig({
   baseStyle: {
-    fontFamily: 'PublicSans-SemiBold',
+    fontSize: 'lg',
+    lineHeight: 3,
+    borderRadius: 'xl',
+    py: 2.5,
+    px: 25,
   },
 
   variants: {
     outline: {
-      borderColor: 'textPrimary',
-      color: 'textPrimary',
+      borderColor: 'borderDefault',
+      color: 'info.500',
     },
 
-    buttonIcon: {
+    sideBar: {
+      borderColor: 'borderPrimary',
+      color: 'brand.500',
       border: '1px solid',
-      borderColor: 'borderMediumGray',
-      color: 'textDarkBlack',
-      fontSize: 'sm',
-      lineHeight: 4,
-    },
-
-    icon: {
-      bgColor: 'transparent',
-      p: 0,
-      minW: 'unset',
-      color: 'textDefault',
+      fontSize: 10,
+      lineHeight: 1,
     },
   },
 });
