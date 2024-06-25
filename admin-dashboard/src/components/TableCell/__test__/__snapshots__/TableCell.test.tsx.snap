@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableCell should match snapshot for TableCell 1`] = `
+<div>
+  <table
+    class="chakra-table css-0"
+  >
+    <tbody
+      class="css-0"
+    >
+      <tr
+        class="css-0"
+      >
+        <td
+          class="css-zpl621"
+        >
+          inches
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
