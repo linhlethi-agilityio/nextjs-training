@@ -4,8 +4,8 @@ import { Flex, HStack, Text } from '@chakra-ui/react';
 export interface SideBarItemProps {
   isFocused?: boolean;
   icon: ReactNode;
-  label?: string;
-  onClick?: () => void;
+  label: string;
+  onClick: () => void;
 }
 
 const SideBarItem = ({
