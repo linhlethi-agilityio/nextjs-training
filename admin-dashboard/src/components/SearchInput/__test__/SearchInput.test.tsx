@@ -19,7 +19,7 @@ describe('SearchInput component', () => {
     jest.useRealTimers();
   });
 
-  test('should match snapshot for SearchInput', () => {
+  it('should match snapshot for SearchInput', () => {
     const { container } = render(<SearchInput {...mockProps} />);
 
     expect(container).toMatchSnapshot();

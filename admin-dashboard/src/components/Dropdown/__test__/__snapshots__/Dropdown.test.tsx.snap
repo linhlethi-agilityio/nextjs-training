@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown component should match snapshot for BrandLogo 1`] = `
+<div>
+  <div
+    class="chakra-select__wrapper css-118x1rr"
+  >
+    <select
+      aria-label="Select"
+      class="chakra-select css-8453yo"
+    >
+      <option
+        value=""
+      >
+        Sort by
+      </option>
+      <option
+        value="ascending"
+      >
+        Ascending
+      </option>
+      <option
+        value="descending"
+      >
+        Descending
+      </option>
+    </select>
+    <div
+      class="chakra-select__icon-wrapper css-17frc2i"
+    >
+      <svg
+        aria-hidden="true"
+        class="chakra-select__icon"
+        focusable="false"
+        role="presentation"
+        style="width: 1em; height: 1em; color: currentColor;"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
