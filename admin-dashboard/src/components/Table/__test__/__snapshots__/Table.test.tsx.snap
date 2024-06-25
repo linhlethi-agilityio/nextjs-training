@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table should match snapshot for Table 1`] = `
+<div>
+  <table
+    class="chakra-table css-0"
+  >
+    <thead
+      class="css-0"
+    >
+      <tr
+        class="css-0"
+      >
+        <th
+          class="css-1rgfy9b"
+        >
+          Id Order
+        </th>
+        <th
+          class="css-1rgfy9b"
+        >
+          Product
+        </th>
+        <th
+          class="css-1rgfy9b"
+        >
+          Customer
+        </th>
+        <th
+          class="css-1rgfy9b"
+        >
+          Status
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="css-0"
+    >
+      <tr
+        class="css-0"
+      >
+        <td
+          class="css-zpl621"
+        >
+          345-645
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          Surabaya
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          Iphone 11 256 GB TAM
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          Rejected
+        </td>
+      </tr>
+      <tr
+        class="css-0"
+      >
+        <td
+          class="css-zpl621"
+        >
+          465-674
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          Surabaya
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          Gaming Chair Dragon War
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          Complete
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
