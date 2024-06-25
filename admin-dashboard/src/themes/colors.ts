@@ -43,6 +43,7 @@ export const colors = {
   backgroundPrimary: brandColors.primary,
   backgroundLight: systemColors.white,
   backgroundDark: systemColors.darkGray,
+  backgroundSiBarItem: systemColors.lightBlue,
   backgroundDashboard: systemColors.culturedPearl,
   backgroundPendingStatus: systemColors.lightYellow,
   backgroundRejectedStatus: systemColors.mistyRose,
