@@ -16,19 +16,19 @@ const mockProps = {
 };
 
 describe('SideBarItem component', () => {
-  test('should match snapshot for SideBarItem', () => {
+  it('should match snapshot for SideBarItem', () => {
     const { container } = render(<SideBarItem {...mockProps} />);
 
     expect(container).toMatchSnapshot();
   });
 
-  test('should match snapshot for SideBarItem', () => {
+  it('should match snapshot for SideBarItem', () => {
     const { container } = render(<SideBarItem {...mockProps} isFocused />);
 
     expect(container).toMatchSnapshot();
   });
 
-  test('triggers onClick event', () => {
+  it('triggers onClick event', () => {
     const { getByTestId } = render(<SideBarItem {...mockProps} />);
 
     const sidebarItem = getByTestId('sidebar-item-Product');
