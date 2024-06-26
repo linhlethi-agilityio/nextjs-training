@@ -28,7 +28,7 @@ export const colors = {
   warning: generateShades(systemColors.citron),
   negative: generateShades(systemColors.green),
   info: generateShades(systemColors.raisinBlack),
-  positive: generateShades(systemColors.auburn),
+  red: generateShades(systemColors.auburn),
 
   // Texts
   textDark: systemColors.raisinBlack,
