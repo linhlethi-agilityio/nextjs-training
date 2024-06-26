@@ -1,4 +1,4 @@
-export { default as BarChart } from './BarChart';
+export { default as BarChartIcon } from './BarChartIcon';
 export { default as CategoryIcon } from './CategoryIcon';
 export { default as ChevronDownIcon } from './ChevronDownIcon';
 export { default as ChevronLeftIcon } from './ChevronLeftIcon';
