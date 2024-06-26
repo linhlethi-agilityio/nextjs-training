@@ -22,5 +22,12 @@ export const Button = defineStyleConfig({
       fontSize: 10,
       lineHeight: 1,
     },
+    pagination: {
+      lineHeight: 2,
+
+      _hover: {
+        color: 'brand.300',
+      },
+    },
   },
 });
