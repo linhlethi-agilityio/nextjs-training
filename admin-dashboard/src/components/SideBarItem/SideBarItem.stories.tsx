@@ -16,17 +16,17 @@ type Story = StoryObj<typeof SideBarItem>;
 export const Default: Story = {
   args: {
     isFocused: false,
-    icon: <FileTextFillIcon />,
+    icon: FileTextFillIcon,
     label: 'Product',
-    onClick: () => null,
+    path: '/',
   },
 };
 
 export const Focused: Story = {
   args: {
     isFocused: true,
-    icon: <FileTextFillIcon />,
+    icon: FileTextFillIcon,
     label: 'Product',
-    onClick: () => null,
+    path: '/',
   },
 };

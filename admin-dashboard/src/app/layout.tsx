@@ -1,7 +1,11 @@
 import type { Metadata } from 'next';
+import { Box, Flex } from '@chakra-ui/react';
 
 // Providers
 import { ChakraUIProvider } from '@/providers';
+
+// Components
+import { SideBar } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Admin Dashboard',
@@ -17,7 +21,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ChakraUIProvider>{children}</ChakraUIProvider>
+        <ChakraUIProvider>
+          <Flex height="100vh">
+            <SideBar />
+            <Box flex={1} bgColor="backgroundDashboard">
+              <Box justifyContent="space-between" alignItems="revert">
+                {children}
+              </Box>
+            </Box>
+          </Flex>
+        </ChakraUIProvider>
       </body>
     </html>
   );
