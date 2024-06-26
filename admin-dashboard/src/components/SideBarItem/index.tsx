@@ -18,7 +18,7 @@ const SideBarItem = ({
   const Icon = icon;
 
   return (
-    <Link href={path} style={{ width: '-webkit-fill-available' }}>
+    <Link href={path}>
       <HStack
         data-testid={`sidebar-item-${label}`}
         spacing={isFocused ? 2 : 3}

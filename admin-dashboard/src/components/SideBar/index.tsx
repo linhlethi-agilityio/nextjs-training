@@ -1,6 +1,5 @@
 'use client';
 
-import { memo } from 'react';
 import { Box, VStack } from '@chakra-ui/react';
 import { usePathname } from 'next/navigation';
 
@@ -30,4 +29,4 @@ const SideBar = () => {
   );
 };
 
-export default memo(SideBar);
+export default SideBar;

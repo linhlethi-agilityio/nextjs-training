@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Box, Flex } from '@chakra-ui/react';
 
+import './globals.css';
+
 // Providers
 import { ChakraUIProvider } from '@/providers';
 
