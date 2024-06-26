@@ -25,9 +25,7 @@ export default function RootLayout({
           <Flex height="100vh">
             <SideBar />
             <Box flex={1} bgColor="backgroundDashboard">
-              <Box justifyContent="space-between" alignItems="revert">
-                {children}
-              </Box>
+              <Box>{children}</Box>
             </Box>
           </Flex>
         </ChakraUIProvider>
