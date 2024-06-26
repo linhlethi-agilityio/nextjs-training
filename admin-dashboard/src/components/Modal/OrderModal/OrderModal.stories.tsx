@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Components
-import { OrderModal } from '.';
+import OrderModal from '.';
 
 const meta: Meta<typeof OrderModal> = {
   component: OrderModal,

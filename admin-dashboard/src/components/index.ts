@@ -7,6 +7,7 @@ export * from './Dropdown';
 // Modals
 export * from './Modal/CustomModal';
 export { default as ConfirmModal } from './Modal/ConfirmModal';
+export { default as OrderModal } from './Modal/OrderModal';
 
 // Skeleton
 export * from './Skeleton';

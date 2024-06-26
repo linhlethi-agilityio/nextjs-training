@@ -8,7 +8,6 @@ import {
   FormLabel,
   Input,
 } from '@chakra-ui/react';
-import isEqual from 'react-fast-compare';
 
 // Constants
 import { ERROR_MESSAGES, OPTIONS_STATUS } from '@/constants';
@@ -28,9 +27,9 @@ interface CustomerModalDetailModalProps {
   onClose: () => void;
 }
 
-const REQUIRED_FIELDS = ['customerId', 'status', 'products', 'payment'];
+const REQUIRED_FIELDS = ['product', 'customer', 'status', 'deadline', 'price'];
 
-const OrderModalUI = ({
+const OrderModal = ({
   isOpen,
   onClose,
   handleSubmitForm,
@@ -271,4 +270,4 @@ const OrderModalUI = ({
   );
 };
 
-export const OrderModal = memo(OrderModalUI, isEqual);
+export default memo(OrderModal);
