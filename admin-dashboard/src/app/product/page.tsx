@@ -1,6 +1,5 @@
 'use client';
 
-import { ChangeEvent } from 'react';
 import {
   Box,
   Button,
@@ -15,7 +14,11 @@ import {
 } from '@chakra-ui/react';
 
 // Constants
-import { TAB_LABEL_PRODUCT } from '@/constants';
+import {
+  OPTIONS_ACTION_PRODUCT,
+  OPTIONS_PAGINATION,
+  TAB_LABEL_PRODUCT,
+} from '@/constants';
 
 // Types
 import { Order } from '@/types';
@@ -37,7 +40,7 @@ import {
   TableColumnType,
 } from '@/components';
 
-const mocData: Order[] = [
+const mockData: Order[] = [
   {
     id: '1',
     idOrder: '990 - 132',
@@ -47,21 +50,6 @@ const mocData: Order[] = [
     createdDate: 'March 21, 2020 00.28',
     deadline: 'March 23, 2020',
     price: 19.09,
-  },
-];
-
-const paginationOptions = [
-  {
-    label: '10',
-    value: '10',
-  },
-  {
-    label: '20',
-    value: '20',
-  },
-  {
-    label: '50',
-    value: '50',
   },
 ];
 
@@ -137,18 +125,26 @@ const ProductPage = () => {
           lineHeight="bold"
           placeholder="Action"
           onChangeValue={handleOnChangeDropdown}
-          options={[]}
+          options={OPTIONS_ACTION_PRODUCT}
         />
       ),
     },
   ];
 
-  const handleOnChangeDropdown = (value: string) => {
-    console.log(value);
+  const handleOnChangeDropdown = () => {
+    //TODO: update later
   };
 
-  const handleChangeSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
+  const handleChangeSearchInput = () => {
+    //TODO: update later
+  };
+
+  const handleOnClickPagination = () => {
+    // TODO: update later
+  };
+
+  const handleChangeLimitPage = () => {
+    // TODO: update later
   };
 
   return (
@@ -191,19 +187,19 @@ const ProductPage = () => {
               <Dropdown
                 value="10"
                 color="textDark"
-                options={paginationOptions}
-                onChangeValue={() => null}
+                options={OPTIONS_PAGINATION}
+                onChangeValue={handleChangeLimitPage}
                 h={26}
                 w={70}
               />
             </Flex>
           </Flex>
-          <Table columns={orderColumns} data={mocData} isLoading={false} />
+          <Table columns={orderColumns} data={mockData} isLoading={false} />
           <Stack textAlign="center" alignItems="center" mt={30} display="flex">
             <Pagination
               totalPage={8}
               currentPage={2}
-              onClickPage={() => null}
+              onClickPage={handleOnClickPagination}
             />
           </Stack>
         </TabPanels>
