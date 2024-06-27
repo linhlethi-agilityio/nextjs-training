@@ -13,6 +13,7 @@ export const Button = defineStyleConfig({
     outline: {
       borderColor: 'borderDefault',
       color: 'info.500',
+      bgColor: 'backgroundLight',
     },
 
     sideBar: {
@@ -22,6 +23,7 @@ export const Button = defineStyleConfig({
       fontSize: 10,
       lineHeight: 1,
     },
+
     pagination: {
       lineHeight: 2,
 

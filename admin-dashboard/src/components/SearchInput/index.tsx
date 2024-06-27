@@ -44,6 +44,7 @@ const SearchInput = ({
         <SearchIcon />
       </InputLeftElement>
       <Input
+        bgColor="backgroundLight"
         pl={66}
         placeholder={placeholder}
         onChange={handleChange}

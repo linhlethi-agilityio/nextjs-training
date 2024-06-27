@@ -24,12 +24,14 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ChakraUIProvider>
-          <Flex height="100vh">
-            <SideBar />
-            <Box flex={1} bgColor="backgroundDashboard">
-              <Box>{children}</Box>
-            </Box>
-          </Flex>
+          <main>
+            <Flex height="100vh">
+              <SideBar />
+              <Box flex={1} bgColor="backgroundDashboard">
+                <Box>{children}</Box>
+              </Box>
+            </Flex>
+          </main>
         </ChakraUIProvider>
       </body>
     </html>

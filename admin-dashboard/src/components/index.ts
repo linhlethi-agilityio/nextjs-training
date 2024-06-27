@@ -2,6 +2,8 @@ export { default as SearchInput } from './SearchInput';
 export { default as SideBarItem } from './SideBarItem';
 export { default as SideBar } from './SideBar';
 export { default as Pagination } from './Pagination';
+export { default as ErrorBoundary } from './ErrorBoundary';
+export { default as LoadingIndicator } from './LoadingIndicator';
 export * from './Dropdown';
 
 // Modals
