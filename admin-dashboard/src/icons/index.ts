@@ -12,3 +12,4 @@ export { default as PinMapIcon } from './PinMapIcon';
 export { default as PrinterIcon } from './PrinterIcon';
 export { default as SearchIcon } from './SearchIcon';
 export { default as SlidersIcon } from './SlidersIcon';
+export { default as SortIcon } from './SortIcon';

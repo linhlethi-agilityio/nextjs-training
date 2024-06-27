@@ -1,38 +1,31 @@
-import { Component, ErrorInfo, ReactNode } from 'react';
+'use client';
 
-interface ErrorBoundaryProps {
-  children: ReactNode;
-  fallback: ReactNode;
+import { Button, Flex, Heading } from '@chakra-ui/react';
+// Libs
+import { useEffect } from 'react';
+
+interface ErrorProps {
+  error: Error & { digest?: string };
+  reset: () => void;
 }
 
-interface ErrorBoundaryState {
-  hasError: boolean;
-}
+const ErrorBoundary = ({ error, reset }: ErrorProps) => {
+  // Attempt to recover by trying to re-render the segment
+  const handleReset = () => {
+    reset();
+  };
 
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
-    super(props);
-    this.state = { hasError: false };
-  }
+  useEffect(() => {
+    // Log the error to an error reporting service
+    console.error(error);
+  }, [error]);
 
-  static getDerivedStateFromError() {
-    // Update state so the next render will show the fallback UI.
-    return { hasError: true };
-  }
-
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // You can also log the error to an error reporting service
-    console.error('ErrorBoundary error', error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return this.props.fallback;
-    }
-
-    return this.props.children;
-  }
-}
+  return (
+    <Flex flexDir="column" alignItems="center" gap="50px">
+      <Heading>Something went wrong!</Heading>
+      <Button onClick={handleReset}>Try again</Button>
+    </Flex>
+  );
+};
 
 export default ErrorBoundary;

@@ -56,7 +56,7 @@ const TableCustom = <T extends { id: string }>({
   };
 
   return (
-    <BaseTable>
+    <BaseTable bgColor="backgroundLight">
       <Thead>{headerRow}</Thead>
       <Tbody>
         {isLoading ? (
