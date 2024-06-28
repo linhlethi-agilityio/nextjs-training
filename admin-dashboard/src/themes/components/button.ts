@@ -5,8 +5,6 @@ export const Button = defineStyleConfig({
     fontSize: 'lg',
     lineHeight: 3,
     borderRadius: 'xl',
-    py: 2.5,
-    px: 25,
   },
 
   variants: {
@@ -14,6 +12,8 @@ export const Button = defineStyleConfig({
       borderColor: 'borderDefault',
       color: 'info.500',
       bgColor: 'backgroundLight',
+      py: 2.5,
+      px: 25,
     },
 
     sideBar: {

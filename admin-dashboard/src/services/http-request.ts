@@ -1,11 +1,14 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 // Constants
 import { ENVS } from '@/constants';
 
 // Fetches data from the URL using a GET request.
-const getData = async <T>(url: string): Promise<T> => {
-  const response = await axios.get(`${ENVS.API_URL}/${url}`);
+const getData = async <T>(
+  url: string,
+  params: AxiosRequestConfig,
+): Promise<T> => {
+  const response = await axios.get(`${ENVS.API_URL}/${url}`, { ...params });
 
   return response.data;
 };

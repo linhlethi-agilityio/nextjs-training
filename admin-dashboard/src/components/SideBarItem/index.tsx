@@ -24,7 +24,6 @@ const SideBarItem = ({
         spacing={isFocused ? 2 : 3}
         py={3.5}
         pl={15}
-        transition="1s"
         color={isFocused ? 'textPrimary' : 'textDefault'}
         cursor="pointer"
         {...(isFocused && {

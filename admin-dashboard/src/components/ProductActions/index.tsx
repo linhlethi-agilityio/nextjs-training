@@ -24,7 +24,7 @@ const ProductActions = () => {
         <Button variant="outline" rightIcon={<PrinterIcon />}>
           Print
         </Button>
-        <Button rightIcon={<CreateFolderIcon />} colorScheme="brand">
+        <Button rightIcon={<CreateFolderIcon />} colorScheme="brand" px={25}>
           Create Folder
         </Button>
       </Flex>

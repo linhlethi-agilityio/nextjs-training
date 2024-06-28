@@ -2,18 +2,23 @@
 import { API_ENDPOINT } from '@/constants';
 
 // Models
-import { Order, ResponseData } from '@/models';
+import { Order } from '@/models';
 
 // Services
 import { api } from '@/services';
 
-export const getOrders = async () => {
-  const { data, ...rest } = await api.getData<ResponseData<Order[]>>(
-    API_ENDPOINT.ORDERS,
-  );
+interface params {
+  limit?: number;
+}
+
+export const getOrders = async (params?: params) => {
+  const data = await api.getData<Order[]>(API_ENDPOINT.ORDERS, {
+    params: {
+      _limit: params?.limit,
+    },
+  });
 
   return {
     data: data ?? [],
-    ...rest,
   };
 };
