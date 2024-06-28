@@ -3,7 +3,7 @@
 exports[`ErrorBoundary renders children when there is no error 1`] = `
 <div>
   <div
-    class="css-16vpizs"
+    class="css-ow0byj"
   >
     <h2
       class="chakra-heading css-0"
@@ -23,7 +23,7 @@ exports[`ErrorBoundary renders children when there is no error 1`] = `
 exports[`ErrorBoundary renders fallback content when there is an error 1`] = `
 <div>
   <div
-    class="css-16vpizs"
+    class="css-ow0byj"
   >
     <h2
       class="chakra-heading css-0"

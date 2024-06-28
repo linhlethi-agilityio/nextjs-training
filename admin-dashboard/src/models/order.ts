@@ -4,7 +4,7 @@ export interface Order {
   product: string;
   customer: string;
   status: string;
-  createdDate: string;
+  createdAt: string;
   deadline: string;
   price: number | null;
 }

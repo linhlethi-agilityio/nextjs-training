@@ -1,8 +1,7 @@
 'use client';
 
-import { Button, Flex, Heading } from '@chakra-ui/react';
-// Libs
 import { useEffect } from 'react';
+import { Button, Flex, Heading } from '@chakra-ui/react';
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -21,7 +20,7 @@ const ErrorBoundary = ({ error, reset }: ErrorProps) => {
   }, [error]);
 
   return (
-    <Flex flexDir="column" alignItems="center" gap="50px">
+    <Flex flexDir="column" alignItems="center" gap="50px" mt={300}>
       <Heading>Something went wrong!</Heading>
       <Button onClick={handleReset}>Try again</Button>
     </Flex>
