@@ -1,3 +1,5 @@
+'use client';
+
 import { ChangeEvent, memo } from 'react';
 import { Select, SelectProps } from '@chakra-ui/react';
 import isEqual from 'react-fast-compare';
