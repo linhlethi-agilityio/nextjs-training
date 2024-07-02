@@ -18,6 +18,7 @@ const ProductPage = async ({ searchParams }: ProductProps) => {
       <Text size="md" color="brand.500" ml={8}>
         Product
       </Text>
+
       <ProductList query={query} page={page} />
     </Box>
   );

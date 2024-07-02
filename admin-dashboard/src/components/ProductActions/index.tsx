@@ -3,14 +3,21 @@
 import { memo, useMemo } from 'react';
 import { Button, Flex, useDisclosure } from '@chakra-ui/react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import dynamic from 'next/dynamic';
 
 // Icons
 import { FileArrowUpIcon, PrinterIcon, CreateFolderIcon } from '@/icons';
 
-// Components
-import { OrderModal, SearchInput } from '@/components';
+// Models
 import { Order } from '@/models';
+
+// Api
 import { addOrder } from '@/api';
+
+// Components
+import { SearchInput } from '@/components';
+
+const DynamicOrderModal = dynamic(() => import('../Modal/OrderModal'));
 
 const ProductActions = () => {
   const {
@@ -26,7 +33,7 @@ const ProductActions = () => {
   const handleSearch = (value: string) => {
     const params = new URLSearchParams(searchParams);
 
-    params.delete('page');
+    params.set('page', '1');
 
     if (value) {
       params.set('query', value);
@@ -72,7 +79,7 @@ const ProductActions = () => {
         </Flex>
       </Flex>
       {isOpenOrderModal && (
-        <OrderModal
+        <DynamicOrderModal
           title="Update Order"
           handleSubmitForm={handleAddOrder}
           isOpen={isOpenOrderModal}
