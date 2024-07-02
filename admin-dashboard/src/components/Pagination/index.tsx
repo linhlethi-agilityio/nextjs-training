@@ -15,8 +15,8 @@ const Pagination = ({
   currentPage,
   onClickPage,
 }: PaginationProps) => {
-  const handleOnChangePage = () => {
-    // update
+  const handleOnChangePage = (page: number) => {
+    onClickPage(page.toString());
   };
 
   const handlePrevPage = () => {
@@ -44,7 +44,7 @@ const Pagination = ({
             key={`pagination-${index}`}
             variant="pagination"
             fontWeight={active ? 'semibold' : 'normal'}
-            onClick={() => onClickPage}
+            onClick={() => handleOnChangePage(index + 1)}
             color={active ? 'brand.500' : 'textDefault'}
           >
             {index + 1}

@@ -29,9 +29,7 @@ const ProductPagination = ({ totalPage }: ProductPaginationProps) => {
     (page: string) => {
       params.set('page', page);
 
-      replace(`${pathname}?${params.toString()}`, {
-        scroll: false,
-      });
+      replace(`${pathname}?${params.toString()}`);
     },
     [params, pathname, replace],
   );

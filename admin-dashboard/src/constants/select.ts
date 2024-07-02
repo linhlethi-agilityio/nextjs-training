@@ -1,14 +1,14 @@
 export const OPTIONS_STATUS = [
   {
-    value: 'complete',
+    value: 'Complete',
     label: 'Complete',
   },
   {
-    value: 'pending',
+    value: 'Pending',
     label: 'Pending',
   },
   {
-    value: 'rejected',
+    value: 'Rejected',
     label: 'Rejected',
   },
 ];

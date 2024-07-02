@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useState, useDeferredValue, useEffect } from 'react';
+import { memo } from 'react';
 import {
   Input,
   InputProps,
@@ -8,35 +8,31 @@ import {
   InputRightElement,
   InputLeftElement,
 } from '@chakra-ui/react';
+import { useDebouncedCallback } from 'use-debounce';
 
 // Icons
 import { SearchIcon, SlidersIcon } from '@/icons';
 
 interface SearchInputProps extends InputProps {
   placeholder?: string;
-  value?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  defaultValue?: string;
+  onSearch: (value: string) => void;
 }
 
 const SearchInput = ({
   placeholder = 'Search',
-  value = '',
-  onChange,
+  defaultValue = '',
+  onSearch,
   ...rest
 }: SearchInputProps) => {
-  const [query, setQuery] = useState(value);
-  const deferredQuery = useDeferredValue(query);
+  const handleChange = useDebouncedCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value;
 
-  useEffect(() => {
-    // Trigger the parent's onChange handler with the deferred query value
-    onChange({
-      target: { value: deferredQuery },
-    } as React.ChangeEvent<HTMLInputElement>);
-  }, [deferredQuery, onChange]);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
-  };
+      onSearch(value);
+    },
+    300,
+  );
 
   return (
     <InputGroup width="auto">
@@ -47,8 +43,8 @@ const SearchInput = ({
         bgColor="backgroundLight"
         pl={66}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         onChange={handleChange}
-        value={query}
         {...rest}
       />
       <InputRightElement pr={10} style={{ cursor: 'pointer' }}>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Flex, Text } from '@chakra-ui/react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 // Components
 import { Dropdown } from '@/components';
@@ -10,9 +10,7 @@ import { Dropdown } from '@/components';
 // Constants
 import { OPTIONS_PAGINATION } from '@/constants';
 
-const ProductLimit = ({ query }) => {
-  console.log('=====================================>query', query);
-  const searchParams = useSearchParams();
+const ProductLimit = () => {
   const pathname = usePathname();
   const { replace } = useRouter();
   const [value, setValue] = useState('10');
@@ -20,7 +18,6 @@ const ProductLimit = ({ query }) => {
   const handleChangeLimitPage = (value: string) => {
     setValue(value);
     replace(`${pathname}?limit=${value}`);
-    console.log(searchParams);
   };
 
   return (
