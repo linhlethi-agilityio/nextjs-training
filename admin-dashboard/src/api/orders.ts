@@ -21,8 +21,6 @@ export const getOrders = async (params?: params) => {
       page: params?.page ? params.page : 1,
     };
 
-    console.log(queryParams);
-
     const data = await api.getData<Order[]>(API_ENDPOINT.ORDERS, queryParams);
 
     return {
