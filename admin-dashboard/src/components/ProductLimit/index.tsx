@@ -10,13 +10,17 @@ import { Dropdown } from '@/components';
 // Constants
 import { OPTIONS_PAGINATION } from '@/constants';
 
-const ProductLimit = () => {
+interface ProductProps {
+  limit: number;
+}
+
+const ProductLimit = ({ limit }: ProductProps) => {
   const pathname = usePathname();
   const { replace } = useRouter();
-  const [value, setValue] = useState('10');
+  const [value, setValue] = useState<number>(limit);
 
   const handleChangeLimitPage = (value: string) => {
-    setValue(value);
+    setValue(Number(value));
     replace(`${pathname}?limit=${value}`);
   };
 

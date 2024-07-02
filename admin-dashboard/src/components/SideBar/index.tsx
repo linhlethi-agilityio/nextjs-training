@@ -13,7 +13,7 @@ const SideBar = () => {
   const pathname = usePathname();
 
   return (
-    <Box w={144} px={4}>
+    <Box w={144} px={4} h="100vh">
       <VStack mt={172}>
         {MENU.map(({ label, icon, path }) => (
           <SideBarItem

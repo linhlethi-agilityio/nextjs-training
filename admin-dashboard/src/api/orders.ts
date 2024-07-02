@@ -1,12 +1,11 @@
 // Services
-import { API_ENDPOINT, ROUTES } from '@/constants';
+import { API_ENDPOINT } from '@/constants';
 
 // Models
 import { Order } from '@/models';
 
 // Services
 import { api } from '@/services';
-import { revalidatePath } from 'next/cache';
 
 interface params {
   limit?: number;
@@ -16,16 +15,18 @@ interface params {
 
 export const getOrders = async (params?: params) => {
   try {
-    const data = await api.getData<Order[]>(API_ENDPOINT.ORDERS, {
-      params: {
-        limit: params?.limit || 10,
-        idOrder: params?.query,
-        page: params?.page,
-      },
-    });
+    const queryParams = {
+      limit: params?.limit ? params.limit : 10,
+      ...(params?.query && { idOrder: params.query }),
+      page: params?.page ? params.page : 1,
+    };
+
+    console.log(queryParams);
+
+    const data = await api.getData<Order[]>(API_ENDPOINT.ORDERS, queryParams);
 
     return {
-      data: data ?? [],
+      data: data.data ?? [],
     };
   } catch (error) {
     return { error };
@@ -34,9 +35,9 @@ export const getOrders = async (params?: params) => {
 
 export const removeOrder = async (id: string) => {
   try {
-    await api.deleteData(`${API_ENDPOINT.ORDERS}/${id}`);
-
-    revalidatePath(ROUTES.PRODUCT);
+    await api.deleteData(`${API_ENDPOINT.ORDERS}/${id}`, {
+      next: { tags: ['remove-order'] },
+    });
   } catch (error) {
     return { error };
   }
@@ -44,9 +45,9 @@ export const removeOrder = async (id: string) => {
 
 export const addOrder = async (data: Partial<Order>) => {
   try {
-    await api.postData(API_ENDPOINT.ORDERS, { arg: data });
-
-    revalidatePath(ROUTES.PRODUCT);
+    await api.postData(API_ENDPOINT.ORDERS, data, {
+      next: { tags: ['add-order'] },
+    });
   } catch (error) {
     return { error };
   }

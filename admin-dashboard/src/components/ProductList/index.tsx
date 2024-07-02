@@ -19,14 +19,15 @@ import {
 interface ProductListProps {
   query: string;
   page: number;
+  limit: number;
 }
 
-const ProductList = async ({ query, page }: ProductListProps) => {
+const ProductList = async ({ query, page, limit }: ProductListProps) => {
   const { data: orders = [] } = await getOrders({
     query,
     page,
+    limit,
   });
-  const { data: totalOrders = [] } = await getOrders();
 
   return (
     <>
@@ -40,11 +41,11 @@ const ProductList = async ({ query, page }: ProductListProps) => {
           ))}
         </TabList>
         <TabPanels mt={6} ml={1}>
-          <ProductLimit />
+          <ProductLimit limit={limit} />
           <TableOrder orders={orders} />
 
           <Stack textAlign="center" alignItems="center" mt={30} display="flex">
-            <ProductPagination totalPage={Math.ceil(totalOrders.length / 10)} />
+            <ProductPagination totalPage={2} />
           </Stack>
         </TabPanels>
       </Tabs>
