@@ -2,14 +2,20 @@ export const OPTIONS_STATUS = [
   {
     value: 'Complete',
     label: 'Complete',
+    color: 'textCompleteStatus',
+    bgColor: 'backgroundCompleteStatus',
   },
   {
     value: 'Pending',
     label: 'Pending',
+    color: 'textPendingStatus',
+    bgColor: 'backgroundPendingStatus',
   },
   {
     value: 'Rejected',
     label: 'Rejected',
+    color: 'textRejectedStatus',
+    bgColor: 'backgroundRejectedStatus',
   },
 ];
 

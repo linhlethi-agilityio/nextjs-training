@@ -7,11 +7,12 @@ interface ProductProps {
   searchParams: {
     query: string;
     page: number;
+    limit: number;
   };
 }
 
 const ProductPage = async ({ searchParams }: ProductProps) => {
-  const { query, page } = searchParams;
+  const { query, page, limit } = searchParams;
 
   return (
     <Box pt={19} pr={16}>
@@ -19,7 +20,7 @@ const ProductPage = async ({ searchParams }: ProductProps) => {
         Product
       </Text>
 
-      <ProductList query={query} page={page} />
+      <ProductList query={query} page={page} limit={limit} />
     </Box>
   );
 };

@@ -25,7 +25,7 @@ export default function RootLayout({
       <body>
         <ChakraUIProvider>
           <main>
-            <Flex height="100vh">
+            <Flex h="full">
               <SideBar />
               <Box flex={1} bgColor="backgroundDashboard">
                 <Box>{children}</Box>

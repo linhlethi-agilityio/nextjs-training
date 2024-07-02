@@ -1,37 +1,78 @@
-import axios, { AxiosRequestConfig } from 'axios';
-
-// Constants
 import { ENVS } from '@/constants';
 
-// Fetches data from the URL using a GET request.
-const getData = async <T>(
-  url: string,
-  params: AxiosRequestConfig,
+const handleResponse = async <T>(response: Response): Promise<T> => {
+  if (!response.ok) {
+    throw new Error(`Error: ${response.statusText}`);
+  }
+  return response.json();
+};
+
+const fetchData = async <T>(
+  path: string,
+  options: RequestInit,
+): Promise<{ data: T; countItems?: number }> => {
+  const response = await fetch(path, options);
+  const data = await handleResponse<T>(response);
+
+  return { data };
+};
+
+export const getData = async <T>(
+  path: string,
+  queryParams?: Record<string, string | number | boolean>,
+  configOptions?: RequestInit,
+): Promise<{ data: T; countItems?: number }> => {
+  const params = new URLSearchParams(queryParams as Record<string, string>);
+
+  const url = `${ENVS.API_URL}/${path}?${params}`;
+
+  return fetchData<T>(url, configOptions || {});
+};
+
+export const postData = async <T>(
+  path: string,
+  body: object,
+  configOptions?: RequestInit,
 ): Promise<T> => {
-  const response = await axios.get(`${ENVS.API_URL}/${url}`, { ...params });
+  const options: RequestInit = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+    ...configOptions,
+  };
 
-  return response.data;
+  return fetchData<T>(`${ENVS.API_URL}${path}`, options).then(
+    (res) => res.data,
+  );
 };
 
-// Sends a POST request to URL with data provided as an argument.
-const postData = async <T>(url: string, { arg }: { arg: T }): Promise<T> => {
-  const response = await axios.post<T>(`${ENVS.API_URL}/${url}`, arg);
+export const putData = async <T>(
+  path: string,
+  body: object,
+  configOptions?: RequestInit,
+): Promise<T> => {
+  const options: RequestInit = {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+    ...configOptions,
+  };
 
-  return response.data;
+  return fetchData<T>(`${ENVS.API_URL}${path}`, options).then(
+    (res) => res.data,
+  );
 };
 
-// Sends a PUT request to the URL with data provided as an argument.
-const putData = async <T>(url: string, { arg }: { arg: T }): Promise<T> => {
-  const response = await axios.put<T>(`${ENVS.API_URL}/${url}`, arg);
+export const deleteData = async (
+  path: string,
+  configOptions?: RequestInit,
+): Promise<void> => {
+  const options: RequestInit = {
+    method: 'DELETE',
+    ...configOptions,
+  };
 
-  return response.data;
-};
-
-// Sends a DELETE request to the URL
-const deleteData = async <T>(url: string): Promise<T> => {
-  const response = await axios.delete<T>(`${ENVS.API_URL}/${url}`);
-
-  return response.data;
+  await fetch(`${ENVS.API_URL}${path}`, options).then(handleResponse);
 };
 
 const api = { getData, postData, putData, deleteData };

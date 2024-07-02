@@ -22,6 +22,7 @@ import { Order } from '@/models';
 // Components
 import { TableColumnType, Table, ConfirmModal, OrderModal } from '@/components';
 import { removeOrder } from '@/api';
+import { getColorByValue } from '@/utils';
 
 interface TableOrderProps {
   orders: Order[];
@@ -66,7 +67,11 @@ const TableOrder = ({ orders }: TableOrderProps) => {
     },
     {
       header: 'Customer',
-      accessor: ({ customer }: Order) => <Text size="sm">{customer}</Text>,
+      accessor: ({ customer }: Order) => (
+        <Text textAlign="center" size="sm">
+          {customer}
+        </Text>
+      ),
     },
     {
       header: (
@@ -75,7 +80,21 @@ const TableOrder = ({ orders }: TableOrderProps) => {
           <SortIcon />
         </Flex>
       ),
-      accessor: ({ product }: Order) => <Text>{product}</Text>,
+      accessor: ({ status }: Order) => {
+        const { color, bgColor } = getColorByValue(status);
+
+        return (
+          <Text
+            px={15}
+            py="5px"
+            color={color}
+            bgColor={bgColor}
+            borderRadius="2xl"
+          >
+            {status}
+          </Text>
+        );
+      },
     },
     {
       header: (
