@@ -1,19 +1,53 @@
 // Services
-import { API_ENDPOINT } from '@/constants';
+import { API_ENDPOINT, ROUTES } from '@/constants';
 
 // Models
-import { Order, ResponseData } from '@/models';
+import { Order } from '@/models';
 
 // Services
 import { api } from '@/services';
+import { revalidatePath } from 'next/cache';
 
-export const getOrders = async () => {
-  const { data, ...rest } = await api.getData<ResponseData<Order[]>>(
-    API_ENDPOINT.ORDERS,
-  );
+interface params {
+  limit?: number;
+  query?: string;
+  page?: number;
+}
 
-  return {
-    data: data ?? [],
-    ...rest,
-  };
+export const getOrders = async (params?: params) => {
+  try {
+    const data = await api.getData<Order[]>(API_ENDPOINT.ORDERS, {
+      params: {
+        limit: params?.limit || 10,
+        idOrder: params?.query,
+        page: params?.page,
+      },
+    });
+
+    return {
+      data: data ?? [],
+    };
+  } catch (error) {
+    return { error };
+  }
+};
+
+export const removeOrder = async (id: string) => {
+  try {
+    await api.deleteData(`${API_ENDPOINT.ORDERS}/${id}`);
+
+    revalidatePath(ROUTES.PRODUCT);
+  } catch (error) {
+    return { error };
+  }
+};
+
+export const addOrder = async (data: Partial<Order>) => {
+  try {
+    await api.postData(API_ENDPOINT.ORDERS, { arg: data });
+
+    revalidatePath(ROUTES.PRODUCT);
+  } catch (error) {
+    return { error };
+  }
 };

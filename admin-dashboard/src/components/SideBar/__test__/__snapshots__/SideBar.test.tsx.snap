@@ -12,7 +12,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         href="/"
       >
         <div
-          class="chakra-stack css-isiqvs"
+          class="chakra-stack css-1s41oml"
           data-testid="sidebar-item-Dashboard"
         >
           <div
@@ -56,7 +56,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         href="/product"
       >
         <div
-          class="chakra-stack css-isiqvs"
+          class="chakra-stack css-1s41oml"
           data-testid="sidebar-item-Product"
         >
           <div
@@ -84,7 +84,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         href="/category"
       >
         <div
-          class="chakra-stack css-isiqvs"
+          class="chakra-stack css-1s41oml"
           data-testid="sidebar-item-Category"
         >
           <div
@@ -132,7 +132,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         href="/agen"
       >
         <div
-          class="chakra-stack css-isiqvs"
+          class="chakra-stack css-1s41oml"
           data-testid="sidebar-item-Agen"
         >
           <div
@@ -184,7 +184,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         href="/analytic"
       >
         <div
-          class="chakra-stack css-isiqvs"
+          class="chakra-stack css-1s41oml"
           data-testid="sidebar-item-Analytic"
         >
           <div
@@ -212,7 +212,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         href="/setting"
       >
         <div
-          class="chakra-stack css-isiqvs"
+          class="chakra-stack css-1s41oml"
           data-testid="sidebar-item-Setting"
         >
           <div

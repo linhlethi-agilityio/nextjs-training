@@ -1,6 +1,7 @@
 'use client';
 
-import { memo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 // Components
 import { Pagination } from '@/components';
@@ -10,12 +11,28 @@ interface ProductPaginationProps {
 }
 
 const ProductPagination = ({ totalPage }: ProductPaginationProps) => {
-  const handleOnClickPagination = () => {
-    // TODO: update later
-  };
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
 
-  //TODO: update later
-  const currentPage = 2;
+  const params = useMemo(
+    () => new URLSearchParams(searchParams),
+    [searchParams],
+  );
+
+  const currentPage = useMemo(
+    () => (searchParams.get('page') ? Number(searchParams.get('page')) : 1),
+    [searchParams],
+  );
+
+  const handleOnClickPagination = useCallback(
+    (page: string) => {
+      params.set('page', page);
+
+      replace(`${pathname}?${params.toString()}`);
+    },
+    [params, pathname, replace],
+  );
 
   return (
     <Pagination

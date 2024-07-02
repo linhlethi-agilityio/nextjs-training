@@ -7,7 +7,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@/icons';
 interface PaginationProps {
   totalPage: number;
   currentPage: number;
-  onClickPage: () => void;
+  onClickPage: (page: string) => void;
 }
 
 const Pagination = ({
@@ -15,9 +15,27 @@ const Pagination = ({
   currentPage,
   onClickPage,
 }: PaginationProps) => {
+  const handleOnChangePage = (page: number) => {
+    onClickPage(page.toString());
+  };
+
+  const handlePrevPage = () => {
+    onClickPage((currentPage - 1).toString());
+  };
+
+  const handleNextPage = () => {
+    onClickPage((currentPage + 1).toString());
+  };
+
   return (
     <HStack>
-      <ChevronLeftIcon />
+      <Button
+        variant="pagination"
+        onClick={handlePrevPage}
+        isDisabled={currentPage === 1}
+      >
+        <ChevronLeftIcon />
+      </Button>
       {Array.from({ length: totalPage }, (_, index) => {
         const active = currentPage === index + 1;
 
@@ -26,14 +44,20 @@ const Pagination = ({
             key={`pagination-${index}`}
             variant="pagination"
             fontWeight={active ? 'semibold' : 'normal'}
-            onClick={onClickPage}
+            onClick={() => handleOnChangePage(index + 1)}
             color={active ? 'brand.500' : 'textDefault'}
           >
             {index + 1}
           </Button>
         );
       })}
-      <ChevronRightIcon />
+      <Button
+        variant="pagination"
+        onClick={handleNextPage}
+        isDisabled={currentPage === totalPage}
+      >
+        <ChevronRightIcon />
+      </Button>
     </HStack>
   );
 };

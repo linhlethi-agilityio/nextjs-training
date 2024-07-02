@@ -13,7 +13,7 @@ import {
 import { ERROR_MESSAGES, OPTIONS_STATUS } from '@/constants';
 
 // Types
-import { Order } from '@/types';
+import { Order } from '@/models';
 
 // Utils
 import { clearErrorOnChange, isEnableSubmitButton } from '@/utils';
@@ -22,15 +22,27 @@ import { clearErrorOnChange, isEnableSubmitButton } from '@/utils';
 import { CustomModal, Dropdown } from '@/components';
 
 interface CustomerModalDetailModalProps {
+  title?: string;
   isOpen: boolean;
+  previewData?: Order | null;
   handleSubmitForm: (data: Partial<Order>) => void;
   onClose: () => void;
 }
 
 const REQUIRED_FIELDS = ['product', 'customer', 'status', 'deadline', 'price'];
 
+const initFormData = {
+  product: '',
+  customer: '',
+  status: '',
+  deadline: '',
+  price: null,
+};
+
 const OrderModal = ({
+  title = 'Add Order',
   isOpen,
+  previewData,
   onClose,
   handleSubmitForm,
 }: CustomerModalDetailModalProps) => {
@@ -42,13 +54,7 @@ const OrderModal = ({
   } = useForm<Order>({
     mode: 'onBlur',
     reValidateMode: 'onBlur',
-    defaultValues: {
-      product: '',
-      customer: '',
-      status: '',
-      deadline: '',
-      price: null,
-    },
+    defaultValues: previewData ? previewData : initFormData,
   });
 
   // Checking to disable/enable submit button
@@ -65,7 +71,7 @@ const OrderModal = ({
   };
 
   return (
-    <CustomModal isOpen={isOpen} onClose={onClose} title="New Order" size="3xl">
+    <CustomModal isOpen={isOpen} onClose={onClose} title={title} size="3xl">
       <FormControl textAlign="center">
         {/* Name */}
         <Controller
@@ -148,7 +154,10 @@ const OrderModal = ({
           rules={{
             required: ERROR_MESSAGES.FIELD_REQUIRED,
           }}
-          render={({ field: { name, onChange }, fieldState: { error } }) => (
+          render={({
+            field: { name, value, onChange },
+            fieldState: { error },
+          }) => (
             <Box mb={21}>
               <FormLabel fontSize="sm">Status</FormLabel>
               <Dropdown
@@ -158,7 +167,9 @@ const OrderModal = ({
                   // Clear error message on change
                   clearErrorOnChange(name, errors, clearErrors);
                 }}
+                value={value}
                 w="full"
+                color="textDark"
                 size="md"
                 options={OPTIONS_STATUS}
                 placeholder="Select status"
@@ -189,7 +200,7 @@ const OrderModal = ({
             <Box marginBottom={error?.message ? 0 : 25}>
               <FormLabel fontSize="sm">Deadline</FormLabel>
               <Input
-                color="textDefault"
+                color="textDark"
                 data-testid="deadline"
                 type="date"
                 min={new Date().toISOString().split('T')[0]}

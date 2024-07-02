@@ -1,6 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import { Flex, Text } from '@chakra-ui/react';
+import { usePathname, useRouter } from 'next/navigation';
 
 // Components
 import { Dropdown } from '@/components';
@@ -9,8 +11,13 @@ import { Dropdown } from '@/components';
 import { OPTIONS_PAGINATION } from '@/constants';
 
 const ProductLimit = () => {
-  const handleChangeLimitPage = () => {
-    // TODO: update later
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const [value, setValue] = useState('10');
+
+  const handleChangeLimitPage = (value: string) => {
+    setValue(value);
+    replace(`${pathname}?limit=${value}`);
   };
 
   return (
@@ -19,7 +26,7 @@ const ProductLimit = () => {
       <Flex alignItems="center" gap={15}>
         <Text color="textDefault">Item per page</Text>
         <Dropdown
-          value="10"
+          value={value}
           color="textDark"
           options={OPTIONS_PAGINATION}
           onChangeValue={handleChangeLimitPage}

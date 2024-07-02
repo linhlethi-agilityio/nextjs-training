@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, MouseEvent } from 'react';
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 
 // Components
@@ -9,7 +9,7 @@ interface ConfirmModalProps {
   description: string;
   buttonLabel: string;
   title: string;
-  onConfirm?: () => void;
+  onConfirm?: (event: MouseEvent<HTMLElement>) => void;
   onCancel: () => void;
 }
 
