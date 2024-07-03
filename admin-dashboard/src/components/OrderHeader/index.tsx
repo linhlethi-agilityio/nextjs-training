@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Flex, Text } from '@chakra-ui/react';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -15,14 +15,21 @@ interface OrderHeaderProps {
 }
 
 const OrderHeader = ({ limit }: OrderHeaderProps) => {
-  const pathname = usePathname();
-  const { replace } = useRouter();
   const [value, setValue] = useState<number>(limit);
 
-  const handleChangeLimitPage = (value: string) => {
-    setValue(Number(value));
-    replace(`${pathname}?limit=${value}`);
-  };
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  /**
+   * Function handle change limit page
+   */
+  const handleChangeLimitPage = useCallback(
+    (value: string) => {
+      setValue(Number(value));
+      replace(`${pathname}?limit=${value}`);
+    },
+    [pathname, replace],
+  );
 
   return (
     <Flex pl={7} mb={4} justifyContent="space-between" alignItems="center">

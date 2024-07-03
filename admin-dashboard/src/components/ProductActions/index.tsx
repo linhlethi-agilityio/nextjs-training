@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { Button, Flex, useDisclosure } from '@chakra-ui/react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
@@ -21,39 +21,45 @@ interface ProductActionsProps {
 }
 
 const ProductActions = ({ addOrderAction }: ProductActionsProps) => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
+
   const {
     isOpen: isOpenOrderModal,
     onOpen: onOpenOrderModal,
     onClose: onCloseOrderModal,
   } = useDisclosure();
 
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const { replace } = useRouter();
+  const handleSearch = useCallback(
+    (value: string) => {
+      const params = new URLSearchParams(searchParams);
 
-  const handleSearch = (value: string) => {
-    const params = new URLSearchParams(searchParams);
+      params.set('page', '1');
 
-    params.set('page', '1');
-
-    if (value) {
-      params.set('query', value);
-    } else {
-      params.delete('query');
-    }
-    replace(`${pathname}?${params.toString()}`);
-  };
+      if (value) {
+        params.set('query', value);
+      } else {
+        params.delete('query');
+      }
+      replace(`${pathname}?${params.toString()}`);
+    },
+    [pathname, replace, searchParams],
+  );
 
   const searchValue = useMemo(
     () => searchParams.get('query') ?? '',
     [searchParams],
   );
 
-  const handleAddOrder = (data: Partial<Order>) => {
-    onCloseOrderModal();
+  const handleAddOrder = useCallback(
+    (data: Partial<Order>) => {
+      onCloseOrderModal();
 
-    addOrderAction(data);
-  };
+      addOrderAction(data);
+    },
+    [addOrderAction, onCloseOrderModal],
+  );
 
   return (
     <>

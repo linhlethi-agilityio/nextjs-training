@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, MouseEvent, useState } from 'react';
+import { memo, MouseEvent, useCallback, useState } from 'react';
 import {
   Button,
   Checkbox,
@@ -51,6 +51,9 @@ const TableOrderUI = ({
     onClose: onCloseOrderModal,
   } = useDisclosure();
 
+  /**
+   * Function handle click checkbox
+   */
   const handleCheckChild = (itemId: string) => {
     const isChecked: boolean = checkedItems.includes(itemId);
 
@@ -61,6 +64,9 @@ const TableOrderUI = ({
     }
   };
 
+  /**
+   * Function handle click checkbox
+   */
   const handleCheckParent = () => {
     const isChecked: boolean = checkedItems.length !== 0;
 
@@ -94,7 +100,7 @@ const TableOrderUI = ({
     },
     {
       header: (
-        <Flex textAlign="center" gap={2.5}>
+        <Flex textAlign="center" gap={2.5} alignItems="center">
           <Text color="textDefault">ID Order</Text>
           <SortIcon />
         </Flex>
@@ -103,7 +109,7 @@ const TableOrderUI = ({
     },
     {
       header: (
-        <Flex textAlign="center" gap={2.5}>
+        <Flex textAlign="center" gap={2.5} alignItems="center">
           <Text color="textDefault">Product</Text>
           <SortIcon />
         </Flex>
@@ -124,7 +130,12 @@ const TableOrderUI = ({
     },
     {
       header: (
-        <Flex textAlign="center" gap={2.5} justifyContent="center">
+        <Flex
+          textAlign="center"
+          gap={2.5}
+          justifyContent="center"
+          alignItems="center"
+        >
           <Text color="textDefault">Status</Text>
           <SortIcon />
         </Flex>
@@ -148,7 +159,7 @@ const TableOrderUI = ({
     },
     {
       header: (
-        <Flex textAlign="center" gap={2.5}>
+        <Flex textAlign="center" gap={2.5} alignItems="center">
           <Text color="textDefault">Created Date</Text>
           <SortIcon />
         </Flex>
@@ -159,7 +170,12 @@ const TableOrderUI = ({
     },
     {
       header: (
-        <Flex textAlign="center" gap={2.5} justifyContent="center">
+        <Flex
+          textAlign="center"
+          gap={2.5}
+          justifyContent="center"
+          alignItems="center"
+        >
           <Text color="textDefault">Deadline</Text>
           <SortIcon />
         </Flex>
@@ -172,7 +188,7 @@ const TableOrderUI = ({
     },
     {
       header: (
-        <Flex textAlign="center" gap={2.5}>
+        <Flex textAlign="center" gap={2.5} alignItems="center">
           <Text color="textDefault">Price</Text>
           <SortIcon />
         </Flex>
@@ -232,11 +248,14 @@ const TableOrderUI = ({
     id && onEditOrder(id);
   };
 
-  const handleEditOrder = (formData: Partial<Order>) => {
-    onCloseOrderModal();
+  const handleEditOrder = useCallback(
+    (formData: Partial<Order>) => {
+      onCloseOrderModal();
 
-    editOrderAction(previewData?.id ?? '', formData);
-  };
+      editOrderAction(previewData?.id ?? '', formData);
+    },
+    [editOrderAction, onCloseOrderModal, previewData?.id],
+  );
 
   const openConfirmModal = (selectedId: string) => {
     const currentOrder = orders?.find(({ id }) => id === selectedId);
@@ -255,7 +274,7 @@ const TableOrderUI = ({
     id && openConfirmModal(id);
   };
 
-  const handleRemoveOrder = async () => {
+  const handleRemoveOrder = useCallback(() => {
     onCloseConfirm();
 
     if (previewData?.id) {
@@ -265,7 +284,7 @@ const TableOrderUI = ({
     if (checkedItems.length !== 0) {
       checkedItems.map((item) => removeOrderAction(item));
     }
-  };
+  }, [checkedItems, onCloseConfirm, previewData?.id, removeOrderAction]);
 
   const handleClickDeleteButton = () => {
     onOpenConfirm();

@@ -1,3 +1,6 @@
+/**
+ * Function format date
+ */
 export const formatDateString = (
   isoString: string,
   includeTime: boolean = false,
