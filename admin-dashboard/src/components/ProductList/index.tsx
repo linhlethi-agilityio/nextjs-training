@@ -1,15 +1,12 @@
-import { memo } from 'react';
+import { Suspense, memo } from 'react';
 
 import { Tabs, TabList, Tab, TabPanels, Stack } from '@chakra-ui/react';
 
 // Constants
 import { TAB_LABEL_PRODUCT } from '@/constants';
 
-// Api
-import { getOrders, getTotalOrders } from '@/api';
-
 // Actions
-import { addOrder, removeOrder, updateOrder } from '@/actions';
+import { addOrder } from '@/actions';
 
 // Components
 import {
@@ -17,6 +14,8 @@ import {
   ProductActions,
   ProductLimit,
   ProductPagination,
+  PaginationSkeleton,
+  SkeletonTable,
 } from '@/components';
 
 interface ProductListProps {
@@ -26,14 +25,6 @@ interface ProductListProps {
 }
 
 const ProductList = async ({ query, page, limit }: ProductListProps) => {
-  const { data: orders = [] } = await getOrders({
-    query,
-    page,
-    limit,
-  });
-
-  const { data: totalOrders = [] } = await getTotalOrders();
-
   return (
     <>
       <ProductActions addOrderAction={addOrder} />
@@ -47,16 +38,15 @@ const ProductList = async ({ query, page, limit }: ProductListProps) => {
         </TabList>
         <TabPanels mt={6} ml={1}>
           <ProductLimit limit={limit} />
-          <TableOrder
-            orders={orders}
-            removeOrderAction={removeOrder}
-            editOrderAction={updateOrder}
-          />
+
+          <Suspense fallback={<SkeletonTable />}>
+            <TableOrder limit={limit} page={page} query={query} />
+          </Suspense>
 
           <Stack textAlign="center" alignItems="center" mt={30} display="flex">
-            <ProductPagination
-              totalPage={Math.ceil(totalOrders?.length / (limit ?? 10))}
-            />
+            <Suspense fallback={<PaginationSkeleton />}>
+              <ProductPagination limit={limit} />
+            </Suspense>
           </Stack>
         </TabPanels>
       </Tabs>

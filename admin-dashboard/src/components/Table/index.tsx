@@ -3,7 +3,7 @@ import { Table as BaseTable, Tbody, Th, Thead, Tr } from '@chakra-ui/react';
 import isEqual from 'react-fast-compare';
 
 // Components
-import { SkeletonTable, TableCell, TableRow } from '@/components';
+import { TableCell, TableRow } from '@/components';
 
 export type TTableAccessor<T> =
   | ((item: T, inputProps?: object) => ReactNode)
@@ -24,7 +24,6 @@ interface CustomTableProps<T> {
 const TableCustom = <T extends { id: string }>({
   columns,
   data,
-  isLoading,
 }: CustomTableProps<T>) => {
   const headerRow = (
     <Tr>
@@ -59,19 +58,15 @@ const TableCustom = <T extends { id: string }>({
     <BaseTable bgColor="backgroundLight">
       <Thead>{headerRow}</Thead>
       <Tbody>
-        {isLoading ? (
-          <SkeletonTable columns={columns} />
-        ) : (
-          data.map((item, index) => (
-            <TableRow key={`table-row-${index}`} data-id={item.id}>
-              {columns.map((columnConfig, indexColumn) => (
-                <TableCell key={`table-cell-${indexColumn}`}>
-                  {renderCell(item, columnConfig.accessor)}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))
-        )}
+        {data.map((item, index) => (
+          <TableRow key={`table-row-${index}`} data-id={item.id}>
+            {columns.map((columnConfig, indexColumn) => (
+              <TableCell key={`table-cell-${indexColumn}`}>
+                {renderCell(item, columnConfig.accessor)}
+              </TableCell>
+            ))}
+          </TableRow>
+        ))}
       </Tbody>
     </BaseTable>
   );

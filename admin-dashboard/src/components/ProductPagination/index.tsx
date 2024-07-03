@@ -1,46 +1,19 @@
-'use client';
-
-import { memo, useCallback, useMemo } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { memo } from 'react';
 
 // Components
-import { Pagination } from '@/components';
+import ProductPaginationUI from './ProductPaginationUI';
+import { getTotalOrders } from '@/api';
 
 interface ProductPaginationProps {
-  totalPage: number;
+  limit: number;
 }
 
-const ProductPagination = ({ totalPage }: ProductPaginationProps) => {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const { replace } = useRouter();
+const ProductPagination = async ({ limit }: ProductPaginationProps) => {
+  const { data: totalOrders = [] } = await getTotalOrders();
 
-  const params = useMemo(
-    () => new URLSearchParams(searchParams),
-    [searchParams],
-  );
+  const totalPage = Math.ceil(totalOrders?.length / (limit ?? 10));
 
-  const currentPage = useMemo(
-    () => (searchParams.get('page') ? Number(searchParams.get('page')) : 1),
-    [searchParams],
-  );
-
-  const handleOnClickPagination = useCallback(
-    (page: string) => {
-      params.set('page', page);
-
-      replace(`${pathname}?${params.toString()}`);
-    },
-    [params, pathname, replace],
-  );
-
-  return (
-    <Pagination
-      totalPage={totalPage}
-      onClickPage={handleOnClickPagination}
-      currentPage={currentPage}
-    />
-  );
+  return <ProductPaginationUI totalPage={totalPage} />;
 };
 
 export default memo(ProductPagination);
