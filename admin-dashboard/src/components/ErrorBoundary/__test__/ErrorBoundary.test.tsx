@@ -1,35 +1,26 @@
-import { Component } from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 // Components
 import ErrorBoundary from '..';
 
-describe('ErrorBoundary', () => {
-  test('renders children when there is no error', () => {
-    const { container } = render(
-      <ErrorBoundary fallback={<div>Error occurred</div>}>
-        <div>Normal content</div>
-      </ErrorBoundary>,
-    );
-    expect(container).toMatchSnapshot();
+const mockProps = {
+  error: new Error('Test Error'),
+  reset: jest.fn(),
+};
+
+describe('ErrorBoundary Component', () => {
+  it('Should render ErrorBoundary Component correctly', () => {
+    const component = render(<ErrorBoundary {...mockProps} />);
+
+    expect(component).toMatchSnapshot();
   });
 
-  test('renders fallback content when there is an error', () => {
-    jest.spyOn(console, 'error').mockImplementation(() => {});
-    class ChildComponent extends Component {
-      componentDidMount() {
-        throw new Error('Test error');
-      }
-      render() {
-        return <div>Child Component</div>;
-      }
-    }
+  it('renders error message and calls reset function when  button is clicked', () => {
+    const { getByText } = render(<ErrorBoundary {...mockProps} />);
 
-    const { container } = render(
-      <ErrorBoundary fallback={<div>Error occurred</div>}>
-        <ChildComponent />
-      </ErrorBoundary>,
-    );
-    expect(container).toMatchSnapshot();
+    const tryAgainButton = getByText('Try again');
+    fireEvent.click(tryAgainButton);
+
+    expect(mockProps.reset).toHaveBeenCalled();
   });
 });

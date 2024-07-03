@@ -50,6 +50,4 @@ const data = [
   },
 ];
 
-export const Default = () => (
-  <Table isLoading={false} columns={columnsTable} data={data}></Table>
-);
+export const Default = () => <Table columns={columnsTable} data={data}></Table>;
