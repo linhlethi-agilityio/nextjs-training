@@ -11,15 +11,16 @@ import { FileArrowUpIcon, PrinterIcon, CreateFolderIcon } from '@/icons';
 // Models
 import { Order } from '@/models';
 
-// Api
-import { addOrder } from '@/api';
-
 // Components
 import { SearchInput } from '@/components';
 
 const DynamicOrderModal = dynamic(() => import('../Modal/OrderModal'));
 
-const ProductActions = () => {
+interface ProductActionsProps {
+  addOrderAction: (data: Partial<Order>) => void;
+}
+
+const ProductActions = ({ addOrderAction }: ProductActionsProps) => {
   const {
     isOpen: isOpenOrderModal,
     onOpen: onOpenOrderModal,
@@ -49,7 +50,9 @@ const ProductActions = () => {
   );
 
   const handleAddOrder = (data: Partial<Order>) => {
-    addOrder(data);
+    onCloseOrderModal();
+
+    addOrderAction(data);
   };
 
   return (
@@ -80,7 +83,6 @@ const ProductActions = () => {
       </Flex>
       {isOpenOrderModal && (
         <DynamicOrderModal
-          title="Update Order"
           handleSubmitForm={handleAddOrder}
           isOpen={isOpenOrderModal}
           onClose={onCloseOrderModal}

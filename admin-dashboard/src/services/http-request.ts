@@ -19,7 +19,10 @@ const fetchData = async <T>(
 
 export const getData = async <T>(
   path: string,
-  queryParams?: Record<string, string | number | boolean>,
+  queryParams?: Record<
+    string,
+    string | number | boolean | (string | number | boolean)[]
+  >,
   configOptions?: RequestInit,
 ): Promise<{ data: T; countItems?: number }> => {
   const params = new URLSearchParams(queryParams as Record<string, string>);
@@ -41,7 +44,7 @@ export const postData = async <T>(
     ...configOptions,
   };
 
-  return fetchData<T>(`${ENVS.API_URL}${path}`, options).then(
+  return fetchData<T>(`${ENVS.API_URL}/${path}`, options).then(
     (res) => res.data,
   );
 };
