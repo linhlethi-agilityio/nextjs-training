@@ -12,7 +12,7 @@ import { addOrder } from '@/actions';
 import {
   TableOrder,
   ProductActions,
-  ProductLimit,
+  OrderHeader,
   ProductPagination,
   PaginationSkeleton,
   SkeletonTable,
@@ -37,7 +37,7 @@ const ProductList = async ({ query, page, limit }: ProductListProps) => {
           ))}
         </TabList>
         <TabPanels mt={6} ml={1}>
-          <ProductLimit limit={limit} />
+          <OrderHeader limit={limit} />
 
           <Suspense fallback={<SkeletonTable />}>
             <TableOrder limit={limit} page={page} query={query} />

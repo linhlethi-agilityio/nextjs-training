@@ -37,6 +37,7 @@ const TableOrderUI = ({
   editOrderAction,
 }: TableOrderProps) => {
   const [previewData, setPreviewData] = useState<Order | null>(null);
+  const [checkedItems, setCheckedItems] = useState<string[]>([]);
 
   const {
     isOpen: isOpenConfirm,
@@ -50,10 +51,46 @@ const TableOrderUI = ({
     onClose: onCloseOrderModal,
   } = useDisclosure();
 
+  const handleCheckChild = (itemId: string) => {
+    const isChecked: boolean = checkedItems.includes(itemId);
+
+    if (isChecked) {
+      setCheckedItems(checkedItems.filter((id) => id !== itemId));
+    } else {
+      setCheckedItems([...checkedItems, itemId]);
+    }
+  };
+
+  const handleCheckParent = () => {
+    const isChecked: boolean = checkedItems.length !== 0;
+
+    if (!isChecked) {
+      const data = orders.map((order) => order.id);
+
+      setCheckedItems(data);
+    } else setCheckedItems([]);
+  };
+
   const orderColumns: TableColumnType<Order>[] = [
     {
-      header: <Checkbox size="lg" />,
-      accessor: () => <Checkbox size="lg" />,
+      header: (
+        <Checkbox
+          isChecked={checkedItems.length === orders.length}
+          size="lg"
+          onChange={handleCheckParent}
+        />
+      ),
+      accessor: (data: Order) => {
+        const currentChecked = checkedItems.find((id) => id === data.id);
+
+        return (
+          <Checkbox
+            size="lg"
+            isChecked={!!currentChecked}
+            onChange={() => handleCheckChild(data.id)}
+          />
+        );
+      },
     },
     {
       header: (
@@ -222,19 +259,37 @@ const TableOrderUI = ({
     onCloseConfirm();
 
     if (previewData?.id) {
-      removeOrderAction(previewData?.id);
+      return removeOrderAction(previewData?.id);
     }
+
+    if (checkedItems.length !== 0) {
+      checkedItems.map((item) => removeOrderAction(item));
+    }
+  };
+
+  const handleClickDeleteButton = () => {
+    onOpenConfirm();
   };
 
   return (
     <>
-      <Table columns={orderColumns} data={orders} isLoading={false} />
+      <Button
+        color="brand.500"
+        isDisabled={checkedItems.length === 0}
+        onClick={handleClickDeleteButton}
+        position="absolute"
+        right={170}
+        top={61}
+      >
+        Delete Orders
+      </Button>
+      <Table columns={orderColumns} data={orders} />
       {isOpenConfirm && (
         <ConfirmModal
           isOpen={isOpenConfirm}
           onCancel={onCloseConfirm}
           title="Delete Order"
-          description="Are you sure you would like to delete student"
+          description="Are you sure you would like to delete order"
           buttonLabel="Submit"
           onConfirm={handleRemoveOrder}
         />

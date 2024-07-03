@@ -18,7 +18,6 @@ export interface TableColumnType<T> {
 interface CustomTableProps<T> {
   columns: TableColumnType<T>[];
   data: T[];
-  isLoading: boolean;
 }
 
 const TableCustom = <T extends { id: string }>({
