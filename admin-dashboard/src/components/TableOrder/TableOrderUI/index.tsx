@@ -102,6 +102,7 @@ const TableOrderUI = ({
             color={color}
             bgColor={bgColor}
             borderRadius="2xl"
+            textAlign="center"
           >
             {status}
           </Text>
