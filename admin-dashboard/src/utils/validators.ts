@@ -19,6 +19,9 @@ export const isEnableSubmitButton = (
   return isMatchAllRequiredFields && errors && !Object.keys(errors).length;
 };
 
+/**
+ * Function is valid price
+ */
 export const isValidPrice = (value: string) => {
   const price = parseFloat(value);
 

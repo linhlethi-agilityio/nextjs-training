@@ -24,6 +24,9 @@ const DropdownUI = ({
   onChangeValue,
   ...rest
 }: DropdownProps) => {
+  /**
+   * Function handle select dropdown
+   */
   const handleSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     const newValue = e.target.value;
 

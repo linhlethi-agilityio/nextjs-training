@@ -1,3 +1,6 @@
+/**
+ * Function generate random id format "444-664"
+ */
 export const generateRandomId = () => {
   const min = 100;
   const max = 999;

@@ -1,8 +1,11 @@
+import { Box, Heading, Text } from '@chakra-ui/react';
+
 const Homepage = () => {
   return (
-    <main className="container mx-auto">
-      <h1 className="text-lg font-semibold">This is homepage</h1>
-    </main>
+    <Box pl={7} pt={7}>
+      <Heading size="md">Dashboard</Heading>
+      <Text>Coming soon!</Text>
+    </Box>
   );
 };
 
