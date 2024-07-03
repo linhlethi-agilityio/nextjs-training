@@ -18,7 +18,12 @@ import { ERROR_MESSAGES, OPTIONS_STATUS } from '@/constants';
 import { Order } from '@/models';
 
 // Utils
-import { clearErrorOnChange, isEnableSubmitButton } from '@/utils';
+import {
+  clearErrorOnChange,
+  formatDateString,
+  isEnableSubmitButton,
+  isValidPrice,
+} from '@/utils';
 
 // Components
 import { CustomModal, Dropdown } from '@/components';
@@ -171,8 +176,8 @@ const OrderModal = ({
                 }}
                 value={value}
                 w="full"
+                fontSize={14}
                 color="textDark"
-                size="md"
                 options={OPTIONS_STATUS}
                 placeholder="Select status"
               />
@@ -206,7 +211,7 @@ const OrderModal = ({
                 data-testid="deadline"
                 type="date"
                 min={new Date().toISOString().split('T')[0]}
-                value={value}
+                value={formatDateString(value, false, true)}
                 isInvalid={!!error?.message}
                 onChange={(e) => {
                   onChange(e.target.value);
@@ -233,7 +238,11 @@ const OrderModal = ({
         <Controller
           name="price"
           control={control}
-          rules={{ required: ERROR_MESSAGES.FIELD_REQUIRED }}
+          rules={{
+            required: ERROR_MESSAGES.FIELD_REQUIRED,
+            validate: (value) =>
+              isValidPrice(value!.toString()) || ERROR_MESSAGES.INVALID_PRICE,
+          }}
           render={({
             field: { name, value, onChange, ...rest },
             fieldState: { error },

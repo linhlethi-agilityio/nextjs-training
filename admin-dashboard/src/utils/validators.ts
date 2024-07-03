@@ -18,3 +18,9 @@ export const isEnableSubmitButton = (
 
   return isMatchAllRequiredFields && errors && !Object.keys(errors).length;
 };
+
+export const isValidPrice = (value: string) => {
+  const price = parseFloat(value);
+
+  return !isNaN(price) && price > 0;
+};
