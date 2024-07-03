@@ -20,11 +20,15 @@ const config: Config = {
   collectCoverageFrom: [
     '<rootDir>/src/**/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
+    '!**/app/**',
     '!<rootDir>/src/**/*.stories.{js,jsx,ts,tsx}',
     '!<rootDir>/node_modules/',
     '!<rootDir>/src/models/*.{js,jsx,ts,tsx}',
     '!<rootDir>/src/constants/*.{js,jsx,ts,tsx}',
     '!<rootDir>/src/icons/*.{js,jsx,ts,tsx}',
+    '!<rootDir>/src/themes/*.{js,jsx,ts,tsx}',
+    '!<rootDir>/src/actions/*.{js,jsx,ts,tsx}',
+    '!<rootDir>/src/themes/components/*.{js,jsx,ts,tsx}',
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {

@@ -31,6 +31,6 @@ const SkeletonTableRow = <T,>({ columns }: SkeletonTableRowProps<T>) => {
   return skeletonRows;
 };
 
-export const SkeletonTable = memo(SkeletonTableRow, isEqual) as <T>(
+export const SkeletonTableBaseRow = memo(SkeletonTableRow, isEqual) as <T>(
   props: SkeletonTableRowProps<T>,
 ) => JSX.Element;

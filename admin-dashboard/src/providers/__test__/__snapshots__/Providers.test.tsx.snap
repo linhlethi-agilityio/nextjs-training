@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChakraUIProvider component should match snapshot for ChakraUIProvider 1`] = `
+<div>
+  <div>
+    Test
+  </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</div>
+`;

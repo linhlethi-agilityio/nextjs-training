@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import { Table, Tbody } from '@chakra-ui/react';
 
 // Components
-import { TableColumnType, SkeletonTable } from '@/components';
+import { TableColumnType, SkeletonTableBaseRow } from '@/components';
 
 interface User {
   name: string;
@@ -30,7 +30,7 @@ describe('TableRow', () => {
     const { container } = render(
       <Table>
         <Tbody>
-          <SkeletonTable columns={columnsTable} />
+          <SkeletonTableBaseRow columns={columnsTable} />
         </Tbody>
       </Table>,
     );
