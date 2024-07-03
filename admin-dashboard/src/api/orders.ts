@@ -15,13 +15,19 @@ interface params {
 
 export const getOrders = async (params?: params) => {
   try {
-    const queryParams = {
-      limit: params?.limit ? params.limit : 10,
-      ...(params?.query && { idOrder: params.query }),
-      page: params?.page ? params.page : 1,
-    };
+    const { limit = 10, query = '', page = 1 } = params || {};
 
-    const data = await api.getData<Order[]>(API_ENDPOINT.ORDERS, queryParams);
+    const data = await api.getData<Order[]>(
+      API_ENDPOINT.ORDERS,
+      {
+        limit,
+        idOrder: query,
+        page,
+      },
+      {
+        next: { tags: ['orders'], revalidate: 3600 },
+      },
+    );
 
     return {
       data: data.data ?? [],
@@ -31,21 +37,13 @@ export const getOrders = async (params?: params) => {
   }
 };
 
-export const removeOrder = async (id: string) => {
+export const getTotalOrders = async () => {
   try {
-    await api.deleteData(`${API_ENDPOINT.ORDERS}/${id}`, {
-      next: { tags: ['remove-order'] },
-    });
-  } catch (error) {
-    return { error };
-  }
-};
+    const data = await api.getData<Order[]>(API_ENDPOINT.ORDERS);
 
-export const addOrder = async (data: Partial<Order>) => {
-  try {
-    await api.postData(API_ENDPOINT.ORDERS, data, {
-      next: { tags: ['add-order'] },
-    });
+    return {
+      data: data.data ?? [],
+    };
   } catch (error) {
     return { error };
   }

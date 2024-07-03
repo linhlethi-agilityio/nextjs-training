@@ -6,7 +6,10 @@ import { Tabs, TabList, Tab, TabPanels, Stack } from '@chakra-ui/react';
 import { TAB_LABEL_PRODUCT } from '@/constants';
 
 // Api
-import { getOrders } from '@/api';
+import { getOrders, getTotalOrders } from '@/api';
+
+// Actions
+import { addOrder, removeOrder, updateOrder } from '@/actions';
 
 // Components
 import {
@@ -29,9 +32,11 @@ const ProductList = async ({ query, page, limit }: ProductListProps) => {
     limit,
   });
 
+  const { data: totalOrders = [] } = await getTotalOrders();
+
   return (
     <>
-      <ProductActions />
+      <ProductActions addOrderAction={addOrder} />
       <Tabs colorScheme="brand" mt={6} border="none">
         <TabList ml={8} color="textDark" border="none" pt={2}>
           {TAB_LABEL_PRODUCT.map((tab) => (
@@ -42,10 +47,16 @@ const ProductList = async ({ query, page, limit }: ProductListProps) => {
         </TabList>
         <TabPanels mt={6} ml={1}>
           <ProductLimit limit={limit} />
-          <TableOrder orders={orders} />
+          <TableOrder
+            orders={orders}
+            removeOrderAction={removeOrder}
+            editOrderAction={updateOrder}
+          />
 
           <Stack textAlign="center" alignItems="center" mt={30} display="flex">
-            <ProductPagination totalPage={2} />
+            <ProductPagination
+              totalPage={Math.ceil(totalOrders?.length / (limit ?? 10))}
+            />
           </Stack>
         </TabPanels>
       </Tabs>

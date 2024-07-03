@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, MouseEvent, useCallback, useState } from 'react';
+import { memo, MouseEvent, useState } from 'react';
 import {
   Button,
   Checkbox,
@@ -19,16 +19,23 @@ import { ChevronDownIcon, SortIcon } from '@/icons';
 // Models
 import { Order } from '@/models';
 
+// Utils
+import { getColorByValue } from '@/utils';
+
 // Components
 import { TableColumnType, Table, ConfirmModal, OrderModal } from '@/components';
-import { removeOrder } from '@/api';
-import { getColorByValue } from '@/utils';
 
 interface TableOrderProps {
   orders: Order[];
+  removeOrderAction: (id: string) => void;
+  editOrderAction: (id: string, updateOrder: Partial<Order>) => void;
 }
 
-const TableOrder = ({ orders }: TableOrderProps) => {
+const TableOrder = ({
+  orders,
+  removeOrderAction,
+  editOrderAction,
+}: TableOrderProps) => {
   const [previewData, setPreviewData] = useState<Order | null>(null);
   const {
     isOpen: isOpenConfirm,
@@ -169,8 +176,10 @@ const TableOrder = ({ orders }: TableOrderProps) => {
     id && onEditOrder(id);
   };
 
-  const handleAddOrder = () => {
-    //TODO
+  const handleEditOrder = (formData: Partial<Order>) => {
+    onCloseOrderModal();
+
+    editOrderAction(previewData?.id ?? '', formData);
   };
 
   const openConfirmModal = (selectedId: string) => {
@@ -190,13 +199,13 @@ const TableOrder = ({ orders }: TableOrderProps) => {
     id && openConfirmModal(id);
   };
 
-  const handleRemoveOrder = useCallback(() => {
+  const handleRemoveOrder = async () => {
     onCloseConfirm();
 
     if (previewData?.id) {
-      removeOrder(previewData?.id);
+      removeOrderAction(previewData?.id);
     }
-  }, [onCloseConfirm, previewData?.id]);
+  };
 
   return (
     <>
@@ -213,8 +222,9 @@ const TableOrder = ({ orders }: TableOrderProps) => {
       )}
       {isOpenOrderModal && (
         <OrderModal
+          title="Update Order"
           previewData={previewData}
-          handleSubmitForm={handleAddOrder}
+          handleSubmitForm={handleEditOrder}
           isOpen={isOpenOrderModal}
           onClose={onCloseOrderModal}
         />
