@@ -26,7 +26,7 @@ interface ProductListProps {
   sortOrder: SORT_ORDER;
 }
 
-const ProductList = async ({
+const ProductList = ({
   query,
   page,
   limit,
@@ -44,7 +44,7 @@ const ProductList = async ({
         ))}
       </TabList>
       <TabPanels mt={6} ml={1}>
-        <OrderHeader limit={limit} />
+        <OrderHeader limit={limit} page={page} />
 
         <Suspense fallback={<SkeletonTable />}>
           <TableOrder

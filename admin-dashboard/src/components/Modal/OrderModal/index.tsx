@@ -12,7 +12,12 @@ import {
 } from '@chakra-ui/react';
 
 // Constants
-import { ERROR_MESSAGES, OPTIONS_STATUS } from '@/constants';
+import {
+  ERROR_MESSAGES,
+  OPTIONS_STATUS,
+  REGEX_PATTERN,
+  REQUIRED_FIELDS,
+} from '@/constants';
 
 // Types
 import { Order } from '@/models';
@@ -21,22 +26,23 @@ import { Order } from '@/models';
 import {
   clearErrorOnChange,
   formatDateString,
+  getDirtyState,
   isEnableSubmitButton,
   isValidPrice,
+  isValidString,
 } from '@/utils';
 
 // Components
 import { CustomModal, Dropdown } from '@/components';
+import { normalizeValue } from '@/utils/number';
 
 interface CustomerModalDetailModalProps {
   title?: string;
   isOpen: boolean;
   previewData?: Order | null;
-  handleSubmitForm: (data: Partial<Order>) => void;
+  onSubmitForm: (data: Partial<Order>) => void;
   onClose: () => void;
 }
-
-const REQUIRED_FIELDS = ['product', 'customer', 'status', 'deadline', 'price'];
 
 const initFormData = {
   product: '',
@@ -51,17 +57,23 @@ const OrderModal = ({
   isOpen,
   previewData,
   onClose,
-  handleSubmitForm,
+  onSubmitForm,
 }: CustomerModalDetailModalProps) => {
+  const formattedOrder = {
+    ...previewData,
+    deadline: formatDateString(previewData?.deadline ?? '', false, true),
+  };
+
   const {
     control,
-    formState: { dirtyFields, errors },
+    formState: { dirtyFields, errors, defaultValues },
     clearErrors,
     handleSubmit,
+    watch,
   } = useForm<Order>({
     mode: 'onBlur',
     reValidateMode: 'onBlur',
-    defaultValues: previewData ? previewData : initFormData,
+    defaultValues: formattedOrder ? formattedOrder : initFormData,
   });
 
   // Checking to disable/enable submit button
@@ -71,10 +83,13 @@ const OrderModal = ({
     () => isEnableSubmitButton(REQUIRED_FIELDS, dirtyItems, errors),
     [dirtyItems, errors],
   );
-  const isDisableSubmit = !enableSubmit;
 
-  const handleOnSubmit = async (formData: Partial<Order>) => {
-    handleSubmitForm(formData);
+  const isDisableSubmit = !(
+    enableSubmit || !getDirtyState(defaultValues ?? {}, watch())
+  );
+
+  const handleOnSubmit = (formData: Partial<Order>) => {
+    onSubmitForm(formData);
   };
 
   return (
@@ -86,6 +101,8 @@ const OrderModal = ({
           control={control}
           rules={{
             required: ERROR_MESSAGES.FIELD_REQUIRED,
+            validate: (name) =>
+              isValidString(name) || ERROR_MESSAGES.INVALID_NAME('product'),
           }}
           render={({
             field: { name, onChange, ...rest },
@@ -123,6 +140,8 @@ const OrderModal = ({
           control={control}
           rules={{
             required: ERROR_MESSAGES.FIELD_REQUIRED,
+            validate: (name) =>
+              isValidString(name) || ERROR_MESSAGES.INVALID_NAME('customer'),
           }}
           render={({
             field: { name, onChange, ...rest },
@@ -201,7 +220,7 @@ const OrderModal = ({
           control={control}
           rules={{ required: ERROR_MESSAGES.FIELD_REQUIRED }}
           render={({
-            field: { name, value, onChange, ...rest },
+            field: { name, onChange, ...rest },
             fieldState: { error },
           }) => (
             <Box marginBottom={error?.message ? 0 : 25}>
@@ -211,7 +230,6 @@ const OrderModal = ({
                 data-testid="deadline"
                 type="date"
                 min={new Date().toISOString().split('T')[0]}
-                value={formatDateString(value, false, true)}
                 isInvalid={!!error?.message}
                 onChange={(e) => {
                   onChange(e.target.value);
@@ -251,11 +269,14 @@ const OrderModal = ({
               <FormLabel fontSize="sm">Price</FormLabel>
               <Input
                 data-testid="price"
-                type="number"
                 value={value || ''}
                 isInvalid={!!error?.message}
                 onChange={(e) => {
-                  onChange(e.target.value);
+                  const value = normalizeValue(e.target.value);
+
+                  const isValidate = REGEX_PATTERN.DECIMAL.test(value);
+
+                  if (isValidate || value === '') onChange(value);
 
                   // Clear error message on change
                   clearErrorOnChange(name, errors, clearErrors);
@@ -281,7 +302,7 @@ const OrderModal = ({
           aria-label="button-submit"
           type="submit"
           w="full"
-          disabled={isDisableSubmit}
+          isDisabled={isDisableSubmit}
           marginBottom={5}
           onClick={handleSubmit(handleOnSubmit)}
         >

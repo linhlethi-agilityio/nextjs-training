@@ -49,7 +49,7 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
               ID Order
             </p>
             <button
-              class="chakra-button css-1t23d3c"
+              class="chakra-button css-4xx2wk"
               data-id="idOrder"
               type="button"
             >

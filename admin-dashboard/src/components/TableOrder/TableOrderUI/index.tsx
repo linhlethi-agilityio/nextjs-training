@@ -1,6 +1,8 @@
 'use client';
 
 import { memo, MouseEvent, useCallback, useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import {
   Box,
   Button,
@@ -27,8 +29,10 @@ import { formatDateString, getColorByValue } from '@/utils';
 import { SORT_BY, SORT_ORDER } from '@/constants';
 
 // Components
-import { TableColumnType, Table, ConfirmModal, OrderModal } from '@/components';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { TableColumnType, Table } from '@/components';
+
+const DynamicOrderModal = dynamic(() => import('../../Modal/OrderModal'));
+const DynamicConfirmModal = dynamic(() => import('../../Modal/ConfirmModal'));
 
 interface TableOrderProps {
   orders: Order[];
@@ -83,11 +87,11 @@ const TableOrderUI = ({
   const handleCheckParent = () => {
     const isChecked: boolean = checkedItems.length !== 0;
 
-    if (!isChecked) {
+    if (!isChecked || checkedItems.length !== orders.length) {
       const data = orders.map((order) => order.id);
 
       setCheckedItems(data);
-    } else setCheckedItems([]);
+    } else if (checkedItems.length === orders.length) setCheckedItems([]);
   };
 
   const handleSort = (event: MouseEvent<HTMLElement>) => {
@@ -154,13 +158,7 @@ const TableOrderUI = ({
       header: (
         <Flex textAlign="center" gap={2.5} alignItems="center">
           <Text color="textDefault">ID Order</Text>
-          <Button
-            variant="pagination"
-            px={0}
-            m={0}
-            data-id="idOrder"
-            onClick={handleSort}
-          >
+          <Button variant="pagination" data-id="idOrder" onClick={handleSort}>
             <SortIcon data-id="idOrder" />
           </Button>
         </Flex>
@@ -374,7 +372,7 @@ const TableOrderUI = ({
       </Button>
       <Table columns={orderColumns} data={orders} />
       {isOpenConfirm && (
-        <ConfirmModal
+        <DynamicConfirmModal
           isOpen={isOpenConfirm}
           onCancel={onCloseConfirm}
           title="Delete Order"
@@ -384,10 +382,10 @@ const TableOrderUI = ({
         />
       )}
       {isOpenOrderModal && (
-        <OrderModal
+        <DynamicOrderModal
           title="Update Order"
           previewData={previewData}
-          handleSubmitForm={handleEditOrder}
+          onSubmitForm={handleEditOrder}
           isOpen={isOpenOrderModal}
           onClose={onCloseOrderModal}
         />
