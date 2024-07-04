@@ -1,6 +1,6 @@
 'use client';
 
-import { memo } from 'react';
+import { ChangeEvent, memo } from 'react';
 import {
   Input,
   InputProps,
@@ -26,7 +26,7 @@ const SearchInput = ({
   ...rest
 }: SearchInputProps) => {
   const handleChange = useDebouncedCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+    (event: ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value;
 
       onSearch(value);

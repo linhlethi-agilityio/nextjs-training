@@ -2,6 +2,7 @@
 
 import { memo, MouseEvent, useCallback, useState } from 'react';
 import {
+  Box,
   Button,
   Checkbox,
   Flex,
@@ -22,22 +23,34 @@ import { Order } from '@/models';
 // Utils
 import { formatDateString, getColorByValue } from '@/utils';
 
+// Constants
+import { SORT_BY, SORT_ORDER } from '@/constants';
+
 // Components
 import { TableColumnType, Table, ConfirmModal, OrderModal } from '@/components';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 interface TableOrderProps {
   orders: Order[];
+  sortBy: SORT_BY;
+  sortOrder: SORT_ORDER;
   removeOrderAction: (id: string) => void;
   editOrderAction: (id: string, updateOrder: Partial<Order>) => void;
 }
 
 const TableOrderUI = ({
   orders,
+  sortBy,
+  sortOrder,
   removeOrderAction,
   editOrderAction,
 }: TableOrderProps) => {
   const [previewData, setPreviewData] = useState<Order | null>(null);
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
+
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
+  const pathname = usePathname();
 
   const {
     isOpen: isOpenConfirm,
@@ -77,11 +90,48 @@ const TableOrderUI = ({
     } else setCheckedItems([]);
   };
 
+  const handleSort = (event: MouseEvent<HTMLElement>) => {
+    const target = event.target as HTMLElement;
+
+    const column = target.dataset.id;
+
+    const params = new URLSearchParams(searchParams);
+
+    if (column) {
+      params.set('sortBy', column);
+
+      if (!sortOrder) {
+        params.set('sortOrder', SORT_ORDER.ASC);
+      }
+
+      if (sortOrder) {
+        if (sortOrder === SORT_ORDER.DESC) {
+          params.delete('sortBy');
+          params.delete('sortOrder');
+
+          return replace(`${pathname}?${params.toString()}`);
+        }
+
+        params.set(
+          'sortOrder',
+          sortOrder === SORT_ORDER.ASC && sortBy === column
+            ? SORT_ORDER.DESC
+            : SORT_ORDER.ASC,
+        );
+
+        return replace(`${pathname}?${params.toString()}`);
+      }
+    }
+
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   const orderColumns: TableColumnType<Order>[] = [
     {
       header: (
         <Checkbox
           aria-label="Checkbox"
+          borderRadius="md"
           isChecked={checkedItems.length === orders.length}
           size="lg"
           onChange={handleCheckParent}
@@ -104,18 +154,21 @@ const TableOrderUI = ({
       header: (
         <Flex textAlign="center" gap={2.5} alignItems="center">
           <Text color="textDefault">ID Order</Text>
-          <SortIcon />
+          <Button
+            variant="pagination"
+            px={0}
+            m={0}
+            data-id="idOrder"
+            onClick={handleSort}
+          >
+            <SortIcon data-id="idOrder" />
+          </Button>
         </Flex>
       ),
       accessor: 'idOrder',
     },
     {
-      header: (
-        <Flex textAlign="center" gap={2.5} alignItems="center">
-          <Text color="textDefault">Product</Text>
-          <SortIcon />
-        </Flex>
-      ),
+      header: 'Product',
       accessor: ({ product }: Order) => <Text size="md">{product}</Text>,
     },
     {
@@ -139,7 +192,9 @@ const TableOrderUI = ({
           alignItems="center"
         >
           <Text color="textDefault">Status</Text>
-          <SortIcon />
+          <Button variant="pagination" data-id="status" onClick={handleSort}>
+            <SortIcon data-id="status" />
+          </Button>
         </Flex>
       ),
       accessor: ({ status }: Order) => {
@@ -163,7 +218,9 @@ const TableOrderUI = ({
       header: (
         <Flex textAlign="center" gap={2.5} alignItems="center">
           <Text color="textDefault">Created Date</Text>
-          <SortIcon />
+          <Button variant="pagination" data-id="createdAt" onClick={handleSort}>
+            <SortIcon data-id="createdAt" />
+          </Button>
         </Flex>
       ),
       accessor: ({ createdAt }: Order) => (
@@ -175,11 +232,13 @@ const TableOrderUI = ({
         <Flex
           textAlign="center"
           gap={2.5}
-          justifyContent="center"
           alignItems="center"
+          justifyContent="center"
         >
           <Text color="textDefault">Deadline</Text>
-          <SortIcon />
+          <Button variant="pagination" data-id="deadline" onClick={handleSort}>
+            <SortIcon data-id="deadline" />
+          </Button>
         </Flex>
       ),
       accessor: ({ deadline }: Order) => (
@@ -192,7 +251,9 @@ const TableOrderUI = ({
       header: (
         <Flex textAlign="center" gap={2.5} alignItems="center">
           <Text color="textDefault">Price</Text>
-          <SortIcon />
+          <Button variant="pagination" data-id="price" onClick={handleSort}>
+            <SortIcon data-id="price" />
+          </Button>
         </Flex>
       ),
       accessor: ({ price }: Order) => (
@@ -201,34 +262,41 @@ const TableOrderUI = ({
     },
     {
       header: (
-        <Text textAlign="center" size="sm" color="textDefault">
+        <Text
+          textAlign="center"
+          size="sm"
+          color="textDefault"
+          justifyContent="center"
+        >
           Action
         </Text>
       ),
       accessor: (data: Order) => (
-        <Menu data-order={data.id}>
-          <MenuButton
-            as={Button}
-            color="brand.500"
-            border="1px solid"
-            textAlign="center"
-            bgColor="transparent"
-            borderColor="borderDefault"
-            w={88}
-            h={26}
-            rightIcon={<ChevronDownIcon />}
-          >
-            Action
-          </MenuButton>
-          <MenuList>
-            <MenuItem data-order={data.id} onClick={handleOpenEditModal}>
-              Edit
-            </MenuItem>
-            <MenuItem data-order={data.id} onClick={handleConfirmModal}>
-              Delete
-            </MenuItem>
-          </MenuList>
-        </Menu>
+        <Box textAlign="center">
+          <Menu data-order={data.id}>
+            <MenuButton
+              as={Button}
+              color="brand.500"
+              border="1px solid"
+              textAlign="center"
+              bgColor="transparent"
+              borderColor="borderDefault"
+              w={88}
+              h={26}
+              rightIcon={<ChevronDownIcon />}
+            >
+              Action
+            </MenuButton>
+            <MenuList>
+              <MenuItem data-order={data.id} onClick={handleOpenEditModal}>
+                Edit
+              </MenuItem>
+              <MenuItem data-order={data.id} onClick={handleConfirmModal}>
+                Delete
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </Box>
       ),
     },
   ];

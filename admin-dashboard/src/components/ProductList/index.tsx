@@ -3,7 +3,7 @@ import { Suspense, memo } from 'react';
 import { Tabs, TabList, Tab, TabPanels, Stack } from '@chakra-ui/react';
 
 // Constants
-import { TAB_LABEL_PRODUCT } from '@/constants';
+import { SORT_BY, SORT_ORDER, TAB_LABEL_PRODUCT } from '@/constants';
 
 // Actions
 import { addOrder } from '@/actions';
@@ -22,9 +22,17 @@ interface ProductListProps {
   query: string;
   page: number;
   limit: number;
+  sortBy: SORT_BY;
+  sortOrder: SORT_ORDER;
 }
 
-const ProductList = async ({ query, page, limit }: ProductListProps) => (
+const ProductList = async ({
+  query,
+  page,
+  limit,
+  sortBy,
+  sortOrder,
+}: ProductListProps) => (
   <>
     <ProductActions addOrderAction={addOrder} />
     <Tabs colorScheme="brand" mt={6} border="none">
@@ -39,7 +47,13 @@ const ProductList = async ({ query, page, limit }: ProductListProps) => (
         <OrderHeader limit={limit} />
 
         <Suspense fallback={<SkeletonTable />}>
-          <TableOrder limit={limit} page={page} query={query} />
+          <TableOrder
+            limit={limit}
+            page={page}
+            query={query}
+            sortBy={sortBy}
+            sortOrder={sortOrder}
+          />
         </Suspense>
 
         <Stack textAlign="center" alignItems="center" mt={30} display="flex">

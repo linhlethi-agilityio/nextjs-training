@@ -26,6 +26,7 @@ export const Button = defineStyleConfig({
 
     pagination: {
       lineHeight: 2,
+      minW: 'unset',
 
       _hover: {
         color: 'brand.300',
