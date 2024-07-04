@@ -71,10 +71,10 @@ const ProductActions = ({ addOrderAction }: ProductActionsProps) => {
           defaultValue={searchValue}
         />
         <Flex gap={25}>
-          <Button variant="outline" rightIcon={<FileArrowUpIcon />}>
+          <Button isDisabled variant="outline" rightIcon={<FileArrowUpIcon />}>
             Export
           </Button>
-          <Button variant="outline" rightIcon={<PrinterIcon />}>
+          <Button isDisabled variant="outline" rightIcon={<PrinterIcon />}>
             Print
           </Button>
           <Button
@@ -89,7 +89,7 @@ const ProductActions = ({ addOrderAction }: ProductActionsProps) => {
       </Flex>
       {isOpenOrderModal && (
         <DynamicOrderModal
-          handleSubmitForm={handleAddOrder}
+          onSubmitForm={handleAddOrder}
           isOpen={isOpenOrderModal}
           onClose={onCloseOrderModal}
         />

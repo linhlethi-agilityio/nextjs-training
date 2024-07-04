@@ -8,7 +8,11 @@ exports[`OrderHeader component should match snapshot for OrderHeader 1`] = `
     <p
       class="chakra-text css-d4sxp6"
     >
-      Showing result 101-120 Result
+      Showing result 
+      1
+      -
+      10
+       Result
     </p>
     <div
       class="css-15v75y9"

@@ -14,6 +14,6 @@ export const Default: Story = {
   args: {
     isOpen: true,
     onClose: () => null,
-    handleSubmitForm: () => null,
+    onSubmitForm: () => null,
   },
 };

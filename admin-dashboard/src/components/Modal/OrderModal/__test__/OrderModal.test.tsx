@@ -5,13 +5,13 @@ import '@testing-library/jest-dom';
 import OrderModal from '..';
 
 // Mock handleOnChange function
-const mockHandleSubmitForm = jest.fn();
+const mockOnSubmitForm = jest.fn();
 const mockOnclose = jest.fn();
 
 const mockProps = {
   isOpen: true,
   onClose: mockOnclose,
-  handleSubmitForm: mockHandleSubmitForm,
+  onSubmitForm: mockOnSubmitForm,
 };
 
 describe('OrderModal component', () => {

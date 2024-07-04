@@ -1,3 +1,10 @@
+import { REGEX_PATTERN } from '@/constants';
+
+/**
+ * Function to check if a given value is a valid name.
+ */
+export const isValidString = (value: string) => REGEX_PATTERN.NAME.test(value);
+
 /**
  * @param requiredFields [] The required fields on form
  * @param dirtyFields [] The fields, which the users touched and fill data on
@@ -17,6 +24,31 @@ export const isEnableSubmitButton = (
   );
 
   return isMatchAllRequiredFields && errors && !Object.keys(errors).length;
+};
+
+/**
+ * Function get dirty state
+ */
+export const getDirtyState = <T extends object>(
+  baseObject: T,
+  targetObject: T,
+) => {
+  const baseKeys = Object.keys(baseObject) as Array<keyof T>;
+  const targetKeys = Object.keys(targetObject) as Array<keyof T>;
+
+  if (baseKeys.length !== targetKeys.length) return false;
+
+  for (const key of baseKeys) {
+    if (!Object.prototype.hasOwnProperty.call(targetObject, key)) return false;
+
+    // Trim the values before comparing
+    const baseValue = String(baseObject[key]).trim();
+    const targetValue = String(targetObject[key]).trim();
+
+    if (baseValue !== targetValue) return false;
+  }
+
+  return true;
 };
 
 /**

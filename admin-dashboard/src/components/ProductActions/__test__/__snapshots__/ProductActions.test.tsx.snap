@@ -84,6 +84,7 @@ exports[`ProductActions component should match snapshot for ProductActions 1`] =
     >
       <button
         class="chakra-button css-4xx2wk"
+        disabled=""
         type="button"
       >
         Export
@@ -125,6 +126,7 @@ exports[`ProductActions component should match snapshot for ProductActions 1`] =
       </button>
       <button
         class="chakra-button css-4xx2wk"
+        disabled=""
         type="button"
       >
         Print

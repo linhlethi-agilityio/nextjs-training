@@ -11,14 +11,18 @@ import { Dropdown } from '@/components';
 import { OPTIONS_PAGINATION } from '@/constants';
 
 interface OrderHeaderProps {
-  limit: number;
+  limit?: number;
+  page?: number;
 }
 
-const OrderHeader = ({ limit }: OrderHeaderProps) => {
+const OrderHeader = ({ limit = 10, page = 1 }: OrderHeaderProps) => {
   const [value, setValue] = useState<number>(limit);
 
   const pathname = usePathname();
   const { replace } = useRouter();
+
+  const startResult = (page - 1) * limit + 1;
+  const endResult = page * limit;
 
   /**
    * Function handle change limit page
@@ -33,7 +37,9 @@ const OrderHeader = ({ limit }: OrderHeaderProps) => {
 
   return (
     <Flex pl={7} mb={4} justifyContent="space-between" alignItems="center">
-      <Text color="textDefault">Showing result 101-120 Result</Text>
+      <Text color="textDefault">
+        Showing result {startResult}-{endResult} Result
+      </Text>
       <Flex alignItems="center" gap={15}>
         <Text color="textDefault">Item per page</Text>
         <Dropdown
