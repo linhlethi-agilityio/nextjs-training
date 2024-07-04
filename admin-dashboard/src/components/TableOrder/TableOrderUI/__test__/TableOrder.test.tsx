@@ -3,9 +3,22 @@ import '@testing-library/jest-dom';
 
 // Components
 import TableOrderUI from '..';
+import { SORT_BY, SORT_ORDER } from '@/constants';
 
 const mockRemoveOrderAction = jest.fn();
 const mockEditOrderAction = jest.fn();
+const mockReplace = jest.fn();
+const mockPathname = 'localhost:3000';
+const mockURLSearchParams = {
+  page: '1',
+};
+
+jest.mock('next/navigation', () => ({
+  ...jest.requireActual('next/navigation'),
+  usePathname: jest.fn(() => mockPathname),
+  useRouter: jest.fn(() => ({ replace: mockReplace })),
+  useSearchParams: jest.fn(() => new URLSearchParams(mockURLSearchParams)),
+}));
 
 const mockProps = {
   orders: [
@@ -20,6 +33,8 @@ const mockProps = {
       id: '3',
     },
   ],
+  sortBy: SORT_BY.RELEASE_DATE,
+  sortOrder: SORT_ORDER.ASC,
   removeOrderAction: mockRemoveOrderAction,
   editOrderAction: mockEditOrderAction,
 };
