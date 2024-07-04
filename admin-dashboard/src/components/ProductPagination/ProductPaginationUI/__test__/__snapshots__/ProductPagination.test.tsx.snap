@@ -6,6 +6,7 @@ exports[`ProductPaginationUI component should match snapshot for ProductPaginati
     class="chakra-stack css-1igwmid"
   >
     <button
+      aria-label="pagination-prev"
       class="chakra-button css-4xx2wk"
       disabled=""
       type="button"
@@ -72,6 +73,7 @@ exports[`ProductPaginationUI component should match snapshot for ProductPaginati
       8
     </button>
     <button
+      aria-label="pagination-next"
       class="chakra-button css-4xx2wk"
       type="button"
     >

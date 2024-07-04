@@ -32,6 +32,7 @@ const Pagination = ({
       <Button
         variant="pagination"
         onClick={handlePrevPage}
+        aria-label="pagination-prev"
         isDisabled={currentPage === 1}
       >
         <ChevronLeftIcon />
@@ -53,6 +54,7 @@ const Pagination = ({
       })}
       <Button
         variant="pagination"
+        aria-label="pagination-next"
         onClick={handleNextPage}
         isDisabled={currentPage === totalPage}
       >

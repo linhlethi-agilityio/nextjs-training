@@ -81,6 +81,7 @@ const TableOrderUI = ({
     {
       header: (
         <Checkbox
+          aria-label="Checkbox"
           isChecked={checkedItems.length === orders.length}
           size="lg"
           onChange={handleCheckParent}
@@ -91,6 +92,7 @@ const TableOrderUI = ({
 
         return (
           <Checkbox
+            aria-label="Checkbox"
             size="lg"
             isChecked={!!currentChecked}
             onChange={() => handleCheckChild(data.id)}
