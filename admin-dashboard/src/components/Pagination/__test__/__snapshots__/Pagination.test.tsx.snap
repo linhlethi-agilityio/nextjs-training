@@ -6,6 +6,7 @@ exports[`Pagination component should match snapshot for Pagination 1`] = `
     class="chakra-stack css-1igwmid"
   >
     <button
+      aria-label="pagination-prev"
       class="chakra-button css-4xx2wk"
       type="button"
     >
@@ -47,6 +48,7 @@ exports[`Pagination component should match snapshot for Pagination 1`] = `
       4
     </button>
     <button
+      aria-label="pagination-next"
       class="chakra-button css-4xx2wk"
       type="button"
     >
