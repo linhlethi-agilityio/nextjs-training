@@ -1,9 +1,6 @@
 import { memo } from 'react';
 import { Text } from '@chakra-ui/react';
 
-// Actions
-import { removeOrder, updateOrder } from '@/actions';
-
 // Api
 import { getOrders } from '@/api';
 
@@ -13,12 +10,17 @@ import { SORT_BY, SORT_ORDER } from '@/constants';
 // Components
 import TableOrderUI from './TableOrderUI';
 
+// Models
+import { Order } from '@/models';
+
 interface TableOrderProps {
   query: string;
   page: number;
   limit: number;
   sortBy: SORT_BY;
   sortOrder: SORT_ORDER;
+  removeOrderAction: (id: string) => void;
+  editOrderAction: (id: string, updateOrder: Partial<Order>) => void;
 }
 
 const TableOrder = async ({
@@ -27,6 +29,8 @@ const TableOrder = async ({
   limit,
   sortBy,
   sortOrder,
+  removeOrderAction,
+  editOrderAction,
 }: TableOrderProps) => {
   const { data: orders = [] } = await getOrders({
     query,
@@ -47,8 +51,8 @@ const TableOrder = async ({
       limit={limit}
       page={page}
       orders={orders}
-      removeOrderAction={removeOrder}
-      editOrderAction={updateOrder}
+      removeOrderAction={removeOrderAction}
+      editOrderAction={editOrderAction}
       sortBy={sortBy}
       sortOrder={sortOrder}
     />
