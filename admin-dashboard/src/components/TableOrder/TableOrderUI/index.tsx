@@ -26,7 +26,12 @@ import { Order } from '@/models';
 import { formatDateString, getColorByValue } from '@/utils';
 
 // Constants
-import { OPTIONS_PAGINATION, SORT_BY, SORT_ORDER } from '@/constants';
+import {
+  DEFAULT_LIMIT,
+  OPTIONS_PAGINATION,
+  SORT_BY,
+  SORT_ORDER,
+} from '@/constants';
 
 // Components
 import { TableColumnType, Table, Dropdown } from '@/components';
@@ -45,7 +50,7 @@ interface TableOrderProps {
 }
 
 const TableOrderUI = ({
-  limit = 10,
+  limit = DEFAULT_LIMIT,
   page = 1,
   orders,
   sortBy,
@@ -372,14 +377,16 @@ const TableOrderUI = ({
   };
 
   const handleRemoveOrder = useCallback(() => {
-    onCloseConfirm();
-
     if (previewData?.id) {
-      return removeOrderAction(previewData?.id);
+      removeOrderAction(previewData?.id);
+
+      return onCloseConfirm();
     }
 
     if (checkedItems.length !== 0) {
       checkedItems.map((item) => removeOrderAction(item));
+
+      onCloseConfirm();
     }
   }, [checkedItems, onCloseConfirm, previewData?.id, removeOrderAction]);
 

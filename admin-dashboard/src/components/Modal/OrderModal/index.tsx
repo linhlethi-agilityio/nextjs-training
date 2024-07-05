@@ -19,7 +19,7 @@ import {
   REQUIRED_FIELDS,
 } from '@/constants';
 
-// Types
+// Models
 import { Order } from '@/models';
 
 // Utils
@@ -30,11 +30,11 @@ import {
   isEnableSubmitButton,
   isValidPrice,
   isValidString,
+  normalizeValue,
 } from '@/utils';
 
 // Components
 import { CustomModal, Dropdown } from '@/components';
-import { normalizeValue } from '@/utils/number';
 
 interface CustomerModalDetailModalProps {
   title?: string;

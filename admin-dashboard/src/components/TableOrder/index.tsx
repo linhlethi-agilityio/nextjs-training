@@ -5,7 +5,13 @@ import { Text } from '@chakra-ui/react';
 import { getOrders } from '@/api';
 
 // Constants
-import { SORT_BY, SORT_ORDER } from '@/constants';
+import {
+  DEFAULT_LIMIT,
+  LIMIT_PAGE,
+  MESSAGES,
+  SORT_BY,
+  SORT_ORDER,
+} from '@/constants';
 
 // Components
 import TableOrderUI from './TableOrderUI';
@@ -32,19 +38,21 @@ const TableOrder = async ({
   removeOrderAction,
   editOrderAction,
 }: TableOrderProps) => {
+  const isValidLimit = LIMIT_PAGE.includes(limit);
+
   const { data: orders = [] } = await getOrders({
     query,
     page,
-    limit,
+    limit: isValidLimit ? limit : DEFAULT_LIMIT,
     sortBy,
     sortOrder,
   });
 
   const isSearchEmpty = !!query && !orders.length;
 
-  return isSearchEmpty ? (
+  return !orders.length ? (
     <Text pl={7} pt={7} size="sm" textAlign="center">
-      Empty search
+      {isSearchEmpty ? MESSAGES.EMPTY_SEARCH : MESSAGES.EMPTY_DATA}
     </Text>
   ) : (
     <TableOrderUI

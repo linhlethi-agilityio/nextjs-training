@@ -33,9 +33,7 @@ const ProductList = ({
   sortOrder,
 }: ProductListProps) => (
   <>
-    <Suspense fallback={<SkeletonTable />}>
-      <ProductActions addOrderAction={addOrder} />
-    </Suspense>
+    <ProductActions addOrderAction={addOrder} />
 
     <Tabs colorScheme="brand" mt={6} border="none">
       <TabList ml={8} color="textDark" border="none" pt={2}>
