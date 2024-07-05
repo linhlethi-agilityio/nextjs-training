@@ -48,7 +48,9 @@ export const getOrders = async (params?: params) => {
 
 export const getTotalOrders = async () => {
   try {
-    const data = await api.getData<Order[]>(API_ENDPOINT.ORDERS);
+    const data = await api.getData<Order[]>(API_ENDPOINT.ORDERS, undefined, {
+      next: { tags: ['orders'], revalidate: 3600 },
+    });
 
     return {
       data: data.data ?? [],
