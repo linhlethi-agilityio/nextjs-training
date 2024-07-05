@@ -12,7 +12,6 @@ import { addOrder } from '@/actions';
 import {
   TableOrder,
   ProductActions,
-  OrderHeader,
   ProductPagination,
   PaginationSkeleton,
   SkeletonTable,
@@ -34,7 +33,10 @@ const ProductList = ({
   sortOrder,
 }: ProductListProps) => (
   <>
-    <ProductActions addOrderAction={addOrder} />
+    <Suspense fallback={<SkeletonTable />}>
+      <ProductActions addOrderAction={addOrder} />
+    </Suspense>
+
     <Tabs colorScheme="brand" mt={6} border="none">
       <TabList ml={8} color="textDark" border="none" pt={2}>
         {TAB_LABEL_PRODUCT.map((tab) => (
@@ -44,8 +46,6 @@ const ProductList = ({
         ))}
       </TabList>
       <TabPanels mt={6} ml={1}>
-        <OrderHeader limit={limit} page={page} />
-
         <Suspense fallback={<SkeletonTable />}>
           <TableOrder
             limit={limit}

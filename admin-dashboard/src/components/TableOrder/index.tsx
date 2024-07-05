@@ -44,7 +44,9 @@ const TableOrder = async ({
     </Text>
   ) : (
     <TableOrderUI
-      orders={orders.toReversed()}
+      limit={limit}
+      page={page}
+      orders={orders}
       removeOrderAction={removeOrder}
       editOrderAction={updateOrder}
       sortBy={sortBy}

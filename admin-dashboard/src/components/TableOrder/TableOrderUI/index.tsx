@@ -26,15 +26,17 @@ import { Order } from '@/models';
 import { formatDateString, getColorByValue } from '@/utils';
 
 // Constants
-import { SORT_BY, SORT_ORDER } from '@/constants';
+import { OPTIONS_PAGINATION, SORT_BY, SORT_ORDER } from '@/constants';
 
 // Components
-import { TableColumnType, Table } from '@/components';
+import { TableColumnType, Table, Dropdown } from '@/components';
 
 const DynamicOrderModal = dynamic(() => import('../../Modal/OrderModal'));
 const DynamicConfirmModal = dynamic(() => import('../../Modal/ConfirmModal'));
 
 interface TableOrderProps {
+  limit: number;
+  page: number;
   orders: Order[];
   sortBy: SORT_BY;
   sortOrder: SORT_ORDER;
@@ -43,6 +45,8 @@ interface TableOrderProps {
 }
 
 const TableOrderUI = ({
+  limit,
+  page,
   orders,
   sortBy,
   sortOrder,
@@ -158,7 +162,12 @@ const TableOrderUI = ({
       header: (
         <Flex textAlign="center" gap={2.5} alignItems="center">
           <Text color="textDefault">ID Order</Text>
-          <Button variant="pagination" data-id="idOrder" onClick={handleSort}>
+          <Button
+            variant="pagination"
+            aria-label="Id-Order"
+            data-id="idOrder"
+            onClick={handleSort}
+          >
             <SortIcon data-id="idOrder" />
           </Button>
         </Flex>
@@ -190,7 +199,12 @@ const TableOrderUI = ({
           alignItems="center"
         >
           <Text color="textDefault">Status</Text>
-          <Button variant="pagination" data-id="status" onClick={handleSort}>
+          <Button
+            variant="pagination"
+            aria-label="Status"
+            data-id="status"
+            onClick={handleSort}
+          >
             <SortIcon data-id="status" />
           </Button>
         </Flex>
@@ -216,7 +230,12 @@ const TableOrderUI = ({
       header: (
         <Flex textAlign="center" gap={2.5} alignItems="center">
           <Text color="textDefault">Created Date</Text>
-          <Button variant="pagination" data-id="createdAt" onClick={handleSort}>
+          <Button
+            variant="pagination"
+            aria-label="CreatedAt"
+            data-id="createdAt"
+            onClick={handleSort}
+          >
             <SortIcon data-id="createdAt" />
           </Button>
         </Flex>
@@ -234,7 +253,12 @@ const TableOrderUI = ({
           justifyContent="center"
         >
           <Text color="textDefault">Deadline</Text>
-          <Button variant="pagination" data-id="deadline" onClick={handleSort}>
+          <Button
+            variant="pagination"
+            aria-label="Deadline"
+            data-id="deadline"
+            onClick={handleSort}
+          >
             <SortIcon data-id="deadline" />
           </Button>
         </Flex>
@@ -249,7 +273,12 @@ const TableOrderUI = ({
       header: (
         <Flex textAlign="center" gap={2.5} alignItems="center">
           <Text color="textDefault">Price</Text>
-          <Button variant="pagination" data-id="price" onClick={handleSort}>
+          <Button
+            variant="pagination"
+            aria-label="Price"
+            data-id="price"
+            onClick={handleSort}
+          >
             <SortIcon data-id="price" />
           </Button>
         </Flex>
@@ -358,8 +387,38 @@ const TableOrderUI = ({
     onOpenConfirm();
   };
 
+  const startResult = (page - 1) * limit + 1;
+  const endResult = page * limit;
+
+  /**
+   * Function handle change limit page
+   */
+  const handleChangeLimitPage = (value: string) => {
+    const params = new URLSearchParams(searchParams);
+
+    params.set('limit', value);
+
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <>
+      <Flex pl={7} mb={4} justifyContent="space-between" alignItems="center">
+        <Text color="textDefault">
+          Showing result {startResult}-{endResult} Result
+        </Text>
+        <Flex alignItems="center" gap={15}>
+          <Text color="textDefault">Item per page</Text>
+          <Dropdown
+            value={searchParams.get('limit') ?? ''}
+            color="textDark"
+            options={OPTIONS_PAGINATION}
+            onChangeValue={handleChangeLimitPage}
+            h={26}
+            w={70}
+          />
+        </Flex>
+      </Flex>
       <Button
         color="brand.500"
         isDisabled={checkedItems.length === 0}
