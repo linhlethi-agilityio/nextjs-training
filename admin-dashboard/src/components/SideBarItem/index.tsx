@@ -24,7 +24,7 @@ const SideBarItem = ({
         spacing={isFocused ? 2 : 3}
         py={3.5}
         pl={15}
-        color={isFocused ? 'textPrimary' : 'textDefault'}
+        color={isFocused ? 'textPrimary' : 'textDark'}
         cursor="pointer"
         {...(isFocused && {
           border: '1px solid',
@@ -41,7 +41,7 @@ const SideBarItem = ({
         >
           <Icon w={4} h={4} />
         </Flex>
-        <Text color={isFocused ? 'textPrimary' : 'textDefault'} size="xs">
+        <Text color={isFocused ? 'textPrimary' : 'textDark'} size="xs">
           {label}
         </Text>
       </HStack>

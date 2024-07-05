@@ -3,7 +3,7 @@ import { Suspense, memo } from 'react';
 import { Tabs, TabList, Tab, TabPanels, Stack } from '@chakra-ui/react';
 
 // Constants
-import { SORT_BY, SORT_ORDER, TAB_LABEL_PRODUCT } from '@/constants';
+import { SORT_BY, SORT_ORDER } from '@/constants';
 
 // Actions
 import { addOrder, removeOrder, updateOrder } from '@/actions';
@@ -35,13 +35,17 @@ const ProductList = ({
   <>
     <ProductActions addOrderAction={addOrder} />
 
-    <Tabs colorScheme="brand" mt={6} border="none">
+    <Tabs mt={6} border="none">
       <TabList ml={8} color="textDark" border="none" pt={2}>
-        {TAB_LABEL_PRODUCT.map((tab) => (
-          <Tab fontSize="lg" lineHeight={3} key={tab}>
-            {tab}
-          </Tab>
-        ))}
+        <Tab fontSize="lg" lineHeight={3} key="all-orders">
+          All Order
+        </Tab>
+        <Tab isDisabled fontSize="lg" lineHeight={3} key="pickup">
+          Pickup
+        </Tab>
+        <Tab isDisabled fontSize="lg" lineHeight={3} key="return">
+          Return
+        </Tab>
       </TabList>
       <TabPanels mt={6} ml={1}>
         <Suspense fallback={<SkeletonTable />}>

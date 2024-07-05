@@ -166,7 +166,7 @@ const TableOrderUI = ({
     {
       header: (
         <Flex textAlign="center" gap={2.5} alignItems="center">
-          <Text color="textDefault">ID Order</Text>
+          <Text color="textDark">ID Order</Text>
           <Button
             variant="pagination"
             aria-label="Id-Order"
@@ -185,7 +185,7 @@ const TableOrderUI = ({
     },
     {
       header: (
-        <Text textAlign="center" size="sm" color="textDefault">
+        <Text textAlign="center" size="sm" color="textDark">
           Customer
         </Text>
       ),
@@ -203,7 +203,7 @@ const TableOrderUI = ({
           justifyContent="center"
           alignItems="center"
         >
-          <Text color="textDefault">Status</Text>
+          <Text color="textDark">Status</Text>
           <Button
             variant="pagination"
             aria-label="Status"
@@ -234,7 +234,7 @@ const TableOrderUI = ({
     {
       header: (
         <Flex textAlign="center" gap={2.5} alignItems="center">
-          <Text color="textDefault">Created Date</Text>
+          <Text color="textDark">Created Date</Text>
           <Button
             variant="pagination"
             aria-label="CreatedAt"
@@ -257,7 +257,7 @@ const TableOrderUI = ({
           alignItems="center"
           justifyContent="center"
         >
-          <Text color="textDefault">Deadline</Text>
+          <Text color="textDark">Deadline</Text>
           <Button
             variant="pagination"
             aria-label="Deadline"
@@ -277,7 +277,7 @@ const TableOrderUI = ({
     {
       header: (
         <Flex textAlign="center" gap={2.5} alignItems="center">
-          <Text color="textDefault">Price</Text>
+          <Text color="textDark">Price</Text>
           <Button
             variant="pagination"
             aria-label="Price"
@@ -297,7 +297,7 @@ const TableOrderUI = ({
         <Text
           textAlign="center"
           size="sm"
-          color="textDefault"
+          color="textDark"
           justifyContent="center"
         >
           Action
@@ -411,11 +411,11 @@ const TableOrderUI = ({
   return (
     <>
       <Flex pl={7} mb={4} justifyContent="space-between" alignItems="center">
-        <Text color="textDefault">
+        <Text color="textDark">
           Showing result {startResult}-{endResult} Result
         </Text>
         <Flex alignItems="center" gap={15}>
-          <Text color="textDefault">Item per page</Text>
+          <Text color="textDark">Item per page</Text>
           <Dropdown
             value={searchParams.get('limit') ?? ''}
             color="textDark"
