@@ -35,8 +35,8 @@ const DynamicOrderModal = dynamic(() => import('../../Modal/OrderModal'));
 const DynamicConfirmModal = dynamic(() => import('../../Modal/ConfirmModal'));
 
 interface TableOrderProps {
-  limit: number;
-  page: number;
+  limit?: number;
+  page?: number;
   orders: Order[];
   sortBy: SORT_BY;
   sortOrder: SORT_ORDER;
@@ -45,8 +45,8 @@ interface TableOrderProps {
 }
 
 const TableOrderUI = ({
-  limit,
-  page,
+  limit = 10,
+  page = 1,
   orders,
   sortBy,
   sortOrder,
