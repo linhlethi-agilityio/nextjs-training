@@ -6,7 +6,7 @@ import { Tabs, TabList, Tab, TabPanels, Stack } from '@chakra-ui/react';
 import { SORT_BY, SORT_ORDER, TAB_LABEL_PRODUCT } from '@/constants';
 
 // Actions
-import { addOrder } from '@/actions';
+import { addOrder, removeOrder, updateOrder } from '@/actions';
 
 // Components
 import {
@@ -53,6 +53,8 @@ const ProductList = ({
             query={query}
             sortBy={sortBy}
             sortOrder={sortOrder}
+            removeOrderAction={removeOrder}
+            editOrderAction={updateOrder}
           />
         </Suspense>
 
