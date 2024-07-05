@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, memo } from 'react';
+import { ChangeEvent, memo, useEffect, useRef } from 'react';
 import {
   Input,
   InputProps,
@@ -34,6 +34,14 @@ const SearchInput = ({
     300,
   );
 
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, []);
+
   return (
     <InputGroup width="auto">
       <InputLeftElement pl={30} style={{ cursor: 'pointer' }}>
@@ -42,6 +50,7 @@ const SearchInput = ({
       <Input
         bgColor="backgroundLight"
         pl={66}
+        ref={searchInputRef}
         placeholder={placeholder}
         defaultValue={defaultValue}
         onChange={handleChange}

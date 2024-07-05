@@ -2,6 +2,69 @@
 
 exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
 <div>
+  <div
+    class="css-rvaklg"
+  >
+    <p
+      class="chakra-text css-d4sxp6"
+    >
+      Showing result 
+      NaN
+      -
+      NaN
+       Result
+    </p>
+    <div
+      class="css-15v75y9"
+    >
+      <p
+        class="chakra-text css-d4sxp6"
+      >
+        Item per page
+      </p>
+      <div
+        class="chakra-select__wrapper css-1owtwcz"
+      >
+        <select
+          aria-label="Select"
+          class="chakra-select css-1gb6uvk"
+        >
+          <option
+            value="10"
+          >
+            10
+          </option>
+          <option
+            value="20"
+          >
+            20
+          </option>
+          <option
+            value="50"
+          >
+            50
+          </option>
+        </select>
+        <div
+          class="chakra-select__icon-wrapper css-1u2hnvd"
+        >
+          <svg
+            aria-hidden="true"
+            class="chakra-select__icon"
+            focusable="false"
+            role="presentation"
+            style="width: 1em; height: 1em; color: currentColor;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
   <button
     class="chakra-button css-p66kye"
     disabled=""
@@ -49,6 +112,7 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
               ID Order
             </p>
             <button
+              aria-label="Id-Order"
               class="chakra-button css-4xx2wk"
               data-id="idOrder"
               type="button"
@@ -131,6 +195,7 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
               Status
             </p>
             <button
+              aria-label="Status"
               class="chakra-button css-4xx2wk"
               data-id="status"
               type="button"
@@ -199,6 +264,7 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
               Created Date
             </p>
             <button
+              aria-label="CreatedAt"
               class="chakra-button css-4xx2wk"
               data-id="createdAt"
               type="button"
@@ -267,6 +333,7 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
               Deadline
             </p>
             <button
+              aria-label="Deadline"
               class="chakra-button css-4xx2wk"
               data-id="deadline"
               type="button"
@@ -335,6 +402,7 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
               Price
             </p>
             <button
+              aria-label="Price"
               class="chakra-button css-4xx2wk"
               data-id="price"
               type="button"
