@@ -9,9 +9,9 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
       class="chakra-text css-d4sxp6"
     >
       Showing result 
-      NaN
+      1
       -
-      NaN
+      10
        Result
     </p>
     <div

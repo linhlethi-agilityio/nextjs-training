@@ -1,5 +1,5 @@
 // Services
-import { API_ENDPOINT, SORT_BY, SORT_ORDER } from '@/constants';
+import { API_ENDPOINT, DEFAULT_LIMIT, SORT_BY, SORT_ORDER } from '@/constants';
 
 // Models
 import { Order } from '@/models';
@@ -18,7 +18,7 @@ interface params {
 export const getOrders = async (params?: params) => {
   try {
     const {
-      limit = 10,
+      limit = DEFAULT_LIMIT,
       query = '',
       page = 1,
       sortBy,
@@ -49,7 +49,7 @@ export const getOrders = async (params?: params) => {
 export const getTotalOrders = async () => {
   try {
     const data = await api.getData<Order[]>(API_ENDPOINT.ORDERS, undefined, {
-      next: { tags: ['orders'], revalidate: 3600 },
+      next: { tags: ['orders'] },
     });
 
     return {

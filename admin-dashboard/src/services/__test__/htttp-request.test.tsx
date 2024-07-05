@@ -1,70 +1,81 @@
 import { ENVS } from '@/constants';
-import { deleteData, getData, postData, putData } from '..';
+import { getData, postData, putData, deleteData } from '..';
 
-describe.skip('API functions', () => {
-  const mockResponseData = { id: 1, name: 'John Doe' };
-  const mockPath = 'example';
-  const mockOptions = { headers: { Authorization: 'Bearer token' } };
+global.fetch = jest.fn();
 
+describe('API functions', () => {
   beforeEach(() => {
-    // Mocking fetch for all tests
-    jest.spyOn(global, 'fetch').mockResolvedValue({
+    (global.fetch as jest.Mock).mockClear();
+  });
+
+  it('should fetch data with query params', async () => {
+    const mockResponse = { data: { id: 1, name: 'Test' } };
+    (global.fetch as jest.Mock).mockResolvedValue({
       ok: true,
-      json: () => Promise.resolve(mockResponseData),
-    } as Response);
-  });
-
-  afterEach(() => {
-    // Restore fetch after each test
-    jest.restoreAllMocks();
-  });
-
-  it('getData should fetch data from the API', async () => {
-    const result = await getData(mockPath, {}, mockOptions);
-    const expectedUrl = `${ENVS.API_URL}/${mockPath}?`;
-
-    expect(global.fetch).toHaveBeenCalledWith(expectedUrl, {
-      method: 'GET',
-      ...mockOptions,
+      json: async () => mockResponse.data,
     });
-    expect(result.data).toEqual(mockResponseData);
+
+    const result = await getData('test-path', { q: 'test' });
+
+    expect(fetch).toHaveBeenCalledWith(`${ENVS.API_URL}/test-path?q=test`, {});
+    expect(result).toEqual(mockResponse);
   });
 
-  it('postData should post data to the API', async () => {
-    const mockBody = { username: 'john_doe', password: 'password' };
+  it('should post data and return the response', async () => {
+    const mockResponse = { data: { id: 1, name: 'Test' } };
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      json: async () => mockResponse.data,
+    });
 
-    const result = await postData(mockPath, mockBody, mockOptions);
-    const expectedUrl = `${ENVS.API_URL}/${mockPath}`;
+    const result = await postData('test-path', { name: 'Test' });
 
-    expect(global.fetch).toHaveBeenCalledWith(expectedUrl, {
+    expect(fetch).toHaveBeenCalledWith(`${ENVS.API_URL}/test-path`, {
       method: 'POST',
-      body: JSON.stringify(mockBody),
-      ...mockOptions,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: 'Test' }),
     });
-    expect(result).toEqual(mockResponseData);
+    expect(result).toEqual(mockResponse.data);
   });
 
-  it('putData should put data to the API', async () => {
-    const mockBody = { id: 1, name: 'Updated John Doe' };
+  it('should put data and return the response', async () => {
+    const mockResponse = { data: { id: 1, name: 'Test Updated' } };
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      json: async () => mockResponse.data,
+    });
 
-    const result = await putData(mockPath, mockBody, mockOptions);
-    const expectedUrl = `${ENVS.API_URL}${mockPath}`;
+    const result = await putData('/test-path', { name: 'Test Updated' });
 
-    expect(global.fetch).toHaveBeenCalledWith(expectedUrl, {
+    expect(fetch).toHaveBeenCalledWith(`${ENVS.API_URL}/test-path`, {
       method: 'PUT',
-      body: JSON.stringify(mockBody),
-      ...mockOptions,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: 'Test Updated' }),
     });
-    expect(result).toEqual(mockResponseData);
+    expect(result).toEqual(mockResponse.data);
   });
 
-  it('deleteData should delete data from the API', async () => {
-    await deleteData(mockPath, mockOptions);
-    const expectedUrl = `${ENVS.API_URL}${mockPath}`;
-
-    expect(global.fetch).toHaveBeenCalledWith(expectedUrl, {
-      method: 'DELETE',
-      ...mockOptions,
+  it('should delete data', async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      json: async () => {},
     });
+
+    await deleteData('/test-path');
+
+    expect(fetch).toHaveBeenCalledWith(`${ENVS.API_URL}/test-path`, {
+      method: 'DELETE',
+    });
+  });
+
+  it('should throw an error for non-OK responses', async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: false,
+      statusText: 'Unauthorized',
+    });
+
+    await expect(deleteData('test-path')).rejects.toThrow(
+      'Error: Unauthorized',
+    );
   });
 });
