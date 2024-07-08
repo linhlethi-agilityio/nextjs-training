@@ -12,22 +12,22 @@ exports[`Table should match snapshot for Table 1`] = `
         class="css-0"
       >
         <th
-          class="css-1rgfy9b"
+          class="css-1otffnp"
         >
           Id Order
         </th>
         <th
-          class="css-1rgfy9b"
+          class="css-1otffnp"
         >
           Product
         </th>
         <th
-          class="css-1rgfy9b"
+          class="css-1otffnp"
         >
           Customer
         </th>
         <th
-          class="css-1rgfy9b"
+          class="css-1otffnp"
         >
           Status
         </th>

@@ -6,7 +6,7 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
     class="css-rvaklg"
   >
     <p
-      class="chakra-text css-d4sxp6"
+      class="chakra-text css-vpapf9"
     >
       Showing result 
       1
@@ -18,7 +18,7 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
       class="css-15v75y9"
     >
       <p
-        class="chakra-text css-d4sxp6"
+        class="chakra-text css-vpapf9"
       >
         Item per page
       </p>
@@ -82,7 +82,7 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
         class="css-0"
       >
         <th
-          class="css-1rgfy9b"
+          class="css-1otffnp"
         >
           <label
             class="chakra-checkbox css-17u104x"
@@ -101,13 +101,13 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
           </label>
         </th>
         <th
-          class="css-1rgfy9b"
+          class="css-1otffnp"
         >
           <div
             class="css-1v08g9n"
           >
             <p
-              class="chakra-text css-d4sxp6"
+              class="chakra-text css-vpapf9"
             >
               ID Order
             </p>
@@ -170,27 +170,27 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
           </div>
         </th>
         <th
-          class="css-1rgfy9b"
+          class="css-1otffnp"
         >
           Product
         </th>
         <th
-          class="css-1rgfy9b"
+          class="css-1otffnp"
         >
           <p
-            class="chakra-text css-rxu4sx"
+            class="chakra-text css-1yic4n7"
           >
             Customer
           </p>
         </th>
         <th
-          class="css-1rgfy9b"
+          class="css-1otffnp"
         >
           <div
             class="css-ffgm4l"
           >
             <p
-              class="chakra-text css-d4sxp6"
+              class="chakra-text css-vpapf9"
             >
               Status
             </p>
@@ -253,13 +253,13 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
           </div>
         </th>
         <th
-          class="css-1rgfy9b"
+          class="css-1otffnp"
         >
           <div
             class="css-1v08g9n"
           >
             <p
-              class="chakra-text css-d4sxp6"
+              class="chakra-text css-vpapf9"
             >
               Created Date
             </p>
@@ -322,13 +322,13 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
           </div>
         </th>
         <th
-          class="css-1rgfy9b"
+          class="css-1otffnp"
         >
           <div
             class="css-hoc62v"
           >
             <p
-              class="chakra-text css-d4sxp6"
+              class="chakra-text css-vpapf9"
             >
               Deadline
             </p>
@@ -391,13 +391,13 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
           </div>
         </th>
         <th
-          class="css-1rgfy9b"
+          class="css-1otffnp"
         >
           <div
             class="css-1v08g9n"
           >
             <p
-              class="chakra-text css-d4sxp6"
+              class="chakra-text css-vpapf9"
             >
               Price
             </p>
@@ -460,10 +460,10 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
           </div>
         </th>
         <th
-          class="css-1rgfy9b"
+          class="css-1otffnp"
         >
           <p
-            class="chakra-text css-1ohb77l"
+            class="chakra-text css-1bnzf5l"
           >
             Action
           </p>

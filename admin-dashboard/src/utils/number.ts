@@ -11,8 +11,8 @@ export const normalizeValue = (val: string) => {
     );
 
     return `${normalizedIntegerPart}.${decimalPart}`;
-  } else {
-    // For integers, remove leading zeros
-    return val.replace(REGEX_PATTERN.NON_TRAILING_ZEROS, '');
   }
+
+  // For integers, remove leading zeros
+  return val.replace(REGEX_PATTERN.NON_TRAILING_ZEROS, '');
 };

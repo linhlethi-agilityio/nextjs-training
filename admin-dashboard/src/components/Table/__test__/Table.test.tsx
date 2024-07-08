@@ -47,9 +47,7 @@ const data = [
 
 describe('Table', () => {
   it('should match snapshot for Table', () => {
-    const { container } = render(
-      <Table isLoading={false} columns={columnsTable} data={data} />,
-    );
+    const { container } = render(<Table columns={columnsTable} data={data} />);
 
     expect(container).toMatchSnapshot();
   });

@@ -12,7 +12,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         href="/"
       >
         <div
-          class="chakra-stack css-1s41oml"
+          class="chakra-stack css-ile8xj"
           data-testid="sidebar-item-Dashboard"
         >
           <div
@@ -46,7 +46,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
             </svg>
           </div>
           <p
-            class="chakra-text css-d4sxp6"
+            class="chakra-text css-vpapf9"
           >
             Dashboard
           </p>
@@ -56,7 +56,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         href="/product"
       >
         <div
-          class="chakra-stack css-1s41oml"
+          class="chakra-stack css-ile8xj"
           data-testid="sidebar-item-Product"
         >
           <div
@@ -74,7 +74,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
             </svg>
           </div>
           <p
-            class="chakra-text css-d4sxp6"
+            class="chakra-text css-vpapf9"
           >
             Product
           </p>
@@ -84,7 +84,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         href="/category"
       >
         <div
-          class="chakra-stack css-1s41oml"
+          class="chakra-stack css-ile8xj"
           data-testid="sidebar-item-Category"
         >
           <div
@@ -122,7 +122,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
             </svg>
           </div>
           <p
-            class="chakra-text css-d4sxp6"
+            class="chakra-text css-vpapf9"
           >
             Category
           </p>
@@ -132,7 +132,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         href="/agen"
       >
         <div
-          class="chakra-stack css-1s41oml"
+          class="chakra-stack css-ile8xj"
           data-testid="sidebar-item-Agen"
         >
           <div
@@ -174,7 +174,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
             </svg>
           </div>
           <p
-            class="chakra-text css-d4sxp6"
+            class="chakra-text css-vpapf9"
           >
             Agen
           </p>
@@ -184,7 +184,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         href="/analytic"
       >
         <div
-          class="chakra-stack css-1s41oml"
+          class="chakra-stack css-ile8xj"
           data-testid="sidebar-item-Analytic"
         >
           <div
@@ -202,7 +202,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
             </svg>
           </div>
           <p
-            class="chakra-text css-d4sxp6"
+            class="chakra-text css-vpapf9"
           >
             Analytic
           </p>
@@ -212,7 +212,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         href="/setting"
       >
         <div
-          class="chakra-stack css-1s41oml"
+          class="chakra-stack css-ile8xj"
           data-testid="sidebar-item-Setting"
         >
           <div
@@ -250,7 +250,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
             </svg>
           </div>
           <p
-            class="chakra-text css-d4sxp6"
+            class="chakra-text css-vpapf9"
           >
             Setting
           </p>
