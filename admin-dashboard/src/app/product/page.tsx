@@ -1,11 +1,31 @@
-import { Box, Breadcrumb, BreadcrumbItem, Text } from '@chakra-ui/react';
+import { Suspense } from 'react';
+import {
+  Box,
+  Breadcrumb,
+  BreadcrumbItem,
+  Stack,
+  Tab,
+  TabList,
+  TabPanels,
+  Tabs,
+  Text,
+} from '@chakra-ui/react';
+import Link from 'next/link';
 
 // Constants
 import { ROUTES, SORT_BY, SORT_ORDER } from '@/constants';
 
+// Actions
+import { addOrder, removeOrder, updateOrder } from '@/actions';
+
 // Components
-import { ProductList } from '@/components';
-import Link from 'next/link';
+import {
+  PaginationSkeleton,
+  ProductActions,
+  ProductPagination,
+  SkeletonTable,
+  TableOrder,
+} from '@/components';
 
 interface ProductProps {
   searchParams: {
@@ -44,13 +64,40 @@ const ProductPage = async ({ searchParams }: ProductProps) => {
         </BreadcrumbItem>
       </Breadcrumb>
 
-      <ProductList
-        query={query}
-        page={page}
-        limit={limit}
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-      />
+      <ProductActions addOrderAction={addOrder} />
+
+      <Tabs mt={6} border="none">
+        <TabList ml={8} color="textDark" border="none" pt={2}>
+          <Tab fontSize="lg" lineHeight={3} key="all-orders">
+            All Order
+          </Tab>
+          <Tab isDisabled fontSize="lg" lineHeight={3} key="pickup">
+            Pickup
+          </Tab>
+          <Tab isDisabled fontSize="lg" lineHeight={3} key="return">
+            Return
+          </Tab>
+        </TabList>
+        <TabPanels mt={6} ml={1}>
+          <Suspense fallback={<SkeletonTable />}>
+            <TableOrder
+              limit={limit}
+              page={page}
+              query={query}
+              sortBy={sortBy}
+              sortOrder={sortOrder}
+              removeOrderAction={removeOrder}
+              editOrderAction={updateOrder}
+            />
+          </Suspense>
+
+          <Stack textAlign="center" alignItems="center" mt={30} display="flex">
+            <Suspense fallback={<PaginationSkeleton />}>
+              <ProductPagination limit={limit} />
+            </Suspense>
+          </Stack>
+        </TabPanels>
+      </Tabs>
     </Box>
   );
 };

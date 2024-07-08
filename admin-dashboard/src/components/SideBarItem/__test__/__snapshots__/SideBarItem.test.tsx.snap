@@ -6,7 +6,7 @@ exports[`SideBarItem component should match snapshot for SideBarItem 1`] = `
     href="/"
   >
     <div
-      class="chakra-stack css-1s41oml"
+      class="chakra-stack css-ile8xj"
       data-testid="sidebar-item-Product"
     >
       <div
@@ -24,7 +24,7 @@ exports[`SideBarItem component should match snapshot for SideBarItem 1`] = `
         </svg>
       </div>
       <p
-        class="chakra-text css-d4sxp6"
+        class="chakra-text css-vpapf9"
       >
         Product
       </p>
