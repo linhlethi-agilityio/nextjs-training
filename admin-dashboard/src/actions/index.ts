@@ -6,7 +6,7 @@ import { revalidateTag } from 'next/cache';
 import { API_ENDPOINT } from '@/constants';
 
 // Models
-import { Order } from '@/models';
+import { Order, ResponseData } from '@/models';
 
 // Services
 import { api } from '@/services';
@@ -45,6 +45,20 @@ export const addOrder = async (data: Partial<Order>) => {
     await api.postData(API_ENDPOINT.ORDERS, formatData);
 
     revalidateTag('orders');
+  } catch (error) {
+    return { error };
+  }
+};
+
+export const getOrderDetailById = async (
+  id: string,
+): Promise<ResponseData<Order>> => {
+  try {
+    const data = await api.getData<Order>(`${API_ENDPOINT.ORDERS}/${id}`);
+
+    return {
+      data: data.data ?? [],
+    };
   } catch (error) {
     return { error };
   }

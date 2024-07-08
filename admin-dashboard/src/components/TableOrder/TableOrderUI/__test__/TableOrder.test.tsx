@@ -2,11 +2,14 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 // Components
-import TableOrderUI from '..';
+import { TableOrderUI } from '..';
+
+// Constants
 import { SORT_BY, SORT_ORDER } from '@/constants';
 
 const mockRemoveOrderAction = jest.fn();
 const mockEditOrderAction = jest.fn();
+const mockGetOrderDetail = jest.fn();
 const mockReplace = jest.fn();
 const mockPathname = 'localhost:3000';
 const mockURLSearchParams = {
@@ -37,6 +40,7 @@ const mockProps = {
   sortOrder: SORT_ORDER.ASC,
   removeOrderAction: mockRemoveOrderAction,
   editOrderAction: mockEditOrderAction,
+  getOrderDetail: mockGetOrderDetail,
 };
 
 describe('TableOrderUI component', () => {

@@ -15,12 +15,13 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
+import isEqual from 'react-fast-compare';
 
 // Icons
 import { ChevronDownIcon, SortIcon } from '@/icons';
 
 // Models
-import { Order } from '@/models';
+import { Order, ResponseData } from '@/models';
 
 // Utils
 import { formatDateString, getColorByValue } from '@/utils';
@@ -45,17 +46,19 @@ interface TableOrderProps {
   orders: Order[];
   sortBy: SORT_BY;
   sortOrder: SORT_ORDER;
+  getOrderDetail: (id: string) => Promise<ResponseData<Order>>;
   removeOrderAction: (id: string) => void;
   editOrderAction: (id: string, updateOrder: Partial<Order>) => void;
 }
 
-const TableOrderUI = ({
+const TableOrder = ({
   limit = DEFAULT_LIMIT,
   page = 1,
   orders,
   sortBy,
   sortOrder,
   removeOrderAction,
+  getOrderDetail,
   editOrderAction,
 }: TableOrderProps) => {
   const [previewData, setPreviewData] = useState<Order | null>(null);
@@ -80,13 +83,19 @@ const TableOrderUI = ({
   /**
    * Function handle click checkbox
    */
-  const handleCheckChild = (itemId: string) => {
-    const isChecked: boolean = checkedItems.includes(itemId);
+  const handleCheckChild = (event: MouseEvent<HTMLElement>) => {
+    const { dataset } = event.currentTarget as HTMLElement;
 
-    if (isChecked) {
-      setCheckedItems(checkedItems.filter((id) => id !== itemId));
-    } else {
-      setCheckedItems([...checkedItems, itemId]);
+    const itemId = dataset.id;
+
+    if (itemId) {
+      const isChecked: boolean = checkedItems.includes(itemId);
+
+      if (isChecked) {
+        return setCheckedItems(checkedItems.filter((id) => id !== itemId));
+      } else {
+        setCheckedItems([...checkedItems, itemId]);
+      }
     }
   };
 
@@ -154,12 +163,21 @@ const TableOrderUI = ({
         const currentChecked = checkedItems.find((id) => id === data.id);
 
         return (
-          <Checkbox
-            aria-label="Checkbox"
-            size="lg"
-            isChecked={!!currentChecked}
-            onChange={() => handleCheckChild(data.id)}
-          />
+          <Button
+            onClick={handleCheckChild}
+            data-id={data.id}
+            variant="icon"
+            minW={0}
+            p={0}
+          >
+            <Checkbox
+              aria-label="Checkbox"
+              as="div"
+              data-id={data.id}
+              size="lg"
+              isChecked={!!currentChecked}
+            />
+          </Button>
         );
       },
     },
@@ -333,11 +351,11 @@ const TableOrderUI = ({
     },
   ];
 
-  const onEditOrder = (selectedId: string) => {
-    const currentOrder = orders?.find(({ id }) => id === selectedId);
+  const onEditOrder = async (selectedId: string) => {
+    const { data } = await getOrderDetail(selectedId);
 
-    if (currentOrder) {
-      setPreviewData(currentOrder);
+    if (data) {
+      setPreviewData(data);
       onOpenOrderModal();
     }
   };
@@ -460,4 +478,4 @@ const TableOrderUI = ({
   );
 };
 
-export default memo(TableOrderUI);
+export const TableOrderUI = memo(TableOrder, isEqual);

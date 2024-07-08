@@ -480,21 +480,28 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
         <td
           class="css-zpl621"
         >
-          <label
-            class="chakra-checkbox css-1elxtiq"
+          <button
+            class="chakra-button css-vm1miv"
+            data-id="3"
+            type="button"
           >
-            <input
-              aria-label="Checkbox"
-              class="chakra-checkbox__input"
-              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
-              type="checkbox"
-              value=""
-            />
-            <span
-              aria-hidden="true"
-              class="chakra-checkbox__control css-dnty2r"
-            />
-          </label>
+            <div
+              class="chakra-checkbox css-1elxtiq"
+              data-id="3"
+            >
+              <input
+                aria-label="Checkbox"
+                class="chakra-checkbox__input"
+                style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                type="checkbox"
+                value=""
+              />
+              <span
+                aria-hidden="true"
+                class="chakra-checkbox__control css-dnty2r"
+              />
+            </div>
+          </button>
         </td>
         <td
           class="css-zpl621"
