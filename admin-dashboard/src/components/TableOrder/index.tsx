@@ -14,10 +14,10 @@ import {
 } from '@/constants';
 
 // Components
-import TableOrderUI from './TableOrderUI';
+import { TableOrderUI } from './TableOrderUI';
 
 // Models
-import { Order } from '@/models';
+import { Order, ResponseData } from '@/models';
 
 interface TableOrderProps {
   query: string;
@@ -27,6 +27,7 @@ interface TableOrderProps {
   sortOrder: SORT_ORDER;
   removeOrderAction: (id: string) => void;
   editOrderAction: (id: string, updateOrder: Partial<Order>) => void;
+  getOrderDetail: (id: string) => Promise<ResponseData<Order>>;
 }
 
 const TableOrder = async ({
@@ -37,6 +38,7 @@ const TableOrder = async ({
   sortOrder,
   removeOrderAction,
   editOrderAction,
+  getOrderDetail,
 }: TableOrderProps) => {
   const isValidLimit = LIMIT_PAGE.includes(limit);
 
@@ -58,11 +60,12 @@ const TableOrder = async ({
     <TableOrderUI
       limit={limit}
       page={page}
-      orders={orders}
-      removeOrderAction={removeOrderAction}
-      editOrderAction={editOrderAction}
+      orders={orders.reverse()}
       sortBy={sortBy}
       sortOrder={sortOrder}
+      removeOrderAction={removeOrderAction}
+      getOrderDetail={getOrderDetail}
+      editOrderAction={editOrderAction}
     />
   );
 };

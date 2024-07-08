@@ -34,7 +34,7 @@ export const getOrders = async (params?: params) => {
         ...(sortBy && sortOrder && { sortBy, order: sortOrder }),
       },
       {
-        next: { tags: ['orders'], revalidate: 3600 },
+        next: { tags: ['orders'] },
       },
     );
 

@@ -16,7 +16,12 @@ import Link from 'next/link';
 import { ROUTES, SORT_BY, SORT_ORDER } from '@/constants';
 
 // Actions
-import { addOrder, removeOrder, updateOrder } from '@/actions';
+import {
+  addOrder,
+  removeOrder,
+  updateOrder,
+  getOrderDetailById,
+} from '@/actions';
 
 // Components
 import {
@@ -88,6 +93,7 @@ const ProductPage = async ({ searchParams }: ProductProps) => {
               sortOrder={sortOrder}
               removeOrderAction={removeOrder}
               editOrderAction={updateOrder}
+              getOrderDetail={getOrderDetailById}
             />
           </Suspense>
 
