@@ -520,11 +520,7 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
         <td
           class="css-zpl621"
         >
-          <p
-            class="chakra-text css-xi606m"
-          >
-            Luz Nader
-          </p>
+          Luz Nader
         </td>
         <td
           class="css-zpl621"
