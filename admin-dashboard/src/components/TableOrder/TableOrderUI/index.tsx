@@ -85,14 +85,6 @@ const TableOrder = ({
     onClose: onCloseOrderModal,
   } = useDisclosure();
 
-  // useEffect(() => {
-  //   const params = new URLSearchParams(searchParams);
-
-  //   const isValidLimit = LIMIT_PAGE.includes(limit);
-
-  //   isValidLimit && params.delete('limit');
-  // }, [limit, page, searchParams]);
-
   /**
    * Function handle click checkbox
    */
