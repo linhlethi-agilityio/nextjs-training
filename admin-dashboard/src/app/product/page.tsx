@@ -3,7 +3,6 @@ import {
   Box,
   Breadcrumb,
   BreadcrumbItem,
-  Stack,
   Tab,
   TabList,
   TabPanels,
@@ -73,13 +72,30 @@ const ProductPage = async ({ searchParams }: ProductProps) => {
 
       <Tabs mt={6} border="none">
         <TabList ml={8} color="textDark" border="none" pt={2}>
-          <Tab fontSize="lg" lineHeight={3} key="all-orders">
+          <Tab
+            fontSize="lg"
+            lineHeight={3}
+            key="all-orders"
+            aria-controls={undefined}
+          >
             All Order
           </Tab>
-          <Tab isDisabled fontSize="lg" lineHeight={3} key="pickup">
+          <Tab
+            isDisabled
+            fontSize="lg"
+            lineHeight={3}
+            key="pickup"
+            aria-controls={undefined}
+          >
             Pickup
           </Tab>
-          <Tab isDisabled fontSize="lg" lineHeight={3} key="return">
+          <Tab
+            isDisabled
+            fontSize="lg"
+            lineHeight={3}
+            key="return"
+            aria-controls={undefined}
+          >
             Return
           </Tab>
         </TabList>
@@ -97,11 +113,9 @@ const ProductPage = async ({ searchParams }: ProductProps) => {
             />
           </Suspense>
 
-          <Stack textAlign="center" alignItems="center" mt={30} display="flex">
-            <Suspense fallback={<PaginationSkeleton />}>
-              <ProductPagination limit={limit} />
-            </Suspense>
-          </Stack>
+          <Suspense fallback={<PaginationSkeleton />}>
+            <ProductPagination limit={limit} />
+          </Suspense>
         </TabPanels>
       </Tabs>
     </Box>

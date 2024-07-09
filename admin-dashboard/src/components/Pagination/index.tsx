@@ -28,7 +28,7 @@ const Pagination = ({
   };
 
   return (
-    <HStack>
+    <HStack justifyContent="center" my={30}>
       <Button
         variant="pagination"
         onClick={handlePrevPage}
