@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo, useTransition } from 'react';
 import { Button, Flex, useDisclosure } from '@chakra-ui/react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
@@ -17,13 +17,15 @@ import { SearchInput } from '@/components';
 const DynamicOrderModal = dynamic(() => import('../Modal/OrderModal'));
 
 interface ProductActionsProps {
-  addOrderAction: (data: Partial<Order>) => void;
+  addOrderAction: (data: Partial<Order>) => Promise<void | string>;
 }
 
 const ProductActions = ({ addOrderAction }: ProductActionsProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
+
+  const [isPending, startTransition] = useTransition();
 
   const {
     isOpen: isOpenOrderModal,
@@ -54,9 +56,13 @@ const ProductActions = ({ addOrderAction }: ProductActionsProps) => {
 
   const handleAddOrder = useCallback(
     (data: Partial<Order>) => {
-      onCloseOrderModal();
+      startTransition(async () => {
+        const response = await addOrderAction(data);
 
-      addOrderAction(data);
+        if (typeof response !== 'string') {
+          onCloseOrderModal();
+        }
+      });
     },
     [addOrderAction, onCloseOrderModal],
   );
@@ -89,6 +95,7 @@ const ProductActions = ({ addOrderAction }: ProductActionsProps) => {
       </Flex>
       {isOpenOrderModal && (
         <DynamicOrderModal
+          isLoading={isPending}
           onSubmitForm={handleAddOrder}
           isOpen={isOpenOrderModal}
           onClose={onCloseOrderModal}

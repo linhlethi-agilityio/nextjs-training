@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, MouseEvent, useCallback, useState } from 'react';
+import { memo, MouseEvent, useCallback, useState, useTransition } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import {
@@ -46,9 +46,12 @@ interface TableOrderProps {
   orders: Order[];
   sortBy: SORT_BY;
   sortOrder: SORT_ORDER;
-  getOrderDetail: (id: string) => Promise<ResponseData<Order>>;
-  removeOrderAction: (id: string) => void;
-  editOrderAction: (id: string, updateOrder: Partial<Order>) => void;
+  getOrderDetail: (id: string) => Promise<ResponseData<Order> | string>;
+  removeOrderAction: (id: string) => Promise<void | string>;
+  editOrderAction: (
+    id: string,
+    updateOrder: Partial<Order>,
+  ) => Promise<void | string>;
 }
 
 const TableOrder = ({
@@ -67,6 +70,8 @@ const TableOrder = ({
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const pathname = usePathname();
+
+  const [isPending, startTransition] = useTransition();
 
   const {
     isOpen: isOpenConfirm,
@@ -352,10 +357,10 @@ const TableOrder = ({
   ];
 
   const onEditOrder = async (selectedId: string) => {
-    const { data } = await getOrderDetail(selectedId);
+    const response = await getOrderDetail(selectedId);
 
-    if (data) {
-      setPreviewData(data);
+    if (typeof response !== 'string') {
+      setPreviewData(response.data);
       onOpenOrderModal();
     }
   };
@@ -370,9 +375,13 @@ const TableOrder = ({
 
   const handleEditOrder = useCallback(
     (formData: Partial<Order>) => {
-      onCloseOrderModal();
+      startTransition(async () => {
+        const response = await editOrderAction(previewData?.id ?? '', formData);
 
-      editOrderAction(previewData?.id ?? '', formData);
+        if (typeof response !== 'string') {
+          onCloseOrderModal();
+        }
+      });
     },
     [editOrderAction, onCloseOrderModal, previewData?.id],
   );
@@ -396,15 +405,21 @@ const TableOrder = ({
 
   const handleRemoveOrder = useCallback(() => {
     if (previewData?.id) {
-      removeOrderAction(previewData?.id);
+      startTransition(async () => {
+        const response = await removeOrderAction(previewData?.id);
 
-      return onCloseConfirm();
+        if (typeof response !== 'string') {
+          return onCloseConfirm();
+        }
+      });
     }
 
     if (checkedItems.length !== 0) {
-      checkedItems.map((item) => removeOrderAction(item));
+      startTransition(() => {
+        checkedItems.map((item) => removeOrderAction(item));
 
-      onCloseConfirm();
+        onCloseConfirm();
+      });
     }
   }, [checkedItems, onCloseConfirm, previewData?.id, removeOrderAction]);
 
@@ -457,6 +472,7 @@ const TableOrder = ({
       <Table columns={orderColumns} data={orders} />
       {isOpenConfirm && (
         <DynamicConfirmModal
+          isLoading={isPending}
           isOpen={isOpenConfirm}
           onCancel={onCloseConfirm}
           title="Delete Order"
@@ -467,6 +483,7 @@ const TableOrder = ({
       )}
       {isOpenOrderModal && (
         <DynamicOrderModal
+          isLoading={isPending}
           title="Update Order"
           previewData={previewData}
           onSubmitForm={handleEditOrder}

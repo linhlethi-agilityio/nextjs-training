@@ -14,13 +14,16 @@ import { api } from '@/services';
 // Utils
 import { generateRandomId } from '@/utils';
 
-export const removeOrder = async (id: string) => {
+export const removeOrder = async (id: string): Promise<void | string> => {
   try {
     await api.deleteData(`${API_ENDPOINT.ORDERS}/${id}`);
 
     revalidateTag('orders');
   } catch (error) {
-    return { error };
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return 'An unknown error occurred';
   }
 };
 
@@ -30,7 +33,10 @@ export const updateOrder = async (id: string, updateOrder: Partial<Order>) => {
 
     revalidateTag('orders');
   } catch (error) {
-    return { error };
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return 'An unknown error occurred';
   }
 };
 
@@ -46,13 +52,16 @@ export const addOrder = async (data: Partial<Order>) => {
 
     revalidateTag('orders');
   } catch (error) {
-    return { error };
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return 'An unknown error occurred';
   }
 };
 
 export const getOrderDetailById = async (
   id: string,
-): Promise<ResponseData<Order>> => {
+): Promise<ResponseData<Order> | string> => {
   try {
     const data = await api.getData<Order>(`${API_ENDPOINT.ORDERS}/${id}`);
 
@@ -60,6 +69,9 @@ export const getOrderDetailById = async (
       data: data.data ?? [],
     };
   } catch (error) {
-    return { error };
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return 'An unknown error occurred';
   }
 };

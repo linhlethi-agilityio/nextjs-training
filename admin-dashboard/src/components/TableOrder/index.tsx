@@ -25,9 +25,12 @@ interface TableOrderProps {
   limit: number;
   sortBy: SORT_BY;
   sortOrder: SORT_ORDER;
-  removeOrderAction: (id: string) => void;
-  editOrderAction: (id: string, updateOrder: Partial<Order>) => void;
-  getOrderDetail: (id: string) => Promise<ResponseData<Order>>;
+  removeOrderAction: (id: string) => Promise<void | string>;
+  editOrderAction: (
+    id: string,
+    updateOrder: Partial<Order>,
+  ) => Promise<void | string>;
+  getOrderDetail: (id: string) => Promise<ResponseData<Order> | string>;
 }
 
 const TableOrder = async ({
