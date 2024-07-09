@@ -1,11 +1,12 @@
 // middleware.js
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { DEFAULT_LIMIT, LIMIT_PAGE } from './constants';
 
-export const middleware = (request: NextRequest) => {
+const LIMIT_PAGE = [10, 20, 50];
+
+export async function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
-  const limit = request.nextUrl.searchParams.get('limit') ?? DEFAULT_LIMIT;
+  const limit = request.nextUrl.searchParams.get('limit') ?? 10;
   const page = request.nextUrl.searchParams.get('page') ?? 1;
 
   const isValidLimit = LIMIT_PAGE.includes(Number(limit));
@@ -20,4 +21,4 @@ export const middleware = (request: NextRequest) => {
   }
 
   return NextResponse.next();
-};
+}
