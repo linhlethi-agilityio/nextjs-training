@@ -9,6 +9,7 @@ interface ConfirmModalProps {
   description: string;
   buttonLabel: string;
   title: string;
+  isLoading?: boolean;
   onConfirm?: (event: MouseEvent<HTMLElement>) => void;
   onCancel: () => void;
 }
@@ -18,6 +19,7 @@ const ConfirmModal = ({
   title,
   description,
   buttonLabel,
+  isLoading = false,
   onCancel,
   onConfirm,
 }: ConfirmModalProps) => (
@@ -26,6 +28,7 @@ const ConfirmModal = ({
       <Text size="xmd">{description}</Text>
       <Flex gap={5} justifyContent="space-between" mt={5}>
         <Button
+          isLoading={isLoading}
           colorScheme="brand"
           aria-label="button-label"
           onClick={onConfirm}
@@ -34,6 +37,7 @@ const ConfirmModal = ({
           {buttonLabel}
         </Button>
         <Button
+          isLoading={isLoading}
           aria-label="button-center"
           onClick={onCancel}
           variant="outline"

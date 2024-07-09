@@ -38,6 +38,7 @@ import { CustomModal, Dropdown } from '@/components';
 
 interface CustomerModalDetailModalProps {
   title?: string;
+  isLoading?: boolean;
   isOpen: boolean;
   previewData?: Order | null;
   onSubmitForm: (data: Partial<Order>) => void;
@@ -54,6 +55,7 @@ const initFormData = {
 
 const OrderModal = ({
   title = 'Add Order',
+  isLoading = false,
   isOpen,
   previewData,
   onClose,
@@ -298,6 +300,7 @@ const OrderModal = ({
         />
 
         <Button
+          isLoading={isLoading}
           colorScheme="brand"
           aria-label="button-submit"
           type="submit"
