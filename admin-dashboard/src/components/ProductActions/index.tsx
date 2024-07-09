@@ -76,7 +76,7 @@ const ProductActions = ({ addOrderAction }: ProductActionsProps) => {
           onSearch={handleSearch}
           defaultValue={searchValue}
         />
-        <Flex gap={25}>
+        <Flex gap={25} w={445} justifyContent="space-between">
           <Button isDisabled variant="outline" rightIcon={<FileArrowUpIcon />}>
             Export
           </Button>

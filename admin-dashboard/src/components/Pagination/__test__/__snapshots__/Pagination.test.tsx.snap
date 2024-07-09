@@ -3,7 +3,7 @@
 exports[`Pagination component should match snapshot for Pagination 1`] = `
 <div>
   <div
-    class="chakra-stack css-1igwmid"
+    class="chakra-stack css-z424u0"
   >
     <button
       aria-label="pagination-prev"
