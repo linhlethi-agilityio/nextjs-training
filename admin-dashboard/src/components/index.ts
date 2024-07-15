@@ -6,6 +6,7 @@ export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as LoadingIndicator } from './LoadingIndicator';
 export { default as ProductActions } from './ProductActions';
 export { default as ProductPagination } from './ProductPagination';
+export { default as LoginForm } from './LoginForm';
 export * from './Dropdown';
 
 // Modals

@@ -6,6 +6,11 @@ import { REGEX_PATTERN } from '@/constants';
 export const isValidString = (value: string) => REGEX_PATTERN.NAME.test(value);
 
 /**
+ * Function to check if a given value is a valid email address.
+ */
+export const isValidEmail = (value: string) => REGEX_PATTERN.EMAIL.test(value);
+
+/**
  * @param requiredFields [] The required fields on form
  * @param dirtyFields [] The fields, which the users touched and fill data on
  * @param errors {} The errors fields

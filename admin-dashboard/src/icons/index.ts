@@ -13,3 +13,7 @@ export { default as PrinterIcon } from './PrinterIcon';
 export { default as SearchIcon } from './SearchIcon';
 export { default as SlidersIcon } from './SlidersIcon';
 export { default as SortIcon } from './SortIcon';
+export { default as EmailIcon } from './EmailIcon';
+export { default as ShowEyeIcon } from './ShowEyeIcon';
+export { default as HideEyeIcon } from './HideEyeIcon';
+export { default as PasswordIcon } from './PasswordIcon';

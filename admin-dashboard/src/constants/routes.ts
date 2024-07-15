@@ -5,4 +5,8 @@ export const ROUTES = {
   AGEN: '/agen',
   ANALYTIC: '/analytic',
   SETTING: '/setting',
+
+  /** Auth */
+  LOGIN: '/login',
+  REGISTER: '/register',
 };
