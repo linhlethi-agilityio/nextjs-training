@@ -6,6 +6,8 @@ export const REGEX_PATTERN = {
   DECIMAL: /^\d+(\.\d{0,2})?$/,
 };
 
+export const MIN_PASSWORD_LENGTH = 6;
+
 export const LIMIT_PAGE = [10, 20, 50];
 
 export const DEFAULT_LIMIT = 10;

@@ -6,13 +6,13 @@ import { Text, Heading, Stack, Button } from '@chakra-ui/react';
 import { ROUTES } from '@/constants';
 
 // Components
-import { LoginForm } from '@/components';
+import { RegisterForm } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Welcome',
 };
 
-const LoginPage = () => {
+const RegisterPage = () => {
   return (
     <Stack
       textAlign="center"
@@ -21,13 +21,13 @@ const LoginPage = () => {
       h="100vh"
       bgColor="backgroundDashboard"
     >
-      <Heading>Login</Heading>
-      <LoginForm />
+      <Heading>Register</Heading>
+      <RegisterForm />
       <Text>
-        Don’t have an account?&nbsp;
-        <Link href={ROUTES.REGISTER}>
+        Already have an account?&nbsp;
+        <Link href={ROUTES.LOGIN}>
           <Button px={0} variant="icon" color="blue.500">
-            Register
+            Login
           </Button>
         </Link>
       </Text>
@@ -35,4 +35,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
