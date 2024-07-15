@@ -4,6 +4,7 @@ export const Input = defineStyleConfig({
   baseStyle: {
     field: {
       borderRadius: '2xl',
+      borderColor: 'borderDefault',
       color: 'textDark',
       fontSize: 'lg',
       lineHeight: 2,

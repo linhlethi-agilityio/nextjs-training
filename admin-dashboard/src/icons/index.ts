@@ -17,3 +17,4 @@ export { default as EmailIcon } from './EmailIcon';
 export { default as ShowEyeIcon } from './ShowEyeIcon';
 export { default as HideEyeIcon } from './HideEyeIcon';
 export { default as PasswordIcon } from './PasswordIcon';
+export { default as UsersIcon } from './UsersIcon';
