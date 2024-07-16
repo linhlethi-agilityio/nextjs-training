@@ -34,7 +34,7 @@ interface LoginFormData {
 const REQUIRED_FIELDS = ['email', 'password'];
 
 interface LoginForm {
-  onSubmit?: (data: any) => void;
+  onSubmit: (data: any) => void;
 }
 
 const LoginForm = ({ onSubmit }: LoginForm) => {
@@ -67,7 +67,7 @@ const LoginForm = ({ onSubmit }: LoginForm) => {
    * Func handle login
    */
   const handleLogin = async ({ email, password }: LoginFormData) => {
-    onSubmit && onSubmit({ email, password });
+    onSubmit({ email, password });
   };
 
   const handleClickEyePassword = () => setShowPassword(!showPassword);

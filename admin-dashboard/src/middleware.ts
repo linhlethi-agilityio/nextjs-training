@@ -1,8 +1,12 @@
 // middleware.js
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import NextAuth from 'next-auth';
+import { authConfig } from './auth.config';
 
 const LIMIT_PAGE = [10, 20, 50];
+
+export default NextAuth(authConfig).auth;
 
 export async function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
@@ -22,3 +26,8 @@ export async function middleware(request: NextRequest) {
 
   return NextResponse.next();
 }
+
+export const config = {
+  // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
+  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+};
