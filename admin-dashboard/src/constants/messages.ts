@@ -9,6 +9,10 @@ export const ERROR_MESSAGES = {
     `Please enter at least ${length} characters`,
 };
 
+export const SUCCESS_MESSAGES = {
+  REGISTER_SUCCESS: 'Register user success!!',
+};
+
 export const MESSAGES = {
   EMPTY_DATA: 'There is no data to show you right now!',
   EMPTY_SEARCH: 'No result is matched with this searching.',

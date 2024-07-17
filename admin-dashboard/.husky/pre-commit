@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-cd ./admin-dashboard
+cd admin-dashboard
 
 npx lint-staged && pnpm test

@@ -7,6 +7,7 @@ import { ROUTES } from '@/constants';
 
 // Components
 import { RegisterForm } from '@/components';
+import { register } from '@/actions/auth';
 
 export const metadata: Metadata = {
   title: 'Welcome',
@@ -22,7 +23,7 @@ const RegisterPage = () => {
       bgColor="backgroundDashboard"
     >
       <Heading>Register</Heading>
-      <RegisterForm />
+      <RegisterForm onSubmit={register} />
       <Text>
         Already have an account?&nbsp;
         <Link href={ROUTES.LOGIN}>
