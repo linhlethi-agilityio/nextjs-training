@@ -28,7 +28,7 @@ const CredentialsProvider = Credentials({
 
       if (!user) return null;
 
-      const passwordsMatch = await bcrypt.compare(password, user.password);
+      const passwordsMatch = bcrypt.compareSync(password, user.password);
 
       if (passwordsMatch) return user;
     }

@@ -1,19 +1,30 @@
 'use client';
 
-import { useMemo, KeyboardEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import { useMemo, KeyboardEvent, useTransition } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
   Box,
   Button,
   FormControl,
   FormHelperText,
+  FormLabel,
   Input,
   InputGroup,
   InputLeftElement,
+  Radio,
+  RadioGroup,
+  Stack,
+  useToast,
 } from '@chakra-ui/react';
 
 // Constants
-import { ERROR_MESSAGES, MIN_PASSWORD_LENGTH } from '@/constants';
+import {
+  ERROR_MESSAGES,
+  MIN_PASSWORD_LENGTH,
+  ROUTES,
+  SUCCESS_MESSAGES,
+} from '@/constants';
 
 // Utils
 import {
@@ -30,6 +41,7 @@ interface RegisterFormData {
   email: string;
   name: string;
   password: string;
+  role: string;
   confirmPassword: string;
 }
 
@@ -40,9 +52,26 @@ const initFormData = {
   confirmPassword: '',
 };
 
-const REQUIRED_FIELDS = ['email', 'name', 'password', 'confirmPassword'];
+const REQUIRED_FIELDS = [
+  'email',
+  'name',
+  'password',
+  'confirmPassword',
+  'role',
+];
 
-const RegisterForm = () => {
+interface RegisterForm {
+  onSubmit: (
+    data: Omit<RegisterFormData, 'confirmPassword'>,
+  ) => Promise<void | string>;
+}
+
+const RegisterForm = ({ onSubmit }: RegisterForm) => {
+  const toast = useToast();
+  const [isPending, startTransition] = useTransition();
+
+  const router = useRouter();
+
   const {
     control,
     watch,
@@ -71,6 +100,23 @@ const RegisterForm = () => {
   const handleRegister = async (formData: RegisterFormData) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { confirmPassword, ...rest } = formData;
+
+    startTransition(async () => {
+      const response = await onSubmit(rest);
+
+      if (typeof response === 'string') {
+        toast({
+          title: response,
+          status: 'error',
+        });
+      } else {
+        toast({
+          title: SUCCESS_MESSAGES.REGISTER_SUCCESS,
+          status: 'success',
+        });
+        router.push(ROUTES.LOGIN);
+      }
+    });
   };
 
   const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -97,7 +143,6 @@ const RegisterForm = () => {
           <Box
             marginBottom={error?.message ? 0 : 26}
             _placeholder={{ color: 'textPlaceholder' }}
-            ml={3}
           >
             <InputGroup>
               <InputLeftElement pointerEvents="none">
@@ -146,7 +191,6 @@ const RegisterForm = () => {
           <Box
             marginBottom={error?.message ? 0 : 26}
             _placeholder={{ color: 'textPlaceholder' }}
-            ml={3}
           >
             <InputGroup>
               <InputLeftElement pointerEvents="none">
@@ -210,7 +254,6 @@ const RegisterForm = () => {
         }) => (
           <Box
             marginBottom={error?.message ? 0 : 26}
-            ml={3}
             _placeholder={{ color: 'textPlaceholder' }}
           >
             <InputGroup>
@@ -264,7 +307,10 @@ const RegisterForm = () => {
           field: { name, onChange, ...rest },
           fieldState: { error },
         }) => (
-          <Box h={79} ml={3} _placeholder={{ color: 'textPlaceholder' }}>
+          <Box
+            marginBottom={error?.message ? 0 : 26}
+            _placeholder={{ color: 'textPlaceholder' }}
+          >
             <InputGroup>
               <InputLeftElement pointerEvents="none">
                 <PasswordIcon />
@@ -299,10 +345,40 @@ const RegisterForm = () => {
         )}
       />
 
+      <Controller
+        name="role"
+        control={control}
+        rules={{
+          required: ERROR_MESSAGES.FIELD_REQUIRED,
+        }}
+        render={({ field: { onChange, value, ...rest } }) => (
+          <Box>
+            <FormLabel fontSize="sm" color="textDark">
+              Role:
+            </FormLabel>
+            <RadioGroup
+              defaultValue={value}
+              mb={4}
+              onChange={onChange}
+              {...rest}
+            >
+              <Stack spacing={12} direction="row">
+                <Radio flex={1} value="admin">
+                  Admin
+                </Radio>
+                <Radio flex={1} value="user">
+                  User
+                </Radio>
+              </Stack>
+            </RadioGroup>
+          </Box>
+        )}
+      />
+
       <Button
         isDisabled={isDisableSubmit}
+        isLoading={isPending}
         colorScheme="brand"
-        ml={3}
         aria-label="register"
         w="-webkit-fill-available"
         mt={2}
