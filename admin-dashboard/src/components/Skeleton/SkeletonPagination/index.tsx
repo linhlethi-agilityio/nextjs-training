@@ -1,10 +1,10 @@
-import { Button, HStack, Skeleton as SkeletonBase } from '@chakra-ui/react';
+import { Button, Center, Skeleton as SkeletonBase } from '@chakra-ui/react';
 
 // Icons
 import { ChevronLeftIcon, ChevronRightIcon } from '@/icons';
 
 const PaginationSkeleton = () => (
-  <HStack>
+  <Center>
     <Button variant="pagination">
       <ChevronLeftIcon />
     </Button>
@@ -14,7 +14,7 @@ const PaginationSkeleton = () => (
     <Button variant="pagination">
       <ChevronRightIcon />
     </Button>
-  </HStack>
+  </Center>
 );
 
 export default PaginationSkeleton;
