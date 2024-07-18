@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Text, Heading, Stack, Button } from '@chakra-ui/react';
+import { authenticate } from '@/actions/auth';
+import { Text, Heading, Button } from '@chakra-ui/react';
 
 // Constants
 import { ROUTES } from '@/constants';
 
 // Components
 import { LoginForm } from '@/components';
-import { authenticate } from '@/actions/auth';
 
 export const metadata: Metadata = {
   title: 'Welcome',
@@ -15,13 +15,7 @@ export const metadata: Metadata = {
 
 const LoginPage = () => {
   return (
-    <Stack
-      textAlign="center"
-      alignItems="center"
-      justifyContent="center"
-      h="100vh"
-      bgColor="backgroundDashboard"
-    >
+    <>
       <Heading>Login</Heading>
       <LoginForm onSubmit={authenticate} />
       <Text>
@@ -32,7 +26,7 @@ const LoginPage = () => {
           </Button>
         </Link>
       </Text>
-    </Stack>
+    </>
   );
 };
 
