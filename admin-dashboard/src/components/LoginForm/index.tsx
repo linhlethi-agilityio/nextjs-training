@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo, KeyboardEvent, useState, memo } from 'react';
+import { useMemo, KeyboardEvent, useState, memo, useTransition } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import {
   Box,
   Button,
@@ -11,10 +12,11 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
+  useToast,
 } from '@chakra-ui/react';
 
 // Constants
-import { ERROR_MESSAGES } from '@/constants';
+import { ERROR_MESSAGES, ROUTES, SUCCESS_MESSAGES } from '@/constants';
 
 // Utils
 import {
@@ -34,11 +36,15 @@ interface LoginFormData {
 const REQUIRED_FIELDS = ['email', 'password'];
 
 interface LoginForm {
-  onSubmit: (data: any) => void;
+  onSubmit: (data: LoginFormData) => Promise<void | string>;
 }
 
 const LoginForm = ({ onSubmit }: LoginForm) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const toast = useToast();
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   const {
     control,
@@ -66,8 +72,23 @@ const LoginForm = ({ onSubmit }: LoginForm) => {
   /**
    * Func handle login
    */
-  const handleLogin = async ({ email, password }: LoginFormData) => {
-    onSubmit({ email, password });
+  const handleLogin = async (formData: LoginFormData) => {
+    startTransition(async () => {
+      const response = await onSubmit(formData);
+
+      if (typeof response === 'string') {
+        toast({
+          title: response,
+          status: 'error',
+        });
+      } else {
+        toast({
+          title: SUCCESS_MESSAGES.LOGIN_SUCCESS,
+          status: 'success',
+        });
+        router.push(ROUTES.PRODUCT);
+      }
+    });
   };
 
   const handleClickEyePassword = () => setShowPassword(!showPassword);
@@ -186,6 +207,7 @@ const LoginForm = ({ onSubmit }: LoginForm) => {
 
       <Button
         isDisabled={isDisableSubmit}
+        isLoading={isPending}
         colorScheme="brand"
         ml={3}
         aria-label="log-in"

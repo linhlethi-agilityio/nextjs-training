@@ -8,22 +8,20 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
 
-      const isOnDashboard = nextUrl.pathname.startsWith('/');
+      const isOnDashboard = nextUrl.pathname.startsWith('/product');
 
       if (isOnDashboard) {
         if (isLoggedIn) return true;
 
-        return false; // Redirect unauthenticated users to login page
+        return false;
       } else if (isLoggedIn) {
-        return Response.redirect(new URL('/', nextUrl));
+        return Response.redirect(new URL('/product', nextUrl));
       }
       return true;
     },
   },
   session: {
-    //strategy: 'jwt', // jwt for default or 'database adapter'
-    maxAge: 60 * 60 * 24, // 1 day, default 30 days
+    maxAge: 60 * 60 * 24,
   },
-  trustHost: true,
-  providers: [], // Add providers with an empty array for now
+  providers: [],
 } satisfies NextAuthConfig;

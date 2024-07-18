@@ -4,9 +4,12 @@ import { authConfig } from './auth.config';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import { api } from './services';
+
+// Constants
 import { API_ENDPOINT } from './constants';
-import { UserLogin } from './models';
-import Google from 'next-auth/providers/google';
+
+// Models
+import { UserLogin } from '@/models';
 
 const CredentialsProvider = Credentials({
   authorize: async (credentials) => {
@@ -19,12 +22,8 @@ const CredentialsProvider = Credentials({
 
       const { data: users } = await api.getData<UserLogin[]>(
         API_ENDPOINT.USERS,
-        {
-          email,
-        },
       );
-
-      const [user] = users;
+      const user = users.find((user) => user.email === email);
 
       if (!user) return null;
 
@@ -40,5 +39,5 @@ const CredentialsProvider = Credentials({
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
   secret: process.env.AUTH_SECRET,
-  providers: [CredentialsProvider, Google],
+  providers: [CredentialsProvider],
 });

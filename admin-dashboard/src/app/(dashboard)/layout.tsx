@@ -3,6 +3,7 @@ import { Box, Flex } from '@chakra-ui/react';
 
 // Components
 import { SideBar } from '@/components';
+import { logout } from '@/actions/auth';
 
 export const metadata: Metadata = {
   title: 'Admin Dashboard',
@@ -15,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <Flex h="full">
-      <SideBar />
+      <SideBar onLogout={logout} />
       <Box flex={1} bgColor="backgroundDashboard">
         <Box>{children}</Box>
       </Box>
