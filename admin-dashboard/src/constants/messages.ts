@@ -11,6 +11,8 @@ export const ERROR_MESSAGES = {
 
 export const SUCCESS_MESSAGES = {
   REGISTER_SUCCESS: 'Register user success!!',
+  LOGIN_SUCCESS: 'Login success!!',
+  LOGOUT_SUCCESS: 'Logout success!!',
 };
 
 export const MESSAGES = {

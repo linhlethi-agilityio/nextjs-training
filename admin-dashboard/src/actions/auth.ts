@@ -2,7 +2,7 @@
 
 import bcrypt from 'bcryptjs';
 import { AuthError } from 'next-auth';
-import { signIn } from '@/auth';
+import { signIn, signOut } from '@/auth';
 
 // Services
 import { api } from '@/services';
@@ -20,14 +20,14 @@ interface UserInput {
   role: string;
 }
 
-export const authenticate = async (formData: FormData) => {
+export const authenticate = async (formData: UserLogin) => {
   try {
     await signIn('credentials', formData);
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return 'Invalid credentials.';
+          return 'Email or password invalid.';
         default:
           return 'Something went wrong.';
       }
@@ -60,4 +60,8 @@ export const register = async (newUser: UserInput) => {
     }
     return 'An unknown error occurred';
   }
+};
+
+export const logout = async () => {
+  await signOut();
 };

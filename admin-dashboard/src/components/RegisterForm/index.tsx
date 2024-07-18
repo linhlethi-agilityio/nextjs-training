@@ -69,7 +69,6 @@ interface RegisterForm {
 const RegisterForm = ({ onSubmit }: RegisterForm) => {
   const toast = useToast();
   const [isPending, startTransition] = useTransition();
-
   const router = useRouter();
 
   const {
