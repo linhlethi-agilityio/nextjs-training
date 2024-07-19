@@ -18,11 +18,13 @@ export interface TableColumnType<T> {
 interface CustomTableProps<T> {
   columns: TableColumnType<T>[];
   data: T[];
+  onClickRow?: (id: string) => void;
 }
 
 const TableCustom = <T extends { id: string }>({
   columns,
   data,
+  onClickRow,
 }: CustomTableProps<T>) => {
   const headerRow = (
     <Tr>
@@ -53,12 +55,20 @@ const TableCustom = <T extends { id: string }>({
     if (typeof accessor === 'function') return accessor(item);
   };
 
+  const handleClickRow = (id: string) => {
+    onClickRow && onClickRow(id);
+  };
+
   return (
     <BaseTable bgColor="backgroundLight">
       <Thead>{headerRow}</Thead>
       <Tbody>
         {data.map((item, index) => (
-          <TableRow key={`table-row-${index}`} data-id={item.id}>
+          <TableRow
+            key={`table-row-${index}`}
+            data-id={item.id}
+            handleClickRow={() => handleClickRow(item.id)}
+          >
             {columns.map((columnConfig, indexColumn) => (
               <TableCell key={`table-cell-${indexColumn}`}>
                 {renderCell(item, columnConfig.accessor)}

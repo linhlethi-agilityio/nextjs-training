@@ -59,3 +59,21 @@ export const getTotalOrders = async () => {
     return { error };
   }
 };
+
+export const getOrderById = async (id: string) => {
+  try {
+    const data = await api.getData<Order>(
+      `${API_ENDPOINT.ORDERS}/${id}`,
+      undefined,
+      {
+        next: { tags: ['order'] },
+      },
+    );
+
+    return {
+      data: data.data ?? [],
+    };
+  } catch (error) {
+    return { error };
+  }
+};
