@@ -13,6 +13,8 @@ export const SUCCESS_MESSAGES = {
   REGISTER_SUCCESS: 'Register user success!!',
   LOGIN_SUCCESS: 'Login success!!',
   LOGOUT_SUCCESS: 'Logout success!!',
+  ADD_PRODUCT_SUCCESS: 'Add product order success!!',
+  REMOVE_PRODUCT_SUCCESS: 'Remove product order success!!',
 };
 
 export const MESSAGES = {
