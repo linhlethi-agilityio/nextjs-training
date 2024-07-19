@@ -6,5 +6,6 @@ export interface Order {
   status: string;
   createdAt: string;
   deadline: string;
+  productImage: string;
   price: number | null;
 }

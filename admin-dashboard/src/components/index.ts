@@ -8,6 +8,7 @@ export { default as ProductActions } from './ProductActions';
 export { default as ProductPagination } from './ProductPagination';
 export { default as LoginForm } from './LoginForm';
 export { default as RegisterForm } from './RegisterForm';
+export { default as OrderDetail } from './OrderDetail';
 export * from './Dropdown';
 
 // Modals

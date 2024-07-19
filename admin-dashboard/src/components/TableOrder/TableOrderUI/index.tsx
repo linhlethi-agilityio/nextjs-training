@@ -31,6 +31,7 @@ import { formatDateString, getColorByValue } from '@/utils';
 import {
   DEFAULT_LIMIT,
   OPTIONS_PAGINATION,
+  ROUTES,
   SORT_BY,
   SORT_ORDER,
   SUCCESS_MESSAGES,
@@ -70,8 +71,9 @@ const TableOrder = ({
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
 
   const searchParams = useSearchParams();
-  const { replace } = useRouter();
+  const { replace, push } = useRouter();
   const pathname = usePathname();
+  const toast = useToast();
 
   const [isPending, startTransition] = useTransition();
 
@@ -91,6 +93,7 @@ const TableOrder = ({
    * Function handle click checkbox
    */
   const handleCheckChild = (event: MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
     const { dataset } = event.currentTarget as HTMLElement;
 
     const itemId = dataset.id;
@@ -329,6 +332,7 @@ const TableOrder = ({
           <Menu data-order={data.id}>
             <MenuButton
               as={Button}
+              onClick={(event) => event.stopPropagation()}
               color="brand.500"
               border="1px solid"
               textAlign="center"
@@ -364,6 +368,7 @@ const TableOrder = ({
   };
 
   const handleOpenEditModal = (event: MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
     const target = event.target as HTMLElement;
 
     const id = target.dataset.order;
@@ -394,6 +399,7 @@ const TableOrder = ({
   };
 
   const handleConfirmModal = (event: MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
     const target = event.target as HTMLElement;
 
     const id = target.dataset.order;
@@ -401,13 +407,10 @@ const TableOrder = ({
     id && openConfirmModal(id);
   };
 
-  const toast = useToast();
-
   const handleRemoveOrder = useCallback(() => {
     if (previewData?.id) {
       startTransition(async () => {
         const response = await removeOrderAction(previewData?.id);
-        console.log('response', response);
 
         if (typeof response !== 'string') {
           toast({
@@ -451,6 +454,10 @@ const TableOrder = ({
     replace(`${pathname}?${params.toString()}`);
   };
 
+  const handleNavigatePage = (id: string) => {
+    push(`${ROUTES.PRODUCT}/${id}`);
+  };
+
   return (
     <>
       <Flex pl={7} mb={4} justifyContent="space-between" alignItems="center">
@@ -479,7 +486,11 @@ const TableOrder = ({
       >
         Delete Orders
       </Button>
-      <Table columns={orderColumns} data={orders} />
+      <Table
+        columns={orderColumns}
+        data={orders}
+        onClickRow={handleNavigatePage}
+      />
       {isOpenConfirm && (
         <DynamicConfirmModal
           isLoading={isPending}
