@@ -1,24 +1,23 @@
 import type { NextAuthConfig } from 'next-auth';
-import { ROUTES } from './constants';
 
 export const authConfig = {
   pages: {
-    signIn: ROUTES.LOGIN,
+    signIn: '/login',
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isOnLoginPage = nextUrl.pathname === ROUTES.LOGIN;
-      const isOnRegisterPage = nextUrl.pathname === ROUTES.REGISTER;
+      const isOnLoginPage = nextUrl.pathname === '/login';
+      const isOnRegisterPage = nextUrl.pathname === '/register';
 
       // If not logged in and not on login or register page, redirect to login page
       if (!isLoggedIn && !isOnLoginPage && !isOnRegisterPage) {
-        return Response.redirect(new URL(ROUTES.LOGIN, nextUrl));
+        return Response.redirect(new URL('/login', nextUrl));
       }
 
       // If logged in and on login or register page, redirect to product page
       if (isLoggedIn && (isOnLoginPage || isOnRegisterPage)) {
-        return Response.redirect(new URL(ROUTES.PRODUCT, nextUrl));
+        return Response.redirect(new URL('/product', nextUrl));
       }
 
       // Allow access in all other cases
