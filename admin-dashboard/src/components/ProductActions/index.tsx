@@ -1,12 +1,15 @@
 'use client';
 
 import { memo, useCallback, useMemo, useTransition } from 'react';
-import { Button, Flex, useDisclosure } from '@chakra-ui/react';
+import { Button, Flex, useDisclosure, useToast } from '@chakra-ui/react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
 // Icons
 import { FileArrowUpIcon, PrinterIcon, CreateFolderIcon } from '@/icons';
+
+// Constants
+import { SUCCESS_MESSAGES } from '@/constants';
 
 // Models
 import { Order } from '@/models';
@@ -24,6 +27,7 @@ const ProductActions = ({ addOrderAction }: ProductActionsProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
+  const toast = useToast();
 
   const [isPending, startTransition] = useTransition();
 
@@ -61,10 +65,19 @@ const ProductActions = ({ addOrderAction }: ProductActionsProps) => {
 
         if (typeof response !== 'string') {
           onCloseOrderModal();
+          toast({
+            title: SUCCESS_MESSAGES.ADD_PRODUCT_SUCCESS,
+            status: 'success',
+          });
+        } else {
+          toast({
+            title: response,
+            status: 'error',
+          });
         }
       });
     },
-    [addOrderAction, onCloseOrderModal],
+    [addOrderAction, onCloseOrderModal, toast],
   );
 
   return (

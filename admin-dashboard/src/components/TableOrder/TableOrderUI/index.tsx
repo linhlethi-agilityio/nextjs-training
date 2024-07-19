@@ -14,6 +14,7 @@ import {
   MenuList,
   Text,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react';
 import isEqual from 'react-fast-compare';
 
@@ -32,6 +33,7 @@ import {
   OPTIONS_PAGINATION,
   SORT_BY,
   SORT_ORDER,
+  SUCCESS_MESSAGES,
 } from '@/constants';
 
 // Components
@@ -399,13 +401,25 @@ const TableOrder = ({
     id && openConfirmModal(id);
   };
 
+  const toast = useToast();
+
   const handleRemoveOrder = useCallback(() => {
     if (previewData?.id) {
       startTransition(async () => {
         const response = await removeOrderAction(previewData?.id);
+        console.log('response', response);
 
         if (typeof response !== 'string') {
+          toast({
+            title: SUCCESS_MESSAGES.REMOVE_PRODUCT_SUCCESS,
+            status: 'success',
+          });
           return onCloseConfirm();
+        } else {
+          toast({
+            title: response,
+            status: 'error',
+          });
         }
       });
     }
@@ -417,7 +431,7 @@ const TableOrder = ({
         onCloseConfirm();
       });
     }
-  }, [checkedItems, onCloseConfirm, previewData?.id, removeOrderAction]);
+  }, [checkedItems, onCloseConfirm, previewData?.id, removeOrderAction, toast]);
 
   const handleClickDeleteButton = () => {
     onOpenConfirm();

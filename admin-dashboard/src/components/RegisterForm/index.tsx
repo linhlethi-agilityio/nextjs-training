@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useMemo, KeyboardEvent, useTransition } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
@@ -19,12 +18,7 @@ import {
 } from '@chakra-ui/react';
 
 // Constants
-import {
-  ERROR_MESSAGES,
-  MIN_PASSWORD_LENGTH,
-  ROUTES,
-  SUCCESS_MESSAGES,
-} from '@/constants';
+import { ERROR_MESSAGES, MIN_PASSWORD_LENGTH } from '@/constants';
 
 // Utils
 import {
@@ -69,7 +63,6 @@ interface RegisterForm {
 const RegisterForm = ({ onSubmit }: RegisterForm) => {
   const toast = useToast();
   const [isPending, startTransition] = useTransition();
-  const router = useRouter();
 
   const {
     control,
@@ -108,12 +101,6 @@ const RegisterForm = ({ onSubmit }: RegisterForm) => {
           title: response,
           status: 'error',
         });
-      } else {
-        toast({
-          title: SUCCESS_MESSAGES.REGISTER_SUCCESS,
-          status: 'success',
-        });
-        router.push(ROUTES.LOGIN);
       }
     });
   };
