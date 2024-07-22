@@ -2,6 +2,7 @@
 
 import { useMemo, KeyboardEvent, useTransition } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import {
   Box,
   Button,
@@ -18,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 
 // Constants
-import { ERROR_MESSAGES, MIN_PASSWORD_LENGTH } from '@/constants';
+import { ERROR_MESSAGES, MIN_PASSWORD_LENGTH, ROUTES } from '@/constants';
 
 // Utils
 import {
@@ -63,6 +64,7 @@ interface RegisterForm {
 const RegisterForm = ({ onSubmit }: RegisterForm) => {
   const toast = useToast();
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   const {
     control,
@@ -101,6 +103,8 @@ const RegisterForm = ({ onSubmit }: RegisterForm) => {
           title: response,
           status: 'error',
         });
+      } else {
+        router.push(ROUTES.LOGIN);
       }
     });
   };

@@ -1,4 +1,18 @@
-import type { NextAuthConfig } from 'next-auth';
+import type {
+  NextAuthConfig,
+  Session as NextAuthSession,
+  User as NextAuthUser,
+} from 'next-auth';
+
+export interface CustomUser extends NextAuthUser {
+  id: string;
+  role: string;
+}
+
+export interface CustomSession extends NextAuthSession {
+  user: CustomUser;
+  accessToken: string;
+}
 
 export const authConfig = {
   pages: {
@@ -6,14 +20,6 @@ export const authConfig = {
   },
   trustHost: true,
   callbacks: {
-    jwt({ token, trigger, session }) {
-      if (trigger === 'update' && session?.name) {
-        // Note, that `session` can be any arbitrary object, remember to validate it!
-        token.name = session.name;
-        token.role = session.role;
-      }
-      return token;
-    },
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
 
@@ -32,6 +38,26 @@ export const authConfig = {
 
       // Allow access in all other cases
       return true;
+    },
+    session({ session, token }) {
+      const sessionInfo = {
+        user: {
+          id: token.id,
+          name: token.name,
+          email: token.email,
+          image: token.image,
+          role: token.role,
+        },
+        expires: session.expires,
+        accessToken: token.token,
+      };
+
+      return sessionInfo as CustomSession;
+    },
+    jwt({ token, user }) {
+      if (user) return { ...token, ...user };
+
+      return token;
     },
   },
   session: {
