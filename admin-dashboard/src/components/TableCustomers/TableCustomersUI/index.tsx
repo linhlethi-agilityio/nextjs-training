@@ -1,9 +1,9 @@
 'use client';
 
 import { memo, MouseEvent, useCallback, useState, useTransition } from 'react';
-// import { useSession } from 'next-auth/react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import isEqual from 'react-fast-compare';
 import {
   Avatar,
   Box,
@@ -13,7 +13,6 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
-import isEqual from 'react-fast-compare';
 
 // Models
 import { Customer } from '@/models';
@@ -36,6 +35,7 @@ const DynamicConfirmModal = dynamic(() => import('../../Modal/ConfirmModal'));
 interface TableCustomersProps {
   limit?: number;
   page?: number;
+  role: string;
   customers: Customer[];
   removeCustomerAction: (id: string) => Promise<void | string>;
 }
@@ -43,12 +43,11 @@ interface TableCustomersProps {
 const TableCustomers = ({
   limit = DEFAULT_LIMIT,
   page = 1,
+  role,
   customers,
   removeCustomerAction,
 }: TableCustomersProps) => {
   const [previewData, setPreviewData] = useState<Customer | null>(null);
-  // const { data: session } = useSession();
-  // console.log('session', session);
 
   const searchParams = useSearchParams();
   const { replace } = useRouter();
@@ -91,22 +90,24 @@ const TableCustomers = ({
       header: 'created',
       accessor: (data: Customer) => `${formatDateString(data.createdAt, true)}`,
     },
-    {
-      header: 'action',
-      accessor: (data: Customer) => (
-        <Button
-          variant="icon"
-          color="brand.500"
-          p={0}
-          data-id={data.id}
-          aria-label="EditCustomer"
-          _hover={{ color: 'brand.300' }}
-          onClick={handleConfirmModal}
-        >
-          delete
-        </Button>
-      ),
-    },
+    role && role === 'admin'
+      ? {
+          header: 'action',
+          accessor: (data: Customer) => (
+            <Button
+              variant="icon"
+              color="brand.500"
+              p={0}
+              data-id={data.id}
+              aria-label="EditCustomer"
+              _hover={{ color: 'brand.300' }}
+              onClick={handleConfirmModal}
+            >
+              delete
+            </Button>
+          ),
+        }
+      : ({} as any),
   ];
 
   const openConfirmModal = (selectedId: string) => {

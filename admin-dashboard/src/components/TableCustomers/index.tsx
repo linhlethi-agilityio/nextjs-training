@@ -1,4 +1,6 @@
 import { memo } from 'react';
+import { auth } from '@/auth';
+import { CustomUser } from '@/auth.config';
 import { Text } from '@chakra-ui/react';
 
 // Api
@@ -25,6 +27,10 @@ const TableOrder = async ({
 }: TableOrderProps) => {
   const isValidLimit = LIMIT_PAGE.includes(Number(limit));
 
+  const session = await auth();
+  const user = session?.user as CustomUser | undefined;
+  const role = user?.role ?? '';
+
   const { data: customers = [] } = await getCustomers({
     query,
     page,
@@ -39,6 +45,7 @@ const TableOrder = async ({
     </Text>
   ) : (
     <TableCustomersUI
+      role={role}
       limit={limit}
       page={page}
       customers={customers}

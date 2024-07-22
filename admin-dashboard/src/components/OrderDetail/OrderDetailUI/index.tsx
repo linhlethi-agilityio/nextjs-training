@@ -81,7 +81,7 @@ const OrderDetailUI = ({
 
   return (
     <>
-      <Flex display="flex" mt={46} ml={8}>
+      <Flex mt={46} ml={8}>
         <Image src={productImage} alt={product} width={700} height={300} />
         <Stack flex={1} px={30} pt={4}>
           <Heading fontSize={30}>{product}</Heading>
