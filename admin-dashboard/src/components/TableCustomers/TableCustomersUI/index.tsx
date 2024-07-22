@@ -1,7 +1,7 @@
 'use client';
 
 import { memo, MouseEvent, useCallback, useState, useTransition } from 'react';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import {
@@ -47,8 +47,8 @@ const TableCustomers = ({
   removeCustomerAction,
 }: TableCustomersProps) => {
   const [previewData, setPreviewData] = useState<Customer | null>(null);
-  const { data: session } = useSession();
-  console.log('session', session);
+  // const { data: session } = useSession();
+  // console.log('session', session);
 
   const searchParams = useSearchParams();
   const { replace } = useRouter();

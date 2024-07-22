@@ -1,8 +1,15 @@
-import { OrderDetail, OrderDetailSkeleton } from '@/components';
-import { ROUTES } from '@/constants';
-import { Box, Breadcrumb, BreadcrumbItem, Text } from '@chakra-ui/react';
-import Link from 'next/link';
 import { Suspense } from 'react';
+import Link from 'next/link';
+import { Box, Breadcrumb, BreadcrumbItem, Text } from '@chakra-ui/react';
+
+// Constants
+import { ROUTES } from '@/constants';
+
+// Components
+import { OrderDetail, OrderDetailSkeleton } from '@/components';
+
+// Actions
+import { updateOrder } from '@/actions';
 
 const ProductDetail = ({ params }: { params: { id: string } }) => {
   const id = params.id;
@@ -39,7 +46,7 @@ const ProductDetail = ({ params }: { params: { id: string } }) => {
       </Breadcrumb>
 
       <Suspense fallback={<OrderDetailSkeleton />}>
-        <OrderDetail id={id} />
+        <OrderDetail id={id} editOrderAction={updateOrder} />
       </Suspense>
     </Box>
   );
