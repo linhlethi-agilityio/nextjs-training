@@ -1,4 +1,4 @@
-import { ENVS } from '@/constants';
+import { API_ENDPOINT, ENVS } from '@/constants';
 
 const handleResponse = async <T>(response: Response): Promise<T> => {
   if (!response.ok) {
@@ -27,7 +27,9 @@ export const getData = async <T>(
 ): Promise<{ data: T; countItems?: number }> => {
   const params = new URLSearchParams(queryParams as Record<string, string>);
 
-  const url = `${ENVS.API_URL}/${path}?${params}`;
+  const env = path === API_ENDPOINT.USERS ? ENVS.API_AUTH_URL : ENVS.API_URL;
+
+  const url = `${env}/${path}?${params}`;
 
   return fetchData<T>(url, configOptions || {});
 };
@@ -44,9 +46,9 @@ export const postData = async <T>(
     ...configOptions,
   };
 
-  return fetchData<T>(`${ENVS.API_URL}/${path}`, options).then(
-    (res) => res.data,
-  );
+  const env = path === API_ENDPOINT.USERS ? ENVS.API_AUTH_URL : ENVS.API_URL;
+
+  return fetchData<T>(`${env}/${path}`, options).then((res) => res.data);
 };
 
 export const putData = async <T>(
@@ -61,9 +63,9 @@ export const putData = async <T>(
     ...configOptions,
   };
 
-  return fetchData<T>(`${ENVS.API_URL}${path}`, options).then(
-    (res) => res.data,
-  );
+  const env = path === API_ENDPOINT.USERS ? ENVS.API_AUTH_URL : ENVS.API_URL;
+
+  return fetchData<T>(`${env}${path}`, options).then((res) => res.data);
 };
 
 export const deleteData = async (
@@ -75,7 +77,9 @@ export const deleteData = async (
     ...configOptions,
   };
 
-  await fetch(`${ENVS.API_URL}${path}`, options).then(handleResponse);
+  const env = path === API_ENDPOINT.USERS ? ENVS.API_AUTH_URL : ENVS.API_URL;
+
+  await fetch(`${env}${path}`, options).then(handleResponse);
 };
 
 const api = { getData, postData, putData, deleteData };

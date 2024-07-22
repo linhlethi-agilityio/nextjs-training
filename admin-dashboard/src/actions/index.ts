@@ -75,3 +75,16 @@ export const getOrderDetailById = async (
     return 'An unknown error occurred';
   }
 };
+
+export const removeCustomer = async (id: string): Promise<void | string> => {
+  try {
+    await api.deleteData(`${API_ENDPOINT.CUSTOMERS}/${id}`);
+
+    revalidateTag('customers');
+  } catch (error) {
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return 'An unknown error occurred';
+  }
+};

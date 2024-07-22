@@ -1,7 +1,7 @@
 export const ROUTES = {
   DASHBOARD: '/',
   PRODUCT: '/product',
-  CATEGORY: '/category',
+  CUSTOMERS: '/customers',
   AGEN: '/agen',
   ANALYTIC: '/analytic',
   SETTING: '/setting',

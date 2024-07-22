@@ -15,6 +15,7 @@ export const SUCCESS_MESSAGES = {
   LOGOUT_SUCCESS: 'Logout success!!',
   ADD_PRODUCT_SUCCESS: 'Add product order success!!',
   REMOVE_PRODUCT_SUCCESS: 'Remove product order success!!',
+  REMOVE_CUSTOMER_SUCCESS: 'Remove product customer success!!',
 };
 
 export const MESSAGES = {
