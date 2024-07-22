@@ -9,9 +9,13 @@ import { api } from './services';
 import { API_ENDPOINT } from './constants';
 
 // Models
-import { UserLogin } from '@/models';
+import { User } from '@/models';
 
-const CredentialsProvider = Credentials({
+export const CredentialsProvider = Credentials({
+  credentials: {
+    email: { label: 'Email', type: 'email' },
+    password: { label: 'Password', type: 'password' },
+  },
   authorize: async (credentials) => {
     const parsedCredentials = z
       .object({ email: z.string().email(), password: z.string().min(6) })
@@ -20,15 +24,12 @@ const CredentialsProvider = Credentials({
     if (parsedCredentials.success) {
       const { email, password } = parsedCredentials.data;
 
-      const { data: users } = await api.getData<UserLogin[]>(
-        API_ENDPOINT.USERS,
-      );
+      const { data: users } = await api.getData<User[]>(API_ENDPOINT.USERS);
       const user = users.find((user) => user.email === email);
 
       if (!user) return null;
 
       const passwordsMatch = bcrypt.compareSync(password, user.password);
-
       if (passwordsMatch) return user;
     }
 

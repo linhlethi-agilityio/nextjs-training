@@ -75,6 +75,7 @@ const LoginForm = ({ onSubmit }: LoginForm) => {
   const handleLogin = async (formData: LoginFormData) => {
     startTransition(async () => {
       const response = await onSubmit(formData);
+      console.log('');
 
       if (typeof response === 'string') {
         toast({

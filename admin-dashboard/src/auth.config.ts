@@ -6,8 +6,17 @@ export const authConfig = {
   },
   trustHost: true,
   callbacks: {
+    jwt({ token, trigger, session }) {
+      if (trigger === 'update' && session?.name) {
+        // Note, that `session` can be any arbitrary object, remember to validate it!
+        token.name = session.name;
+        token.role = session.role;
+      }
+      return token;
+    },
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
+
       const isOnLoginPage = nextUrl.pathname === '/login';
       const isOnRegisterPage = nextUrl.pathname === '/register';
 
