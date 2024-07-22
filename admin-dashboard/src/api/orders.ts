@@ -62,6 +62,7 @@ export const getTotalOrders = async () => {
 
 export const getOrderById = async (id: string) => {
   try {
+    new Promise((resolve) => setTimeout(() => resolve, 2000));
     const data = await api.getData<Order>(
       `${API_ENDPOINT.ORDERS}/${id}`,
       undefined,
