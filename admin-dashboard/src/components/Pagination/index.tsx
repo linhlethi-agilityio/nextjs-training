@@ -1,4 +1,7 @@
-import { memo } from 'react';
+'use client';
+
+import { memo, useCallback, useMemo } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Button, HStack } from '@chakra-ui/react';
 
 // Icons
@@ -6,26 +9,43 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@/icons';
 
 interface PaginationProps {
   totalPage: number;
-  currentPage: number;
-  onClickPage: (page: string) => void;
 }
 
-const Pagination = ({
-  totalPage,
-  currentPage,
-  onClickPage,
-}: PaginationProps) => {
+const Pagination = ({ totalPage }: PaginationProps) => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
+
   const handleOnChangePage = (page: number) => {
-    onClickPage(page.toString());
+    handleOnClickPagination(page.toString());
   };
 
   const handlePrevPage = () => {
-    onClickPage((currentPage - 1).toString());
+    handleOnClickPagination((currentPage - 1).toString());
   };
 
   const handleNextPage = () => {
-    onClickPage((currentPage + 1).toString());
+    handleOnClickPagination((currentPage + 1).toString());
   };
+
+  const params = useMemo(
+    () => new URLSearchParams(searchParams),
+    [searchParams],
+  );
+
+  const currentPage = useMemo(
+    () => (searchParams.get('page') ? Number(searchParams.get('page')) : 1),
+    [searchParams],
+  );
+
+  const handleOnClickPagination = useCallback(
+    (page: string) => {
+      params.set('page', page);
+
+      replace(`${pathname}?${params.toString()}`);
+    },
+    [params, pathname, replace],
+  );
 
   return (
     <HStack justifyContent="center" my={30}>

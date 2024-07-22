@@ -38,7 +38,7 @@ export const getTotalCustomers = async () => {
       API_ENDPOINT.CUSTOMERS,
       undefined,
       {
-        next: { tags: ['customer'] },
+        next: { tags: ['customers'] },
       },
     );
 

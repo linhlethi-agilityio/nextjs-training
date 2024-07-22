@@ -11,9 +11,10 @@ import { removeCustomer } from '@/actions';
 // Components
 import {
   PaginationSkeleton,
-  ProductPagination,
+  CustomersPagination,
   SkeletonTable,
   TableCustomers,
+  SearchCustomers,
 } from '@/components';
 
 interface CustomersProps {
@@ -51,6 +52,7 @@ const CustomersPage = ({ searchParams }: CustomersProps) => {
         </BreadcrumbItem>
       </Breadcrumb>
 
+      <SearchCustomers />
       <Suspense fallback={<SkeletonTable />}>
         <TableCustomers
           limit={limit}
@@ -61,7 +63,7 @@ const CustomersPage = ({ searchParams }: CustomersProps) => {
       </Suspense>
 
       <Suspense fallback={<PaginationSkeleton />}>
-        <ProductPagination limit={limit} />
+        <CustomersPagination limit={limit} />
       </Suspense>
     </Box>
   );

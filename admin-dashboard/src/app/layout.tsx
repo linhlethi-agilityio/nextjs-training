@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SessionProvider } from 'next-auth/react';
 
 import './globals.css';
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ChakraUIProvider>
-          <main>{children}</main>
-        </ChakraUIProvider>
+        <SessionProvider>
+          <ChakraUIProvider>
+            <main>{children}</main>
+          </ChakraUIProvider>
+        </SessionProvider>
       </body>
     </html>
   );

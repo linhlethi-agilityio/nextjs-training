@@ -1,13 +1,7 @@
 'use client';
 
-import {
-  memo,
-  MouseEvent,
-  useCallback,
-  useMemo,
-  useState,
-  useTransition,
-} from 'react';
+import { memo, MouseEvent, useCallback, useState, useTransition } from 'react';
+import { useSession } from 'next-auth/react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import {
@@ -35,7 +29,7 @@ import {
 } from '@/constants';
 
 // Components
-import { TableColumnType, Table, Dropdown, SearchInput } from '@/components';
+import { TableColumnType, Table, Dropdown } from '@/components';
 
 const DynamicConfirmModal = dynamic(() => import('../../Modal/ConfirmModal'));
 
@@ -53,6 +47,8 @@ const TableCustomers = ({
   removeCustomerAction,
 }: TableCustomersProps) => {
   const [previewData, setPreviewData] = useState<Customer | null>(null);
+  const { data: session } = useSession();
+  console.log('session', session);
 
   const searchParams = useSearchParams();
   const { replace } = useRouter();
@@ -78,17 +74,14 @@ const TableCustomers = ({
     {
       header: 'name',
       accessor: (data: Customer) => (
-        <Flex gap={2} alignItems="center">
-          <Box>
-            <Text fontSize="md" lineHeight={5}>
-              {data.name}
-            </Text>
-            <Text color="textDefault" fontSize="md" lineHeight={5}>
-              {data.email}
-            </Text>
-          </Box>
-        </Flex>
+        <Text fontSize="md" fontWeight="bold">
+          {data.name}
+        </Text>
       ),
+    },
+    {
+      header: 'email',
+      accessor: (data: Customer) => `${data.email}`,
     },
     {
       header: 'phone number',
@@ -168,38 +161,8 @@ const TableCustomers = ({
     replace(`${pathname}?${params.toString()}`);
   };
 
-  const searchValue = useMemo(
-    () => searchParams.get('query') ?? '',
-    [searchParams],
-  );
-
-  const handleSearch = useCallback(
-    (value: string) => {
-      const params = new URLSearchParams(searchParams);
-
-      params.set('page', '1');
-
-      if (value) {
-        params.set('query', value);
-      } else {
-        params.delete('query');
-      }
-      replace(`${pathname}?${params.toString()}`);
-    },
-    [pathname, replace, searchParams],
-  );
-
   return (
     <>
-      <Box mt={26} ml={8} w="fit-content">
-        <SearchInput
-          placeholder="Search by customer name"
-          w={465}
-          onSearch={handleSearch}
-          defaultValue={searchValue}
-        />
-      </Box>
-
       <Flex
         pl={8}
         mb={4}

@@ -23,17 +23,17 @@ const TableOrder = async ({
   limit,
   removeCustomerAction,
 }: TableOrderProps) => {
-  const isValidLimit = LIMIT_PAGE.includes(limit);
+  const isValidLimit = LIMIT_PAGE.includes(Number(limit));
 
-  const { data: orders = [] } = await getCustomers({
+  const { data: customers = [] } = await getCustomers({
     query,
     page,
     limit: isValidLimit ? limit : DEFAULT_LIMIT,
   });
 
-  const isSearchEmpty = !!query && !orders.length;
+  const isSearchEmpty = !!query && !customers.length;
 
-  return !orders.length ? (
+  return !customers.length ? (
     <Text pl={7} pt={7} size="sm" textAlign="center">
       {isSearchEmpty ? MESSAGES.EMPTY_SEARCH : MESSAGES.EMPTY_DATA}
     </Text>
@@ -41,7 +41,7 @@ const TableOrder = async ({
     <TableCustomersUI
       limit={limit}
       page={page}
-      customers={orders}
+      customers={customers}
       removeCustomerAction={removeCustomerAction}
     />
   );
