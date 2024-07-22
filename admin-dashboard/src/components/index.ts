@@ -9,6 +9,7 @@ export { default as ProductPagination } from './ProductPagination';
 export { default as LoginForm } from './LoginForm';
 export { default as RegisterForm } from './RegisterForm';
 export { default as OrderDetail } from './OrderDetail';
+export { default as TableCustomers } from './TableCustomers';
 export * from './Dropdown';
 
 // Modals

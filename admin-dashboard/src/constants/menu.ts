@@ -23,8 +23,8 @@ export const MENU = [
   },
   {
     icon: CategoryIcon,
-    label: 'Category',
-    path: ROUTES.CATEGORY,
+    label: 'Customers',
+    path: ROUTES.CUSTOMERS,
   },
   {
     icon: PinMapIcon,
