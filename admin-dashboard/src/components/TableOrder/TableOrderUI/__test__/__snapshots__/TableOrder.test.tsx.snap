@@ -177,11 +177,7 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
         <th
           class="css-1otffnp"
         >
-          <p
-            class="chakra-text css-1yic4n7"
-          >
-            Customer
-          </p>
+          Customer
         </th>
         <th
           class="css-1otffnp"
