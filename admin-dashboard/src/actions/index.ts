@@ -46,6 +46,8 @@ export const addOrder = async (data: Partial<Order>) => {
       ...data,
       idOrder: generateRandomId(),
       createdAt: new Date().toISOString(),
+      productImage:
+        'https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4041392.jpg&fm=jpg',
     };
 
     await api.postData(API_ENDPOINT.ORDERS, formatData);
