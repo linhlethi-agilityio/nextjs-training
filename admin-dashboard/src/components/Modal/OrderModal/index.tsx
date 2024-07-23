@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 // Models
 import { Order } from '@/models';
 
@@ -41,4 +39,4 @@ const OrderModal = async ({
   );
 };
 
-export default memo(OrderModal);
+export default OrderModal;

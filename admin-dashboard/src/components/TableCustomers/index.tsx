@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { auth } from '@/auth';
 import { CustomUser } from '@/auth.config';
 import { Text } from '@chakra-ui/react';
@@ -19,7 +18,7 @@ interface TableOrderProps {
   removeCustomerAction: (id: string) => Promise<void | string>;
 }
 
-const TableOrder = async ({
+const TableCustomers = async ({
   query,
   page,
   limit,
@@ -54,4 +53,4 @@ const TableOrder = async ({
   );
 };
 
-export default memo(TableOrder);
+export default TableCustomers;

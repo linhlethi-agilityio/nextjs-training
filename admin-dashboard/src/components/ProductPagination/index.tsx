@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 // Api
 import { getTotalOrders } from '@/api';
 
@@ -21,4 +19,4 @@ const ProductPagination = async ({ limit }: ProductPaginationProps) => {
   return <Pagination totalPage={totalPage} />;
 };
 
-export default memo(ProductPagination);
+export default ProductPagination;

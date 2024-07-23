@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm component should match snapshot for LoginForm 1`] = `
+<div>
+  <div
+    class="chakra-form-control css-1y70775"
+    role="group"
+  >
+    <div
+      class="css-w5jzkl"
+    >
+      <div
+        class="chakra-input__group css-bx0blc"
+        data-group="true"
+      >
+        <div
+          class="chakra-input__left-element css-1u2k0bl"
+        >
+          <svg
+            class="chakra-icon css-1pf3ihb"
+            focusable="false"
+            viewBox="0 0 22 18"
+          >
+            <path
+              d="M21.5 2.15001C21.5 0.967503 20.5325 0 19.35 0H2.14998C0.967472 0 -3.05176e-05 0.967503 -3.05176e-05 2.15001V15.05C-3.05176e-05 16.2325 0.967472 17.2001 2.14998 17.2001H19.35C20.5325 17.2001 21.5 16.2325 21.5 15.05V2.15001ZM19.35 2.15001L10.75 7.52502L2.14998 2.15001H19.35ZM19.35 15.05H2.14998V4.30001L10.75 9.67503L19.35 4.30001V15.05Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <input
+          class="chakra-input css-0"
+          id="email"
+          placeholder="Your email"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      class="css-er1yn0"
+    >
+      <div
+        class="chakra-input__group css-bx0blc"
+        data-group="true"
+      >
+        <div
+          class="chakra-input__left-element css-1u2k0bl"
+        >
+          <svg
+            class="chakra-icon css-nyt2fo"
+            focusable="false"
+            viewBox="0 0 22 23"
+          >
+            <path
+              d="M15.3178 12.3637L17.0451 14.0909L20.4996 10.6364L18.7723 8.90912"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.30303"
+            />
+            <path
+              d="M10.3451 12.1546L20.4997 2"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.30303"
+            />
+            <path
+              d="M6.68182 21C9.54366 21 11.8636 18.68 11.8636 15.8182C11.8636 12.9563 9.54366 10.6364 6.68182 10.6364C3.81998 10.6364 1.5 12.9563 1.5 15.8182C1.5 18.68 3.81998 21 6.68182 21Z"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.30303"
+            />
+          </svg>
+        </div>
+        <div
+          class="chakra-input__right-element css-dp9r5f"
+        >
+          <button
+            class="chakra-button css-4xx2wk"
+            type="button"
+          >
+            <svg
+              class="chakra-icon css-nyt2fo"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M2 2L22 22"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+              <path
+                d="M6.71277 6.7226C3.66479 8.79527 2 12 2 12C2 12 5.63636 19 12 19C14.0503 19 15.8174 18.2734 17.2711 17.2884M11 5.05822C11.3254 5.02013 11.6588 5 12 5C18.3636 5 22 12 22 12C22 12 21.3082 13.3317 20 14.8335"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+              <path
+                d="M14 14.2362C13.4692 14.7112 12.7684 15.0001 12 15.0001C10.3431 15.0001 9 13.657 9 12.0001C9 11.1764 9.33193 10.4303 9.86932 9.88818"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </button>
+        </div>
+        <input
+          class="chakra-input css-13rbvqk"
+          id="password"
+          placeholder="Password"
+          type="password"
+          value=""
+        />
+      </div>
+    </div>
+    <button
+      aria-label="log-in"
+      class="chakra-button css-1tzzvpd"
+      disabled=""
+      type="button"
+    >
+      Log In
+    </button>
+  </div>
+</div>
+`;

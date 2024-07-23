@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OrderDetail component should match snapshot for OrderDetail 1`] = `
+<div>
+  <div
+    class="css-1xcuh3p"
+  >
+    <img
+      alt="fdgf"
+      data-nimg="1"
+      decoding="async"
+      height="300"
+      loading="lazy"
+      src="/_next/image?url=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F4041392%2Fpexels-photo-4041392.jpeg%3Fcs%3Dsrgb%26dl%3Dpexels-karolina-grabowska-4041392.jpg%26fm%3Djpg&w=1920&q=75"
+      srcset="/_next/image?url=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F4041392%2Fpexels-photo-4041392.jpeg%3Fcs%3Dsrgb%26dl%3Dpexels-karolina-grabowska-4041392.jpg%26fm%3Djpg&w=750&q=75 1x, /_next/image?url=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F4041392%2Fpexels-photo-4041392.jpeg%3Fcs%3Dsrgb%26dl%3Dpexels-karolina-grabowska-4041392.jpg%26fm%3Djpg&w=1920&q=75 2x"
+      style="color: transparent;"
+      width="700"
+    />
+    <div
+      class="chakra-stack css-xzhgh0"
+    >
+      <h2
+        class="chakra-heading css-qhp3qs"
+      >
+        fdgf
+      </h2>
+      <div
+        class="css-blvggq"
+      >
+        <p
+          class="chakra-text css-0"
+        >
+          Customer name:
+        </p>
+        <p
+          class="chakra-text css-0"
+        >
+          Angie McCullough
+        </p>
+      </div>
+      <div
+        class="css-blvggq"
+      >
+        <p
+          class="chakra-text css-0"
+        >
+          SKU:
+        </p>
+        <p
+          class="chakra-text css-0"
+        >
+          969-875
+        </p>
+      </div>
+      <div
+        class="css-177mg6s"
+      >
+        <p
+          class="chakra-text css-0"
+        >
+          Status:
+        </p>
+        <p
+          class="chakra-text css-gegbys"
+        >
+          Rejected
+        </p>
+      </div>
+      <h2
+        class="chakra-heading css-1178ru4"
+      >
+        $
+        3244
+      </h2>
+      <div
+        class="css-ffrhzl"
+      >
+        <p
+          class="chakra-text css-0"
+        >
+          Deadline:
+        </p>
+        <p
+          class="chakra-text css-0"
+        >
+          July 31, 2024
+        </p>
+      </div>
+      <button
+        class="chakra-button css-1k591dk"
+        type="button"
+      >
+        Edit
+      </button>
+    </div>
+  </div>
+</div>
+`;

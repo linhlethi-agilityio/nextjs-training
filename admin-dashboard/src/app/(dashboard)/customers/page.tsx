@@ -26,7 +26,7 @@ interface CustomersProps {
 }
 
 const CustomersPage = ({ searchParams }: CustomersProps) => {
-  const { query, page, limit } = searchParams;
+  const { query, page, limit = 10 } = searchParams;
 
   return (
     <Box pt={19} pr={16}>
