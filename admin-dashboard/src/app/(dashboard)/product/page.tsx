@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { Metadata } from 'next';
 import {
   Box,
   Breadcrumb,
@@ -40,6 +41,12 @@ interface ProductProps {
     sortOrder: SORT_ORDER;
   };
 }
+
+export const metadata: Metadata = {
+  title: 'Product',
+  description:
+    'This is the Product page in a comprehensive e-commerce web application designed to facilitate online shopping.',
+};
 
 const ProductPage = async ({ searchParams }: ProductProps) => {
   const { query, page, limit, sortBy, sortOrder } = searchParams;

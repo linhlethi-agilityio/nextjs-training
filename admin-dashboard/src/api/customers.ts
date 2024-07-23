@@ -20,7 +20,7 @@ export const getCustomers = async (params?: params) => {
         page,
       },
       {
-        next: { tags: ['customers'] },
+        next: { tags: ['customers'], revalidate: 3600 },
       },
     );
 
@@ -38,7 +38,7 @@ export const getTotalCustomers = async () => {
       API_ENDPOINT.CUSTOMERS,
       undefined,
       {
-        next: { tags: ['customers'] },
+        next: { tags: ['customers'], revalidate: 3600 },
       },
     );
 
