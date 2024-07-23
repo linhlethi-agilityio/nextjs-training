@@ -34,7 +34,7 @@ export const getOrders = async (params?: params) => {
         ...(sortBy && sortOrder && { sortBy, order: sortOrder }),
       },
       {
-        next: { tags: ['orders'] },
+        next: { tags: ['orders'], revalidate: 3600 },
       },
     );
 
@@ -49,7 +49,7 @@ export const getOrders = async (params?: params) => {
 export const getTotalOrders = async () => {
   try {
     const data = await api.getData<Order[]>(API_ENDPOINT.ORDERS, undefined, {
-      next: { tags: ['orders'] },
+      next: { tags: ['orders'], revalidate: 3600 },
     });
 
     return {
@@ -67,7 +67,7 @@ export const getOrderById = async (id: string) => {
       `${API_ENDPOINT.ORDERS}/${id}`,
       undefined,
       {
-        next: { tags: ['order'] },
+        next: { tags: ['order'], revalidate: 3600 },
       },
     );
 

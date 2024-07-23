@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { Box, Breadcrumb, BreadcrumbItem, Text } from '@chakra-ui/react';
 
@@ -24,6 +25,12 @@ interface CustomersProps {
     limit: number;
   };
 }
+
+export const metadata: Metadata = {
+  title: 'Customers',
+  description:
+    'This is the Customer page in a comprehensive e-commerce web application designed to facilitate online shopping.',
+};
 
 const CustomersPage = ({ searchParams }: CustomersProps) => {
   const { query, page, limit = 10 } = searchParams;

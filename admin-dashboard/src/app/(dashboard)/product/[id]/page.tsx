@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { Box, Breadcrumb, BreadcrumbItem, Text } from '@chakra-ui/react';
 
 // Constants
@@ -10,6 +11,12 @@ import { OrderDetail, OrderDetailSkeleton } from '@/components';
 
 // Actions
 import { updateOrder } from '@/actions';
+
+export const metadata: Metadata = {
+  title: 'Product Detail',
+  description:
+    'This is the Product Detail page in a comprehensive e-commerce web application designed to facilitate online shopping.',
+};
 
 const ProductDetail = ({ params }: { params: { id: string } }) => {
   const id = params.id;

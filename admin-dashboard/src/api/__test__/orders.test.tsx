@@ -26,7 +26,7 @@ describe('orders', () => {
       expect(api.getData).toHaveBeenCalledWith(
         'orders',
         { limit: 5, idOrder: '123', page: 2 },
-        { next: { tags: ['orders'] } },
+        { next: { tags: ['orders'], revalidate: 3600 } },
       );
     });
   });
