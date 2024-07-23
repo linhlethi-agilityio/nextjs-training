@@ -1,19 +1,26 @@
+// Api
+import { getCustomers } from '@/api';
+
+// Constants
+import { DEFAULT_LIMIT } from '@/constants';
+
 // Components
 import { Pagination } from '@/components';
 
-// Api
-import { getTotalCustomers } from '@/api';
-
 interface ProductPaginationProps {
-  limit: number;
+  limit?: number;
+  query?: string;
 }
 
-const CustomersPagination = async ({ limit }: ProductPaginationProps) => {
-  const { data: totalCustomers = [] } = await getTotalCustomers();
+const CustomersPagination = async ({
+  limit = DEFAULT_LIMIT,
+  query = '',
+}: ProductPaginationProps) => {
+  const { data: customers = [] } = await getCustomers({ query });
 
-  const totalPage = Math.ceil(totalCustomers?.length / limit);
+  const totalPage = Math.ceil(customers?.length / limit);
 
-  return <Pagination totalPage={totalPage} />;
+  return customers.length !== 0 && <Pagination totalPage={totalPage} />;
 };
 
 export default CustomersPagination;

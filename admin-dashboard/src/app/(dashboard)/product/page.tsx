@@ -121,7 +121,7 @@ const ProductPage = async ({ searchParams }: ProductProps) => {
           </Suspense>
 
           <Suspense fallback={<PaginationSkeleton />}>
-            <ProductPagination limit={limit} />
+            <ProductPagination limit={limit} query={query} />
           </Suspense>
         </TabPanels>
       </Tabs>
