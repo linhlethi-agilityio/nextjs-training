@@ -474,7 +474,7 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
       class="css-0"
     >
       <tr
-        class="css-0"
+        class="css-4g6ai3"
         data-id="3"
       >
         <td
@@ -605,7 +605,7 @@ exports[`TableOrderUI component should match snapshot for TableOrderUI 1`] = `
                 class="chakra-menu__menu-list css-sjt5nk"
                 id="menu-list-:r3:"
                 role="menu"
-                style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
+                style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8);"
                 tabindex="-1"
               >
                 <button

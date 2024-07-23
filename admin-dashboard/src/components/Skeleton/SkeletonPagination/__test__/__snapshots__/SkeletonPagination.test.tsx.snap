@@ -3,7 +3,7 @@
 exports[`PaginationSkeleton component should match snapshot for PaginationSkeleton 1`] = `
 <div>
   <div
-    class="chakra-stack css-1igwmid"
+    class="css-gmuwbf"
   >
     <button
       class="chakra-button css-4xx2wk"
