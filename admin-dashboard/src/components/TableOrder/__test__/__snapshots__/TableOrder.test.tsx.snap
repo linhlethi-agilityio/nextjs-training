@@ -1,0 +1,641 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableCustomers component should match snapshot for TableCustomers 1`] = `
+<div>
+  <div
+    class="css-rvaklg"
+  >
+    <p
+      class="chakra-text css-vpapf9"
+    >
+      Showing result 
+      1
+      -
+      10
+       Result
+    </p>
+    <div
+      class="css-15v75y9"
+    >
+      <p
+        class="chakra-text css-vpapf9"
+      >
+        Item per page
+      </p>
+      <div
+        class="chakra-select__wrapper css-1owtwcz"
+      >
+        <select
+          aria-label="Select"
+          class="chakra-select css-1gb6uvk"
+        >
+          <option
+            value="10"
+          >
+            10
+          </option>
+          <option
+            value="20"
+          >
+            20
+          </option>
+          <option
+            value="50"
+          >
+            50
+          </option>
+        </select>
+        <div
+          class="chakra-select__icon-wrapper css-1u2hnvd"
+        >
+          <svg
+            aria-hidden="true"
+            class="chakra-select__icon"
+            focusable="false"
+            role="presentation"
+            style="width: 1em; height: 1em; color: currentColor;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    class="chakra-button css-p66kye"
+    disabled=""
+    type="button"
+  >
+    Delete Orders
+  </button>
+  <table
+    class="chakra-table css-1t9zrjp"
+  >
+    <thead
+      class="css-0"
+    >
+      <tr
+        class="css-0"
+      >
+        <th
+          class="css-1otffnp"
+        >
+          <label
+            class="chakra-checkbox css-17u104x"
+          >
+            <input
+              aria-label="Checkbox"
+              class="chakra-checkbox__input"
+              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+              type="checkbox"
+              value=""
+            />
+            <span
+              aria-hidden="true"
+              class="chakra-checkbox__control css-dnty2r"
+            />
+          </label>
+        </th>
+        <th
+          class="css-1otffnp"
+        >
+          <div
+            class="css-1v08g9n"
+          >
+            <p
+              class="chakra-text css-vpapf9"
+            >
+              ID Order
+            </p>
+            <button
+              aria-label="Id-Order"
+              class="chakra-button css-4xx2wk"
+              data-id="idOrder"
+              type="button"
+            >
+              <svg
+                class="chakra-icon css-nyt2fo"
+                data-id="idOrder"
+                focusable="false"
+                viewBox="0 0 7 12"
+              >
+                <g
+                  clip-path="url(#clip0_16_150)"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.6275 7.74225C5.64496 7.75967 5.65882 7.78036 5.66827 7.80314C5.67772 7.82592 5.68259 7.85034 5.68259 7.875C5.68259 7.89966 5.67772 7.92408 5.66827 7.94686C5.65882 7.96964 5.64496 7.99033 5.6275 8.00775L3.3775 10.2577C3.36008 10.2752 3.33939 10.2891 3.31661 10.2985C3.29383 10.308 3.26941 10.3128 3.24475 10.3128C3.22009 10.3128 3.19567 10.308 3.17289 10.2985C3.15011 10.2891 3.12942 10.2752 3.112 10.2577L0.862001 8.00775C0.826794 7.97254 0.807015 7.92479 0.807015 7.875C0.807015 7.82521 0.826794 7.77746 0.862001 7.74225C0.897209 7.70704 0.944961 7.68726 0.994751 7.68726C1.04454 7.68726 1.09229 7.70704 1.1275 7.74225L3.24475 9.85987L5.362 7.74225C5.37942 7.72479 5.40011 7.71093 5.42289 7.70148C5.44567 7.69203 5.47009 7.68716 5.49475 7.68716C5.51941 7.68716 5.54383 7.69203 5.56661 7.70148C5.58939 7.71093 5.61008 7.72479 5.6275 7.74225Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </g>
+                <g
+                  clip-path="url(#clip1_16_150)"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M0.862 4.25775C0.844539 4.24033 0.830686 4.21964 0.821233 4.19686C0.811781 4.17408 0.806915 4.14966 0.806915 4.125C0.806915 4.10034 0.811781 4.07592 0.821233 4.05314C0.830686 4.03036 0.844539 4.00967 0.862 3.99225L3.112 1.74225C3.12942 1.72479 3.15011 1.71094 3.17289 1.70148C3.19567 1.69203 3.22009 1.68717 3.24475 1.68717C3.26941 1.68717 3.29383 1.69203 3.31661 1.70148C3.33939 1.71094 3.36008 1.72479 3.3775 1.74225L5.6275 3.99225C5.66271 4.02746 5.68249 4.07521 5.68249 4.125C5.68249 4.17479 5.66271 4.22254 5.6275 4.25775C5.59229 4.29296 5.54454 4.31274 5.49475 4.31274C5.44496 4.31274 5.39721 4.29296 5.362 4.25775L3.24475 2.14013L1.1275 4.25775C1.11008 4.27521 1.08939 4.28907 1.06661 4.29852C1.04383 4.30797 1.01941 4.31284 0.99475 4.31284C0.970088 4.31284 0.945667 4.30797 0.922888 4.29852C0.900108 4.28907 0.879418 4.27521 0.862 4.25775Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </g>
+                <defs>
+                  <clippath
+                    id="clip0_16_150"
+                  >
+                    <rect
+                      fill="white"
+                      height="6"
+                      transform="translate(6.24475 6) rotate(90)"
+                      width="6"
+                    />
+                  </clippath>
+                  <clippath
+                    id="clip1_16_150"
+                  >
+                    <rect
+                      fill="white"
+                      height="6"
+                      transform="translate(0.244751 6) rotate(-90)"
+                      width="6"
+                    />
+                  </clippath>
+                </defs>
+              </svg>
+            </button>
+          </div>
+        </th>
+        <th
+          class="css-1otffnp"
+        >
+          Product
+        </th>
+        <th
+          class="css-1otffnp"
+        >
+          <p
+            class="chakra-text css-1yic4n7"
+          >
+            Customer
+          </p>
+        </th>
+        <th
+          class="css-1otffnp"
+        >
+          <div
+            class="css-ffgm4l"
+          >
+            <p
+              class="chakra-text css-vpapf9"
+            >
+              Status
+            </p>
+            <button
+              aria-label="Status"
+              class="chakra-button css-4xx2wk"
+              data-id="status"
+              type="button"
+            >
+              <svg
+                class="chakra-icon css-nyt2fo"
+                data-id="status"
+                focusable="false"
+                viewBox="0 0 7 12"
+              >
+                <g
+                  clip-path="url(#clip0_16_150)"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.6275 7.74225C5.64496 7.75967 5.65882 7.78036 5.66827 7.80314C5.67772 7.82592 5.68259 7.85034 5.68259 7.875C5.68259 7.89966 5.67772 7.92408 5.66827 7.94686C5.65882 7.96964 5.64496 7.99033 5.6275 8.00775L3.3775 10.2577C3.36008 10.2752 3.33939 10.2891 3.31661 10.2985C3.29383 10.308 3.26941 10.3128 3.24475 10.3128C3.22009 10.3128 3.19567 10.308 3.17289 10.2985C3.15011 10.2891 3.12942 10.2752 3.112 10.2577L0.862001 8.00775C0.826794 7.97254 0.807015 7.92479 0.807015 7.875C0.807015 7.82521 0.826794 7.77746 0.862001 7.74225C0.897209 7.70704 0.944961 7.68726 0.994751 7.68726C1.04454 7.68726 1.09229 7.70704 1.1275 7.74225L3.24475 9.85987L5.362 7.74225C5.37942 7.72479 5.40011 7.71093 5.42289 7.70148C5.44567 7.69203 5.47009 7.68716 5.49475 7.68716C5.51941 7.68716 5.54383 7.69203 5.56661 7.70148C5.58939 7.71093 5.61008 7.72479 5.6275 7.74225Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </g>
+                <g
+                  clip-path="url(#clip1_16_150)"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M0.862 4.25775C0.844539 4.24033 0.830686 4.21964 0.821233 4.19686C0.811781 4.17408 0.806915 4.14966 0.806915 4.125C0.806915 4.10034 0.811781 4.07592 0.821233 4.05314C0.830686 4.03036 0.844539 4.00967 0.862 3.99225L3.112 1.74225C3.12942 1.72479 3.15011 1.71094 3.17289 1.70148C3.19567 1.69203 3.22009 1.68717 3.24475 1.68717C3.26941 1.68717 3.29383 1.69203 3.31661 1.70148C3.33939 1.71094 3.36008 1.72479 3.3775 1.74225L5.6275 3.99225C5.66271 4.02746 5.68249 4.07521 5.68249 4.125C5.68249 4.17479 5.66271 4.22254 5.6275 4.25775C5.59229 4.29296 5.54454 4.31274 5.49475 4.31274C5.44496 4.31274 5.39721 4.29296 5.362 4.25775L3.24475 2.14013L1.1275 4.25775C1.11008 4.27521 1.08939 4.28907 1.06661 4.29852C1.04383 4.30797 1.01941 4.31284 0.99475 4.31284C0.970088 4.31284 0.945667 4.30797 0.922888 4.29852C0.900108 4.28907 0.879418 4.27521 0.862 4.25775Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </g>
+                <defs>
+                  <clippath
+                    id="clip0_16_150"
+                  >
+                    <rect
+                      fill="white"
+                      height="6"
+                      transform="translate(6.24475 6) rotate(90)"
+                      width="6"
+                    />
+                  </clippath>
+                  <clippath
+                    id="clip1_16_150"
+                  >
+                    <rect
+                      fill="white"
+                      height="6"
+                      transform="translate(0.244751 6) rotate(-90)"
+                      width="6"
+                    />
+                  </clippath>
+                </defs>
+              </svg>
+            </button>
+          </div>
+        </th>
+        <th
+          class="css-1otffnp"
+        >
+          <div
+            class="css-1v08g9n"
+          >
+            <p
+              class="chakra-text css-vpapf9"
+            >
+              Created Date
+            </p>
+            <button
+              aria-label="CreatedAt"
+              class="chakra-button css-4xx2wk"
+              data-id="createdAt"
+              type="button"
+            >
+              <svg
+                class="chakra-icon css-nyt2fo"
+                data-id="createdAt"
+                focusable="false"
+                viewBox="0 0 7 12"
+              >
+                <g
+                  clip-path="url(#clip0_16_150)"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.6275 7.74225C5.64496 7.75967 5.65882 7.78036 5.66827 7.80314C5.67772 7.82592 5.68259 7.85034 5.68259 7.875C5.68259 7.89966 5.67772 7.92408 5.66827 7.94686C5.65882 7.96964 5.64496 7.99033 5.6275 8.00775L3.3775 10.2577C3.36008 10.2752 3.33939 10.2891 3.31661 10.2985C3.29383 10.308 3.26941 10.3128 3.24475 10.3128C3.22009 10.3128 3.19567 10.308 3.17289 10.2985C3.15011 10.2891 3.12942 10.2752 3.112 10.2577L0.862001 8.00775C0.826794 7.97254 0.807015 7.92479 0.807015 7.875C0.807015 7.82521 0.826794 7.77746 0.862001 7.74225C0.897209 7.70704 0.944961 7.68726 0.994751 7.68726C1.04454 7.68726 1.09229 7.70704 1.1275 7.74225L3.24475 9.85987L5.362 7.74225C5.37942 7.72479 5.40011 7.71093 5.42289 7.70148C5.44567 7.69203 5.47009 7.68716 5.49475 7.68716C5.51941 7.68716 5.54383 7.69203 5.56661 7.70148C5.58939 7.71093 5.61008 7.72479 5.6275 7.74225Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </g>
+                <g
+                  clip-path="url(#clip1_16_150)"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M0.862 4.25775C0.844539 4.24033 0.830686 4.21964 0.821233 4.19686C0.811781 4.17408 0.806915 4.14966 0.806915 4.125C0.806915 4.10034 0.811781 4.07592 0.821233 4.05314C0.830686 4.03036 0.844539 4.00967 0.862 3.99225L3.112 1.74225C3.12942 1.72479 3.15011 1.71094 3.17289 1.70148C3.19567 1.69203 3.22009 1.68717 3.24475 1.68717C3.26941 1.68717 3.29383 1.69203 3.31661 1.70148C3.33939 1.71094 3.36008 1.72479 3.3775 1.74225L5.6275 3.99225C5.66271 4.02746 5.68249 4.07521 5.68249 4.125C5.68249 4.17479 5.66271 4.22254 5.6275 4.25775C5.59229 4.29296 5.54454 4.31274 5.49475 4.31274C5.44496 4.31274 5.39721 4.29296 5.362 4.25775L3.24475 2.14013L1.1275 4.25775C1.11008 4.27521 1.08939 4.28907 1.06661 4.29852C1.04383 4.30797 1.01941 4.31284 0.99475 4.31284C0.970088 4.31284 0.945667 4.30797 0.922888 4.29852C0.900108 4.28907 0.879418 4.27521 0.862 4.25775Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </g>
+                <defs>
+                  <clippath
+                    id="clip0_16_150"
+                  >
+                    <rect
+                      fill="white"
+                      height="6"
+                      transform="translate(6.24475 6) rotate(90)"
+                      width="6"
+                    />
+                  </clippath>
+                  <clippath
+                    id="clip1_16_150"
+                  >
+                    <rect
+                      fill="white"
+                      height="6"
+                      transform="translate(0.244751 6) rotate(-90)"
+                      width="6"
+                    />
+                  </clippath>
+                </defs>
+              </svg>
+            </button>
+          </div>
+        </th>
+        <th
+          class="css-1otffnp"
+        >
+          <div
+            class="css-hoc62v"
+          >
+            <p
+              class="chakra-text css-vpapf9"
+            >
+              Deadline
+            </p>
+            <button
+              aria-label="Deadline"
+              class="chakra-button css-4xx2wk"
+              data-id="deadline"
+              type="button"
+            >
+              <svg
+                class="chakra-icon css-nyt2fo"
+                data-id="deadline"
+                focusable="false"
+                viewBox="0 0 7 12"
+              >
+                <g
+                  clip-path="url(#clip0_16_150)"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.6275 7.74225C5.64496 7.75967 5.65882 7.78036 5.66827 7.80314C5.67772 7.82592 5.68259 7.85034 5.68259 7.875C5.68259 7.89966 5.67772 7.92408 5.66827 7.94686C5.65882 7.96964 5.64496 7.99033 5.6275 8.00775L3.3775 10.2577C3.36008 10.2752 3.33939 10.2891 3.31661 10.2985C3.29383 10.308 3.26941 10.3128 3.24475 10.3128C3.22009 10.3128 3.19567 10.308 3.17289 10.2985C3.15011 10.2891 3.12942 10.2752 3.112 10.2577L0.862001 8.00775C0.826794 7.97254 0.807015 7.92479 0.807015 7.875C0.807015 7.82521 0.826794 7.77746 0.862001 7.74225C0.897209 7.70704 0.944961 7.68726 0.994751 7.68726C1.04454 7.68726 1.09229 7.70704 1.1275 7.74225L3.24475 9.85987L5.362 7.74225C5.37942 7.72479 5.40011 7.71093 5.42289 7.70148C5.44567 7.69203 5.47009 7.68716 5.49475 7.68716C5.51941 7.68716 5.54383 7.69203 5.56661 7.70148C5.58939 7.71093 5.61008 7.72479 5.6275 7.74225Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </g>
+                <g
+                  clip-path="url(#clip1_16_150)"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M0.862 4.25775C0.844539 4.24033 0.830686 4.21964 0.821233 4.19686C0.811781 4.17408 0.806915 4.14966 0.806915 4.125C0.806915 4.10034 0.811781 4.07592 0.821233 4.05314C0.830686 4.03036 0.844539 4.00967 0.862 3.99225L3.112 1.74225C3.12942 1.72479 3.15011 1.71094 3.17289 1.70148C3.19567 1.69203 3.22009 1.68717 3.24475 1.68717C3.26941 1.68717 3.29383 1.69203 3.31661 1.70148C3.33939 1.71094 3.36008 1.72479 3.3775 1.74225L5.6275 3.99225C5.66271 4.02746 5.68249 4.07521 5.68249 4.125C5.68249 4.17479 5.66271 4.22254 5.6275 4.25775C5.59229 4.29296 5.54454 4.31274 5.49475 4.31274C5.44496 4.31274 5.39721 4.29296 5.362 4.25775L3.24475 2.14013L1.1275 4.25775C1.11008 4.27521 1.08939 4.28907 1.06661 4.29852C1.04383 4.30797 1.01941 4.31284 0.99475 4.31284C0.970088 4.31284 0.945667 4.30797 0.922888 4.29852C0.900108 4.28907 0.879418 4.27521 0.862 4.25775Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </g>
+                <defs>
+                  <clippath
+                    id="clip0_16_150"
+                  >
+                    <rect
+                      fill="white"
+                      height="6"
+                      transform="translate(6.24475 6) rotate(90)"
+                      width="6"
+                    />
+                  </clippath>
+                  <clippath
+                    id="clip1_16_150"
+                  >
+                    <rect
+                      fill="white"
+                      height="6"
+                      transform="translate(0.244751 6) rotate(-90)"
+                      width="6"
+                    />
+                  </clippath>
+                </defs>
+              </svg>
+            </button>
+          </div>
+        </th>
+        <th
+          class="css-1otffnp"
+        >
+          <div
+            class="css-1v08g9n"
+          >
+            <p
+              class="chakra-text css-vpapf9"
+            >
+              Price
+            </p>
+            <button
+              aria-label="Price"
+              class="chakra-button css-4xx2wk"
+              data-id="price"
+              type="button"
+            >
+              <svg
+                class="chakra-icon css-nyt2fo"
+                data-id="price"
+                focusable="false"
+                viewBox="0 0 7 12"
+              >
+                <g
+                  clip-path="url(#clip0_16_150)"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.6275 7.74225C5.64496 7.75967 5.65882 7.78036 5.66827 7.80314C5.67772 7.82592 5.68259 7.85034 5.68259 7.875C5.68259 7.89966 5.67772 7.92408 5.66827 7.94686C5.65882 7.96964 5.64496 7.99033 5.6275 8.00775L3.3775 10.2577C3.36008 10.2752 3.33939 10.2891 3.31661 10.2985C3.29383 10.308 3.26941 10.3128 3.24475 10.3128C3.22009 10.3128 3.19567 10.308 3.17289 10.2985C3.15011 10.2891 3.12942 10.2752 3.112 10.2577L0.862001 8.00775C0.826794 7.97254 0.807015 7.92479 0.807015 7.875C0.807015 7.82521 0.826794 7.77746 0.862001 7.74225C0.897209 7.70704 0.944961 7.68726 0.994751 7.68726C1.04454 7.68726 1.09229 7.70704 1.1275 7.74225L3.24475 9.85987L5.362 7.74225C5.37942 7.72479 5.40011 7.71093 5.42289 7.70148C5.44567 7.69203 5.47009 7.68716 5.49475 7.68716C5.51941 7.68716 5.54383 7.69203 5.56661 7.70148C5.58939 7.71093 5.61008 7.72479 5.6275 7.74225Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </g>
+                <g
+                  clip-path="url(#clip1_16_150)"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M0.862 4.25775C0.844539 4.24033 0.830686 4.21964 0.821233 4.19686C0.811781 4.17408 0.806915 4.14966 0.806915 4.125C0.806915 4.10034 0.811781 4.07592 0.821233 4.05314C0.830686 4.03036 0.844539 4.00967 0.862 3.99225L3.112 1.74225C3.12942 1.72479 3.15011 1.71094 3.17289 1.70148C3.19567 1.69203 3.22009 1.68717 3.24475 1.68717C3.26941 1.68717 3.29383 1.69203 3.31661 1.70148C3.33939 1.71094 3.36008 1.72479 3.3775 1.74225L5.6275 3.99225C5.66271 4.02746 5.68249 4.07521 5.68249 4.125C5.68249 4.17479 5.66271 4.22254 5.6275 4.25775C5.59229 4.29296 5.54454 4.31274 5.49475 4.31274C5.44496 4.31274 5.39721 4.29296 5.362 4.25775L3.24475 2.14013L1.1275 4.25775C1.11008 4.27521 1.08939 4.28907 1.06661 4.29852C1.04383 4.30797 1.01941 4.31284 0.99475 4.31284C0.970088 4.31284 0.945667 4.30797 0.922888 4.29852C0.900108 4.28907 0.879418 4.27521 0.862 4.25775Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </g>
+                <defs>
+                  <clippath
+                    id="clip0_16_150"
+                  >
+                    <rect
+                      fill="white"
+                      height="6"
+                      transform="translate(6.24475 6) rotate(90)"
+                      width="6"
+                    />
+                  </clippath>
+                  <clippath
+                    id="clip1_16_150"
+                  >
+                    <rect
+                      fill="white"
+                      height="6"
+                      transform="translate(0.244751 6) rotate(-90)"
+                      width="6"
+                    />
+                  </clippath>
+                </defs>
+              </svg>
+            </button>
+          </div>
+        </th>
+        <th
+          class="css-1otffnp"
+        >
+          <p
+            class="chakra-text css-1bnzf5l"
+          >
+            Action
+          </p>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="css-0"
+    >
+      <tr
+        class="css-4g6ai3"
+        data-id="1"
+      >
+        <td
+          class="css-zpl621"
+        >
+          <button
+            class="chakra-button css-vm1miv"
+            data-id="1"
+            type="button"
+          >
+            <div
+              class="chakra-checkbox css-1elxtiq"
+              data-id="1"
+            >
+              <input
+                aria-label="Checkbox"
+                class="chakra-checkbox__input"
+                style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                type="checkbox"
+                value=""
+              />
+              <span
+                aria-hidden="true"
+                class="chakra-checkbox__control css-dnty2r"
+              />
+            </div>
+          </button>
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          969-875
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          <p
+            class="chakra-text css-0"
+          >
+            fdgf
+          </p>
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          Angie McCullough
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          <p
+            class="chakra-text css-gegbys"
+          >
+            Rejected
+          </p>
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          <p
+            class="chakra-text css-0"
+          >
+            July 23, 2024 00.33
+          </p>
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          <p
+            class="chakra-text css-xi606m"
+          >
+            July 31, 2024
+          </p>
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          <p
+            class="chakra-text css-0"
+          >
+            $
+            3244.00
+          </p>
+        </td>
+        <td
+          class="css-zpl621"
+        >
+          <div
+            class="css-xi606m"
+          >
+            <button
+              aria-controls="menu-list-:r3:"
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="chakra-button chakra-menu__menu-button css-emm560"
+              id="menu-button-:r3:"
+              type="button"
+            >
+              <span
+                class="css-xl71ch"
+              >
+                Action
+              </span>
+              <span
+                class="chakra-button__icon css-1hzyiq5"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="chakra-icon css-nyt2fo"
+                  focusable="false"
+                  viewBox="0 0 14 7"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M0.294416 0.145993C0.340862 0.09943 0.396037 0.062487 0.456782 0.0372806C0.517527 0.0120741 0.582649 -0.000900269 0.648416 -0.000900269C0.714183 -0.000900269 0.779304 0.0120741 0.84005 0.0372806C0.900795 0.062487 0.95597 0.09943 1.00242 0.145993L6.64842 5.79299L12.2944 0.145993C12.3409 0.0995053 12.3961 0.062629 12.4568 0.0374699C12.5176 0.0123108 12.5827 -0.000638485 12.6484 -0.000638485C12.7142 -0.000638485 12.7793 0.0123108 12.84 0.0374699C12.9007 0.062629 12.9559 0.0995053 13.0024 0.145993C13.0489 0.192481 13.0858 0.24767 13.1109 0.30841C13.1361 0.369149 13.149 0.434249 13.149 0.499993C13.149 0.565737 13.1361 0.630838 13.1109 0.691577C13.0858 0.752316 13.0489 0.807505 13.0024 0.853993L7.00242 6.85399C6.95597 6.90056 6.90079 6.9375 6.84005 6.96271C6.7793 6.98791 6.71418 7.00089 6.64842 7.00089C6.58265 7.00089 6.51753 6.98791 6.45678 6.96271C6.39604 6.9375 6.34086 6.90056 6.29442 6.85399L0.294416 0.853993C0.247853 0.807548 0.21091 0.752372 0.185703 0.691627C0.160497 0.630882 0.147522 0.565761 0.147522 0.499993C0.147522 0.434226 0.160497 0.369105 0.185703 0.30836C0.21091 0.247614 0.247853 0.192439 0.294416 0.145993Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </span>
+            </button>
+            <div
+              class="css-0"
+              style="visibility: hidden; position: absolute; min-width: max-content; inset: 0 auto auto 0;"
+            >
+              <div
+                aria-orientation="vertical"
+                class="chakra-menu__menu-list css-sjt5nk"
+                id="menu-list-:r3:"
+                role="menu"
+                style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8);"
+                tabindex="-1"
+              >
+                <button
+                  class="chakra-menu__menuitem css-1k756t9"
+                  data-index="0"
+                  data-order="1"
+                  id="menu-list-:r3:-menuitem-:r4:"
+                  role="menuitem"
+                  tabindex="-1"
+                  type="button"
+                >
+                  Edit
+                </button>
+                <button
+                  class="chakra-menu__menuitem css-1k756t9"
+                  data-index="1"
+                  data-order="1"
+                  id="menu-list-:r3:-menuitem-:r5:"
+                  role="menuitem"
+                  tabindex="-1"
+                  type="button"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

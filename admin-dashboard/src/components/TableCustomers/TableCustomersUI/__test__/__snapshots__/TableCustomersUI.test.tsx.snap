@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableCustomersUI component should match snapshot for TableCustomersUI 1`] = `
+<div>
+  <div
+    class="css-fb50fc"
+  >
+    <p
+      class="chakra-text css-vpapf9"
+    >
+      Showing result 
+      1
+      -
+      10
+       Result
+    </p>
+    <div
+      class="css-15v75y9"
+    >
+      <p
+        class="chakra-text css-vpapf9"
+      >
+        Item per page
+      </p>
+      <div
+        class="chakra-select__wrapper css-1owtwcz"
+      >
+        <select
+          aria-label="Select"
+          class="chakra-select css-1gb6uvk"
+        >
+          <option
+            value="10"
+          >
+            10
+          </option>
+          <option
+            value="20"
+          >
+            20
+          </option>
+          <option
+            value="50"
+          >
+            50
+          </option>
+        </select>
+        <div
+          class="chakra-select__icon-wrapper css-1u2hnvd"
+        >
+          <svg
+            aria-hidden="true"
+            class="chakra-select__icon"
+            focusable="false"
+            role="presentation"
+            style="width: 1em; height: 1em; color: currentColor;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-acbihw"
+  >
+    <table
+      class="chakra-table css-1t9zrjp"
+    >
+      <thead
+        class="css-0"
+      >
+        <tr
+          class="css-0"
+        >
+          <th
+            class="css-1otffnp"
+          />
+          <th
+            class="css-1otffnp"
+          >
+            name
+          </th>
+          <th
+            class="css-1otffnp"
+          >
+            email
+          </th>
+          <th
+            class="css-1otffnp"
+          >
+            phone number
+          </th>
+          <th
+            class="css-1otffnp"
+          >
+            created
+          </th>
+          <th
+            class="css-1otffnp"
+          >
+            action
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="css-0"
+      >
+        <tr
+          class="css-4g6ai3"
+          data-id="1"
+        >
+          <td
+            class="css-zpl621"
+          >
+            <div
+              class="css-0"
+            >
+              <span
+                class="chakra-avatar css-5zz47r"
+              >
+                <svg
+                  aria-label=" avatar"
+                  class="chakra-avatar__svg css-16ite8i"
+                  role="img"
+                  viewBox="0 0 128 128"
+                >
+                  <path
+                    d="M103,102.1388 C93.094,111.92 79.3504,118 64.1638,118 C48.8056,118 34.9294,111.768 25,101.7892 L25,95.2 C25,86.8096 31.981,80 40.6,80 L87.4,80 C96.019,80 103,86.8096 103,95.2 L103,102.1388 Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M63.9961647,24 C51.2938136,24 41,34.2938136 41,46.9961647 C41,59.7061864 51.2938136,70 63.9961647,70 C76.6985159,70 87,59.7061864 87,46.9961647 C87,34.2938136 76.6985159,24 63.9961647,24"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+            </div>
+          </td>
+          <td
+            class="css-zpl621"
+          >
+            <p
+              class="chakra-text css-8ler1h"
+            >
+              Connie Smitham
+            </p>
+          </td>
+          <td
+            class="css-zpl621"
+          >
+            Ansley_Jast7@hotmail.com
+          </td>
+          <td
+            class="css-zpl621"
+          >
+            566-231-4136
+          </td>
+          <td
+            class="css-zpl621"
+          >
+            July 21, 2024 00.07
+          </td>
+          <td
+            class="css-zpl621"
+          >
+            <button
+              aria-label="EditCustomer"
+              class="chakra-button css-1dt5bef"
+              data-id="1"
+              type="button"
+            >
+              delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 // Api
 import { getOrderById } from '@/api';
 
@@ -23,8 +21,9 @@ const OrderDetail = async ({ id, editOrderAction }: OrderDetailProps) => {
   return (
     <OrderDetailUI
       product={order?.product ?? ''}
-      customer={order?.customer ?? ''}
+      customerId={order?.customerId ?? ''}
       status={order?.status ?? ''}
+      customer={order?.customer ?? ''}
       deadline={order?.deadline ?? ''}
       price={order?.price ?? 0}
       productImage={order?.productImage ?? ''}
@@ -36,4 +35,4 @@ const OrderDetail = async ({ id, editOrderAction }: OrderDetailProps) => {
   );
 };
 
-export default memo(OrderDetail);
+export default OrderDetail;

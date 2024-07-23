@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { Text } from '@chakra-ui/react';
 
 // Api
@@ -73,4 +72,4 @@ const TableOrder = async ({
   );
 };
 
-export default memo(TableOrder);
+export default TableOrder;

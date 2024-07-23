@@ -212,11 +212,7 @@ const TableOrder = ({
       accessor: ({ product }: Order) => <Text size="md">{product}</Text>,
     },
     {
-      header: (
-        <Text textAlign="center" size="sm" color="textDark">
-          Customer
-        </Text>
-      ),
+      header: 'Customer',
       accessor: 'customer',
     },
     {

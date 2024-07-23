@@ -29,6 +29,7 @@ const mockProps = {
       createdAt: '2024-06-27T07:22:57.429Z',
       idOrder: '523-475',
       product: 'Gorgeous Frozen Shoes',
+      productImage: '',
       customer: 'Luz Nader',
       status: 'Pending',
       deadline: '2099-01-10T03:51:06.333Z',

@@ -22,6 +22,7 @@ const DynamicOrderModal = dynamic(() => import('../../Modal/OrderModal'));
 
 interface OrderDetailUIProps {
   product: string;
+  customerId: string;
   customer: string;
   status: string;
   deadline: string;
@@ -38,11 +39,12 @@ interface OrderDetailUIProps {
 
 const OrderDetailUI = ({
   product,
-  customer,
+  customerId,
   status,
   deadline,
   id,
   price,
+  customer,
   createdAt,
   idOrder,
   productImage,
@@ -53,7 +55,7 @@ const OrderDetailUI = ({
 
   const previewData = {
     product,
-    customer,
+    customerId,
     status,
     deadline,
     price,
