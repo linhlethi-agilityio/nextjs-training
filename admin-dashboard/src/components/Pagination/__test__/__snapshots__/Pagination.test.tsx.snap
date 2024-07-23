@@ -8,6 +8,7 @@ exports[`Pagination component should match snapshot for Pagination 1`] = `
     <button
       aria-label="pagination-prev"
       class="chakra-button css-4xx2wk"
+      disabled=""
       type="button"
     >
       <svg
@@ -24,13 +25,13 @@ exports[`Pagination component should match snapshot for Pagination 1`] = `
       </svg>
     </button>
     <button
-      class="chakra-button css-1cpjwe4"
+      class="chakra-button css-122nk53"
       type="button"
     >
       1
     </button>
     <button
-      class="chakra-button css-122nk53"
+      class="chakra-button css-1cpjwe4"
       type="button"
     >
       2

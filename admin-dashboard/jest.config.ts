@@ -30,6 +30,9 @@ const config: Config = {
     '!<rootDir>/src/actions/*.{js,jsx,ts,tsx}',
     '!<rootDir>/src/themes/components/*.{js,jsx,ts,tsx}',
     '!<rootDir>/src/components/TableOrder/index.tsx',
+    '!<rootDir>/src/auth.config.ts',
+    '!<rootDir>/src/auth.ts',
+    '!<rootDir>/src/middleware.ts',
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {

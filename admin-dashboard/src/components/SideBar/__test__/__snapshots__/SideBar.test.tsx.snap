@@ -3,10 +3,10 @@
 exports[`SideBar component should match snapshot for SideBar 1`] = `
 <div>
   <div
-    class="css-76c7c3"
+    class="css-1hrk9bg"
   >
     <div
-      class="chakra-stack css-awxekx"
+      class="chakra-stack css-tl3ftk"
     >
       <a
         href="/"
@@ -81,11 +81,11 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         </div>
       </a>
       <a
-        href="/category"
+        href="/customers"
       >
         <div
           class="chakra-stack css-ile8xj"
-          data-testid="sidebar-item-Category"
+          data-testid="sidebar-item-Customers"
         >
           <div
             class="css-k008qs"
@@ -124,7 +124,7 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
           <p
             class="chakra-text css-vpapf9"
           >
-            Category
+            Customers
           </p>
         </div>
       </a>
@@ -257,6 +257,12 @@ exports[`SideBar component should match snapshot for SideBar 1`] = `
         </div>
       </a>
     </div>
+    <button
+      class="chakra-button css-1lgcmef"
+      type="button"
+    >
+      Logout
+    </button>
   </div>
 </div>
 `;
