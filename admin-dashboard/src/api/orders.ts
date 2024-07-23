@@ -2,7 +2,7 @@
 import { API_ENDPOINT, DEFAULT_LIMIT, SORT_BY, SORT_ORDER } from '@/constants';
 
 // Models
-import { Order } from '@/models';
+import { Customer, Order } from '@/models';
 
 // Services
 import { api } from '@/services';
@@ -25,7 +25,7 @@ export const getOrders = async (params?: params) => {
       sortOrder,
     } = params || {};
 
-    const data = await api.getData<Order[]>(
+    const { data: orders } = await api.getData<Order[]>(
       API_ENDPOINT.ORDERS,
       {
         limit,
@@ -38,8 +38,25 @@ export const getOrders = async (params?: params) => {
       },
     );
 
+    const { data: customers } = await api.getData<Customer[]>(
+      API_ENDPOINT.CUSTOMERS,
+    );
+
+    const customerLookup = customers.reduce(
+      (acc, customer) => {
+        acc[customer.id] = customer.name;
+        return acc;
+      },
+      {} as { [key: string]: string },
+    );
+
+    const newOrders = orders.map((order) => ({
+      ...order,
+      customer: customerLookup[order.customerId as string] || 'Unknown',
+    }));
+
     return {
-      data: data.data ?? [],
+      data: newOrders ?? [],
     };
   } catch (error) {
     return { error };
@@ -62,7 +79,6 @@ export const getTotalOrders = async () => {
 
 export const getOrderById = async (id: string) => {
   try {
-    new Promise((resolve) => setTimeout(() => resolve, 2000));
     const data = await api.getData<Order>(
       `${API_ENDPOINT.ORDERS}/${id}`,
       undefined,
@@ -72,7 +88,7 @@ export const getOrderById = async (id: string) => {
     );
 
     return {
-      data: data.data ?? [],
+      data: data.data ?? {},
     };
   } catch (error) {
     return { error };

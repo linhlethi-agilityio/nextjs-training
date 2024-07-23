@@ -82,7 +82,16 @@ export const removeCustomer = async (id: string): Promise<void | string> => {
   try {
     await api.deleteData(`${API_ENDPOINT.CUSTOMERS}/${id}`);
 
+    const { data: orders } = await api.getData<Order[]>(API_ENDPOINT.ORDERS);
+
+    const filteredOrder = orders.filter((item) => item.customerId === id);
+
+    filteredOrder.map((order) =>
+      api.deleteData(`${API_ENDPOINT.ORDERS}/${order.id}`),
+    );
+
     revalidateTag('customers');
+    revalidateTag('orders');
   } catch (error) {
     if (error instanceof Error) {
       return error.message;
