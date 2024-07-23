@@ -1,6 +1,6 @@
 export const REQUIRED_FIELDS = [
   'product',
-  'customer',
+  'customerId',
   'status',
   'deadline',
   'price',

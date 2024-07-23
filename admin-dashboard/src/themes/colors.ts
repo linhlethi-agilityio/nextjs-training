@@ -16,6 +16,7 @@ export const systemColors = {
   citron: '#705f1a',
   lightYellow: '#FAFDD4',
   white: '#FFFFFF',
+  lightRose: '#E2E8F0',
   culturedPearl: '#F7F8FA',
   lightGray: '#E9E9EA',
 };
@@ -52,4 +53,5 @@ export const colors = {
   // Borders
   borderDefault: systemColors.lightGray,
   borderPrimary: systemColors.lightBlue,
+  borderInput: systemColors.lightRose,
 };
