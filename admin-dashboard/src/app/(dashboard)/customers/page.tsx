@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 };
 
 const CustomersPage = ({ searchParams }: CustomersProps) => {
-  const { query, page, limit = 10 } = searchParams;
+  const { query, page, limit } = searchParams;
 
   return (
     <Box pt={19} pr={16}>
@@ -70,7 +70,7 @@ const CustomersPage = ({ searchParams }: CustomersProps) => {
       </Suspense>
 
       <Suspense fallback={<PaginationSkeleton />}>
-        <CustomersPagination limit={limit} />
+        <CustomersPagination limit={limit} query={query} />
       </Suspense>
     </Box>
   );

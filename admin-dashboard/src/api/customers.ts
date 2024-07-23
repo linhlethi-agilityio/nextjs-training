@@ -1,5 +1,9 @@
-import { API_ENDPOINT, DEFAULT_LIMIT } from '@/constants';
+import { API_ENDPOINT } from '@/constants';
+
+// Models
 import { Customer } from '@/models';
+
+// Services
 import { api } from '@/services';
 
 interface params {
@@ -10,17 +14,17 @@ interface params {
 
 export const getCustomers = async (params?: params) => {
   try {
-    const { limit = DEFAULT_LIMIT, query = '', page = 1 } = params || {};
+    const { limit, query = '', page = 1 } = params || {};
 
     const data = await api.getData<Customer[]>(
       API_ENDPOINT.CUSTOMERS,
       {
-        limit,
         name: query,
         page,
+        ...(limit && { limit }),
       },
       {
-        next: { tags: ['customers'], revalidate: 3600 },
+        next: { tags: ['customers'] },
       },
     );
 
@@ -38,7 +42,7 @@ export const getTotalCustomers = async () => {
       API_ENDPOINT.CUSTOMERS,
       undefined,
       {
-        next: { tags: ['customers'], revalidate: 3600 },
+        next: { tags: ['customers'] },
       },
     );
 

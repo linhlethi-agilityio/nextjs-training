@@ -1,5 +1,5 @@
 // Services
-import { API_ENDPOINT, DEFAULT_LIMIT, SORT_BY, SORT_ORDER } from '@/constants';
+import { API_ENDPOINT, SORT_BY, SORT_ORDER } from '@/constants';
 
 // Models
 import { Customer, Order } from '@/models';
@@ -17,24 +17,18 @@ interface params {
 
 export const getOrders = async (params?: params) => {
   try {
-    const {
-      limit = DEFAULT_LIMIT,
-      query = '',
-      page = 1,
-      sortBy,
-      sortOrder,
-    } = params || {};
+    const { limit, query = '', page = 1, sortBy, sortOrder } = params || {};
 
     const { data: orders } = await api.getData<Order[]>(
       API_ENDPOINT.ORDERS,
       {
-        limit,
         idOrder: query,
         page,
+        ...(limit && { limit }),
         ...(sortBy && sortOrder && { sortBy, order: sortOrder }),
       },
       {
-        next: { tags: ['orders'], revalidate: 3600 },
+        next: { tags: ['orders'] },
       },
     );
 
@@ -66,7 +60,7 @@ export const getOrders = async (params?: params) => {
 export const getTotalOrders = async () => {
   try {
     const data = await api.getData<Order[]>(API_ENDPOINT.ORDERS, undefined, {
-      next: { tags: ['orders'], revalidate: 3600 },
+      next: { tags: ['orders'] },
     });
 
     return {
@@ -83,7 +77,7 @@ export const getOrderById = async (id: string) => {
       `${API_ENDPOINT.ORDERS}/${id}`,
       undefined,
       {
-        next: { tags: ['order'], revalidate: 3600 },
+        next: { tags: ['order'] },
       },
     );
 
