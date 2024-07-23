@@ -30,9 +30,10 @@ Build application of Admin dashboard with features below:
 - Unit test coverage should greater than 80%
 - Pagespeed score 98%
 
-## Design
+## Design - Deploy
 
 - [Admin dashboard](<https://www.figma.com/design/6FU922LFWAIasJWYIfuq7z/Admin-Dashboard-(Community)?node-id=16-57&t=aE8yEjoY7EOzTNMq-0>)
+- [Deploy link](https://nextjs-training-9355.vercel.app)
 
 # How to getting start with app
 
