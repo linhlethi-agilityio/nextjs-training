@@ -32,6 +32,7 @@ export const updateOrder = async (id: string, updateOrder: Partial<Order>) => {
     await api.putData<Order>(`${API_ENDPOINT.ORDERS}/${id}`, updateOrder);
 
     revalidateTag('orders');
+    revalidateTag('order');
   } catch (error) {
     if (error instanceof Error) {
       return error.message;
