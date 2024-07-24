@@ -8,5 +8,5 @@ export interface Order {
   createdAt: string;
   deadline: string;
   productImage: string;
-  price: number | null;
+  price: number;
 }

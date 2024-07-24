@@ -1,5 +1,5 @@
-import { Suspense } from 'react';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Box, Breadcrumb, BreadcrumbItem, Text } from '@chakra-ui/react';
 
@@ -13,7 +13,7 @@ import { updateOrder } from '@/actions';
 import { getOrderById, getOrders } from '@/api';
 
 // Components
-import { OrderDetail, OrderDetailSkeleton } from '@/components';
+import { OrderDetail } from '@/components';
 
 interface ProductDetailPageProps {
   params: {
@@ -56,8 +56,8 @@ export const generateMetadata = async ({
       images: [
         {
           url: productImage,
-          width: 800,
-          height: 400,
+          width: 700,
+          height: 300,
           alt: product,
         },
       ],
@@ -65,8 +65,14 @@ export const generateMetadata = async ({
   };
 };
 
-const ProductDetail = ({ params }: { params: { id: string } }) => {
+const ProductDetail = async ({ params }: { params: { id: string } }) => {
   const id = params.id;
+
+  const { data: order } = await getOrderById(id);
+
+  if (!order) {
+    return notFound();
+  }
 
   return (
     <Box pt={19} pr={16}>
@@ -99,9 +105,7 @@ const ProductDetail = ({ params }: { params: { id: string } }) => {
         </BreadcrumbItem>
       </Breadcrumb>
 
-      <Suspense fallback={<OrderDetailSkeleton />}>
-        <OrderDetail id={id} editOrderAction={updateOrder} />
-      </Suspense>
+      <OrderDetail {...order} editOrderAction={updateOrder} />
     </Box>
   );
 };

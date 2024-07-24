@@ -26,7 +26,7 @@ const props = {
 
 describe('CustomersPagination component', () => {
   it('should match snapshot for CustomersPagination', async () => {
-    jest.spyOn(api, 'getTotalCustomers').mockResolvedValue({
+    jest.spyOn(api, 'getCustomers').mockResolvedValue({
       data: [
         {
           createdAt: '2024-07-21T00:07:42.462Z',
