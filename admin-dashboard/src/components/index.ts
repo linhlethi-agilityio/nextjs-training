@@ -12,6 +12,7 @@ export { default as RegisterForm } from './RegisterForm';
 export { default as OrderDetail } from './OrderDetail';
 export { default as TableCustomers } from './TableCustomers';
 export { default as SearchCustomers } from './SearchCustomers';
+export { default as ImageFallback } from './ImageFallback';
 export * from './Dropdown';
 
 // Modals

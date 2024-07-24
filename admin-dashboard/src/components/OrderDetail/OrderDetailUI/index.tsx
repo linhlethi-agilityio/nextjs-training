@@ -2,7 +2,6 @@
 
 import { useTransition } from 'react';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import {
   Button,
   Flex,
@@ -12,11 +11,17 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
+// Constants
+import { BLUR_DATA_URL } from '@/constants';
+
 // Utils
 import { formatDateString, getColorByValue } from '@/utils';
 
 // Models
 import { Order } from '@/models';
+
+// Components
+import { ImageFallback } from '@/components';
 
 const DynamicOrderModal = dynamic(() => import('../../Modal/OrderModal'));
 
@@ -84,7 +89,13 @@ const OrderDetailUI = ({
   return (
     <>
       <Flex mt={46} ml={8}>
-        <Image src={productImage} alt={product} width={700} height={300} />
+        <ImageFallback
+          src={productImage}
+          alt={product}
+          width={700}
+          height={300}
+          fallbackSrc={BLUR_DATA_URL}
+        />
         <Stack flex={1} px={30} pt={4}>
           <Heading fontSize={30}>{product}</Heading>
           <Flex gap={3}>
