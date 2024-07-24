@@ -6,16 +6,63 @@ import { Box, Breadcrumb, BreadcrumbItem, Text } from '@chakra-ui/react';
 // Constants
 import { ROUTES } from '@/constants';
 
-// Components
-import { OrderDetail, OrderDetailSkeleton } from '@/components';
-
 // Actions
 import { updateOrder } from '@/actions';
 
-export const metadata: Metadata = {
-  title: 'Product Detail',
-  description:
-    'This is the Product Detail page in a comprehensive e-commerce web application designed to facilitate online shopping.',
+// Api
+import { getOrderById, getOrders } from '@/api';
+
+// Components
+import { OrderDetail, OrderDetailSkeleton } from '@/components';
+
+interface ProductDetailPageProps {
+  params: {
+    id: string;
+  };
+}
+
+export const generateStaticParams = async () => {
+  const { data = [] } = await getOrders();
+
+  return data.map(({ id }) => ({
+    id,
+  }));
+};
+
+export const generateMetadata = async ({
+  params: { id },
+}: ProductDetailPageProps): Promise<Metadata> => {
+  const { data } = await getOrderById(id);
+
+  if (!data) {
+    return {};
+  }
+
+  const { product, customer, productImage } = data;
+
+  return {
+    title: product,
+    authors: { name: customer },
+    description:
+      'This is the Product Detail page in a comprehensive e-commerce web application designed to facilitate online shopping.',
+
+    keywords: product,
+    openGraph: {
+      title: product,
+      description:
+        'This is the Product Detail page in a comprehensive e-commerce web application designed to facilitate online shopping.',
+      type: 'article',
+      url: `https://nextjs-training-9355.vercel.app/product/${id}`,
+      images: [
+        {
+          url: productImage,
+          width: 800,
+          height: 400,
+          alt: product,
+        },
+      ],
+    },
+  };
 };
 
 const ProductDetail = ({ params }: { params: { id: string } }) => {
