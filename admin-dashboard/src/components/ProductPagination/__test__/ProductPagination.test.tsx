@@ -27,7 +27,7 @@ const props = {
 
 describe('ProductPagination component', () => {
   it('should match snapshot for ProductPagination', async () => {
-    jest.spyOn(api, 'getTotalOrders').mockResolvedValue({
+    jest.spyOn(api, 'getOrders').mockResolvedValue({
       data: [
         {
           createdAt: '2024-07-23T00:33:27.809Z',

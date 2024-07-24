@@ -174,7 +174,7 @@ exports[`TableCustomersUI component should match snapshot for TableCustomersUI 1
               data-id="1"
               type="button"
             >
-              delete
+              Delete
             </button>
           </td>
         </tr>

@@ -103,7 +103,7 @@ const TableCustomers = ({
               _hover={{ color: 'brand.300' }}
               onClick={handleConfirmModal}
             >
-              delete
+              Delete
             </Button>
           ),
         }

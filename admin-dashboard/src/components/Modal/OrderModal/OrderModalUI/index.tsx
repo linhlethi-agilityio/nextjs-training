@@ -51,7 +51,7 @@ const initFormData = {
   customerId: '',
   status: '',
   deadline: '',
-  price: null,
+  price: undefined,
 };
 
 const OrderModalUI = ({

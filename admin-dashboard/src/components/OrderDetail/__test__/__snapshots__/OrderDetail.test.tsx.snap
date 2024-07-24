@@ -11,9 +11,9 @@ exports[`OrderDetail component should match snapshot for OrderDetail 1`] = `
       decoding="async"
       height="300"
       loading="lazy"
-      src="/_next/image?url=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F4041392%2Fpexels-photo-4041392.jpeg%3Fcs%3Dsrgb%26dl%3Dpexels-karolina-grabowska-4041392.jpg%26fm%3Djpg&w=1920&q=75"
+      src="http://localhost/_next/image?url=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F4041392%2Fpexels-photo-4041392.jpeg%3Fcs%3Dsrgb%26dl%3Dpexels-karolina-grabowska-4041392.jpg%26fm%3Djpg&w=1920&q=75"
       srcset="/_next/image?url=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F4041392%2Fpexels-photo-4041392.jpeg%3Fcs%3Dsrgb%26dl%3Dpexels-karolina-grabowska-4041392.jpg%26fm%3Djpg&w=750&q=75 1x, /_next/image?url=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F4041392%2Fpexels-photo-4041392.jpeg%3Fcs%3Dsrgb%26dl%3Dpexels-karolina-grabowska-4041392.jpg%26fm%3Djpg&w=1920&q=75 2x"
-      style="color: transparent;"
+      style="color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
       width="700"
     />
     <div
