@@ -3,7 +3,12 @@
 import { revalidateTag } from 'next/cache';
 
 // Constants
-import { API_ENDPOINT } from '@/constants';
+import {
+  API_ENDPOINT,
+  ERROR_MESSAGES,
+  IMAGE_ORDER_URL_DEFAULT,
+  QUERY_TAGS,
+} from '@/constants';
 
 // Models
 import { Order, ResponseData } from '@/models';
@@ -18,12 +23,12 @@ export const removeOrder = async (id: string): Promise<void | string> => {
   try {
     await api.deleteData(`${API_ENDPOINT.ORDERS}/${id}`);
 
-    revalidateTag('orders');
+    revalidateTag(QUERY_TAGS.ORDERS);
   } catch (error) {
     if (error instanceof Error) {
       return error.message;
     }
-    return 'An unknown error occurred';
+    return ERROR_MESSAGES.UNKNOWN_ERROR;
   }
 };
 
@@ -31,13 +36,13 @@ export const updateOrder = async (id: string, updateOrder: Partial<Order>) => {
   try {
     await api.putData<Order>(`${API_ENDPOINT.ORDERS}/${id}`, updateOrder);
 
-    revalidateTag('orders');
-    revalidateTag('order');
+    revalidateTag(QUERY_TAGS.ORDERS);
+    revalidateTag(QUERY_TAGS.ORDER);
   } catch (error) {
     if (error instanceof Error) {
       return error.message;
     }
-    return 'An unknown error occurred';
+    return ERROR_MESSAGES.UNKNOWN_ERROR;
   }
 };
 
@@ -47,18 +52,17 @@ export const addOrder = async (data: Partial<Order>) => {
       ...data,
       idOrder: generateRandomId(),
       createdAt: new Date().toISOString(),
-      productImage:
-        'https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4041392.jpg&fm=jpg',
+      productImage: IMAGE_ORDER_URL_DEFAULT,
     };
 
     await api.postData(API_ENDPOINT.ORDERS, formatData);
 
-    revalidateTag('orders');
+    revalidateTag(QUERY_TAGS.ORDERS);
   } catch (error) {
     if (error instanceof Error) {
       return error.message;
     }
-    return 'An unknown error occurred';
+    return ERROR_MESSAGES.UNKNOWN_ERROR;
   }
 };
 
@@ -75,7 +79,7 @@ export const getOrderDetailById = async (
     if (error instanceof Error) {
       return error.message;
     }
-    return 'An unknown error occurred';
+    return ERROR_MESSAGES.UNKNOWN_ERROR;
   }
 };
 
@@ -91,12 +95,12 @@ export const removeCustomer = async (id: string): Promise<void | string> => {
       api.deleteData(`${API_ENDPOINT.ORDERS}/${order.id}`),
     );
 
-    revalidateTag('customers');
-    revalidateTag('orders');
+    revalidateTag(QUERY_TAGS.CUSTOMERS);
+    revalidateTag(QUERY_TAGS.ORDERS);
   } catch (error) {
     if (error instanceof Error) {
       return error.message;
     }
-    return 'An unknown error occurred';
+    return ERROR_MESSAGES.UNKNOWN_ERROR;
   }
 };

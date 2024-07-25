@@ -1,5 +1,5 @@
 // Services
-import { API_ENDPOINT, SORT_BY, SORT_ORDER } from '@/constants';
+import { API_ENDPOINT, QUERY_TAGS, SORT_BY, SORT_ORDER } from '@/constants';
 
 // Models
 import { Customer, Order } from '@/models';
@@ -28,7 +28,7 @@ export const getOrders = async (params?: params) => {
         ...(sortBy && sortOrder && { sortBy, order: sortOrder }),
       },
       {
-        next: { tags: ['orders'] },
+        next: { tags: [QUERY_TAGS.ORDERS] },
       },
     );
 
@@ -60,7 +60,7 @@ export const getOrders = async (params?: params) => {
 export const getTotalOrders = async () => {
   try {
     const data = await api.getData<Order[]>(API_ENDPOINT.ORDERS, undefined, {
-      next: { tags: ['orders'] },
+      next: { tags: [QUERY_TAGS.ORDERS] },
     });
 
     return {
@@ -77,7 +77,7 @@ export const getOrderById = async (id: string) => {
       `${API_ENDPOINT.ORDERS}/${id}`,
       undefined,
       {
-        next: { tags: ['order'] },
+        next: { tags: [QUERY_TAGS.ORDERS] },
       },
     );
 
