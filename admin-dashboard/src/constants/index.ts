@@ -8,3 +8,4 @@ export * from './filter';
 export * from './input';
 export * from './validate';
 export * from './image';
+export * from './query-tags';

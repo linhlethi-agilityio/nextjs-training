@@ -8,13 +8,9 @@ import {
   Button,
   FormControl,
   FormHelperText,
-  FormLabel,
   Input,
   InputGroup,
   InputLeftElement,
-  Radio,
-  RadioGroup,
-  Stack,
   useToast,
 } from '@chakra-ui/react';
 
@@ -47,13 +43,7 @@ const initFormData = {
   confirmPassword: '',
 };
 
-const REQUIRED_FIELDS = [
-  'email',
-  'name',
-  'password',
-  'confirmPassword',
-  'role',
-];
+const REQUIRED_FIELDS = ['email', 'name', 'password', 'confirmPassword'];
 
 interface RegisterForm {
   onSubmit: (
@@ -331,36 +321,6 @@ const RegisterForm = ({ onSubmit }: RegisterForm) => {
                 {error.message}
               </FormHelperText>
             )}
-          </Box>
-        )}
-      />
-
-      <Controller
-        name="role"
-        control={control}
-        rules={{
-          required: ERROR_MESSAGES.FIELD_REQUIRED,
-        }}
-        render={({ field: { onChange, value, ...rest } }) => (
-          <Box>
-            <FormLabel fontSize="sm" color="textDark">
-              Role:
-            </FormLabel>
-            <RadioGroup
-              defaultValue={value}
-              mb={4}
-              onChange={onChange}
-              {...rest}
-            >
-              <Stack spacing={12} direction="row">
-                <Radio flex={1} value="admin">
-                  Admin
-                </Radio>
-                <Radio flex={1} value="user">
-                  User
-                </Radio>
-              </Stack>
-            </RadioGroup>
           </Box>
         )}
       />

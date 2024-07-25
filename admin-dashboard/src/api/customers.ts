@@ -1,4 +1,4 @@
-import { API_ENDPOINT } from '@/constants';
+import { API_ENDPOINT, QUERY_TAGS } from '@/constants';
 
 // Models
 import { Customer } from '@/models';
@@ -24,7 +24,7 @@ export const getCustomers = async (params?: params) => {
         ...(limit && { limit }),
       },
       {
-        next: { tags: ['customers'] },
+        next: { tags: [QUERY_TAGS.CUSTOMERS] },
       },
     );
 
@@ -42,7 +42,7 @@ export const getTotalCustomers = async () => {
       API_ENDPOINT.CUSTOMERS,
       undefined,
       {
-        next: { tags: ['customers'] },
+        next: { tags: [QUERY_TAGS.CUSTOMERS] },
       },
     );
 

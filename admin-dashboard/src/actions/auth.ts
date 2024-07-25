@@ -8,7 +8,7 @@ import { signIn, signOut } from '@/auth';
 import { api } from '@/services';
 
 // Constants
-import { API_ENDPOINT } from '@/constants';
+import { API_ENDPOINT, ERROR_MESSAGES } from '@/constants';
 
 // Models
 import { UserLogin } from '@/models';
@@ -22,12 +22,14 @@ interface UserInput {
 
 export const authenticate = async (formData: UserLogin) => {
   try {
-    await signIn('credentials', formData);
+    const data = { ...formData, role: 'user' };
+
+    await signIn('credentials', data);
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return 'Email or password invalid.';
+          return ERROR_MESSAGES.EMAIL_PASSWORD_INVALID;
         default:
           return 'Something went wrong.';
       }
@@ -45,7 +47,7 @@ export const register = async (newUser: UserInput) => {
     const isUser = users.some((user) => user.email === email);
 
     if (isUser) {
-      return 'Email already exists. Please try again!';
+      return ERROR_MESSAGES.EMAIL_EXISTS;
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -58,7 +60,7 @@ export const register = async (newUser: UserInput) => {
     if (error instanceof Error) {
       return error.message;
     }
-    return 'An unknown error occurred';
+    return ERROR_MESSAGES.UNKNOWN_ERROR;
   }
 };
 

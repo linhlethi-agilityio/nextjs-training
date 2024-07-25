@@ -7,6 +7,9 @@ export const ERROR_MESSAGES = {
     'Confirm password not matching. Please help to try again!',
   MIN_PASSWORD_LENGTH: (length: number) =>
     `Please enter at least ${length} characters`,
+  EMAIL_PASSWORD_INVALID: 'Email or password invalid.Please help to try again!',
+  EMAIL_EXISTS: "'Email already exists. Please try again!'",
+  UNKNOWN_ERROR: 'An unknown error occurred',
 };
 
 export const SUCCESS_MESSAGES = {

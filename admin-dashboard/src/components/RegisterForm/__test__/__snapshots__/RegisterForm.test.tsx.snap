@@ -200,68 +200,6 @@ exports[`RegisterForm component should match snapshot for RegisterForm 1`] = `
         />
       </div>
     </div>
-    <div
-      class="css-0"
-    >
-      <label
-        class="chakra-form__label css-tga4i3"
-        for="field-:r0:"
-        id="field-:r0:-label"
-      >
-        Role:
-      </label>
-      <div
-        class="chakra-radio-group css-1itv5e3"
-        role="radiogroup"
-      >
-        <div
-          class="chakra-stack css-gojse6"
-        >
-          <label
-            class="chakra-radio css-xgk43r"
-          >
-            <input
-              class="chakra-radio__input"
-              id="radio-:r2:"
-              name="role"
-              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
-              type="radio"
-              value="admin"
-            />
-            <span
-              aria-hidden="true"
-              class="chakra-radio__control css-ssalds"
-            />
-            <span
-              class="chakra-radio__label css-1y8kf23"
-            >
-              Admin
-            </span>
-          </label>
-          <label
-            class="chakra-radio css-xgk43r"
-          >
-            <input
-              class="chakra-radio__input"
-              id="radio-:r3:"
-              name="role"
-              style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
-              type="radio"
-              value="user"
-            />
-            <span
-              aria-hidden="true"
-              class="chakra-radio__control css-ssalds"
-            />
-            <span
-              class="chakra-radio__label css-1y8kf23"
-            >
-              User
-            </span>
-          </label>
-        </div>
-      </div>
-    </div>
     <button
       aria-label="register"
       class="chakra-button css-1djq1b7"
