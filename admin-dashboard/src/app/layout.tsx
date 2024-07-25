@@ -21,7 +21,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ChakraUIProvider>
-          <SessionProvider>
+          <SessionProvider
+            // Re-fetch session every 10 minutes
+            refetchInterval={10 * 60}
+            refetchOnWindowFocus={false}
+          >
             <main>{children}</main>
           </SessionProvider>
         </ChakraUIProvider>

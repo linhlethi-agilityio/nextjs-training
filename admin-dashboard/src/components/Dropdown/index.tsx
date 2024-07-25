@@ -44,7 +44,7 @@ const DropdownUI = ({
       {...rest}
     >
       {options.map((option) => {
-        const { value, label } = option;
+        const { value = '', label = '' } = option;
 
         return (
           <option key={value} value={value}>
