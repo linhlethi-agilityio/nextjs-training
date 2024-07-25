@@ -19,9 +19,9 @@ const ImageFallback = ({
 
   return (
     <Image
-      placeholder="blur"
       src={imgSrc}
       blurDataURL={fallbackSrc}
+      placeholder="blur"
       onLoadingComplete={(result) => {
         if (result.naturalWidth === 0) {
           // Broken image

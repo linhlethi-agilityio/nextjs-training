@@ -55,11 +55,11 @@ const initFormData = {
 };
 
 const OrderModalUI = ({
-  title = 'Add Order',
-  isLoading = false,
   isOpen,
   customers,
-  previewData,
+  title = 'Add Order',
+  isLoading = false,
+  previewData = null,
   onClose,
   onSubmitForm,
 }: CustomerModalDetailModalProps) => {
