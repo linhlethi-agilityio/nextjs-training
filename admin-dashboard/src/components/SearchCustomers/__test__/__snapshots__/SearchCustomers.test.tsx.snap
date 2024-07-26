@@ -43,7 +43,7 @@ exports[`SearchCustomers component should match snapshot for SearchCustomers 1`]
       <input
         class="chakra-input css-1ecsgz3"
         placeholder="Search by customer name"
-        value=""
+        value="John"
       />
       <div
         class="chakra-input__right-element css-czbnbi"
