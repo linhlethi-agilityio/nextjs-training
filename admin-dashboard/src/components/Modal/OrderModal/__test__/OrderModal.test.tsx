@@ -15,7 +15,6 @@ const mockOnclose = jest.fn();
 
 const mockProps = {
   title: 'Add order',
-  isLoading: false,
   isOpen: true,
   onClose: mockOnclose,
   onSubmitForm: mockOnSubmitForm,

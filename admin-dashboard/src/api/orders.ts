@@ -73,7 +73,7 @@ export const getTotalOrders = async () => {
 
 export const getOrderById = async (id: string) => {
   try {
-    const data = await api.getData<Order>(
+    const { data } = await api.getData<Order>(
       `${API_ENDPOINT.ORDERS}/${id}`,
       undefined,
       {
@@ -81,8 +81,16 @@ export const getOrderById = async (id: string) => {
       },
     );
 
+    const { data: customers } = await api.getData<Customer[]>(
+      API_ENDPOINT.CUSTOMERS,
+    );
+
+    const customerOrder = customers.find(
+      (customer) => customer.id === data.customerId,
+    );
+
     return {
-      data: data.data ?? {},
+      data: { ...data, customer: customerOrder?.name },
     };
   } catch (error) {
     return { error };

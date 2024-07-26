@@ -65,6 +65,12 @@ const TableCustom = <T extends { id: string }>({
       <Tbody>
         {data.map((item, index) => (
           <TableRow
+            {...(onClickRow && {
+              cursor: 'pointer',
+              _hover: {
+                bgColor: 'gray.50',
+              },
+            })}
             key={`table-row-${index}`}
             data-id={item.id}
             handleClickRow={() => handleClickRow(item.id)}

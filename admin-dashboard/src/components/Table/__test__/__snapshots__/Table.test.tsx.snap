@@ -37,7 +37,7 @@ exports[`Table should match snapshot for Table 1`] = `
       class="css-0"
     >
       <tr
-        class="css-4g6ai3"
+        class="css-0"
       >
         <td
           class="css-zpl621"
@@ -61,7 +61,7 @@ exports[`Table should match snapshot for Table 1`] = `
         </td>
       </tr>
       <tr
-        class="css-4g6ai3"
+        class="css-0"
       >
         <td
           class="css-zpl621"
