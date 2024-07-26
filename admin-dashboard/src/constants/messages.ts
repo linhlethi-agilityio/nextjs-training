@@ -2,7 +2,7 @@ export const ERROR_MESSAGES = {
   FIELD_REQUIRED: 'This field is required',
   INVALID_PRICE: 'Invalid price. Please help to try again. example: 5.05',
   INVALID_NAME: (fieldName: string) =>
-    `Please enter a valid ${fieldName}. The name can only contain letters.`,
+    `Please enter a valid ${fieldName}. The ${fieldName} can only contain letters.`,
   INVALID_EMAIL: 'Please enter a valid email address',
   PASSWORD_NOT_MATCH:
     'Confirm password not matching. Please help to try again!',

@@ -21,7 +21,7 @@ const RegisterPage = () => {
       <Text>
         Already have an account?&nbsp;
         <Link href={ROUTES.LOGIN}>
-          <Button px={0} variant="icon" color="blue.500">
+          <Button px={0} variant="icon" color="blue.700">
             Login
           </Button>
         </Link>
