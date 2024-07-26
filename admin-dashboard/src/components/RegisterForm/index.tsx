@@ -162,7 +162,8 @@ const RegisterForm = ({ onSubmit }: RegisterForm) => {
         control={control}
         rules={{
           required: ERROR_MESSAGES.FIELD_REQUIRED,
-          validate: (name: string) => isValidString(name),
+          validate: (value) =>
+            isValidString(value) || ERROR_MESSAGES.INVALID_NAME('name'),
         }}
         render={({
           field: { name, onChange, ...rest },

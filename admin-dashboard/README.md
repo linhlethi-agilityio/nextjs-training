@@ -29,6 +29,8 @@ Build application of Admin dashboard with features below:
 - Handle pagination
 - Unit test coverage should greater than 80%
 - Pagespeed score 98%
+- Authentication
+- Dynamic router
 
 ## Design - Deploy
 
@@ -50,6 +52,8 @@ Build application of Admin dashboard with features below:
 - `cd admin-dashboard`
 
 3. In the project directory, install all dependencies packages with command `pnpm install`
+
+4. Add `.env` file follow in `.env.sample` file
 
 ## Run app
 
