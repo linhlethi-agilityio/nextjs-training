@@ -7,6 +7,7 @@ import SearchCustomers from '..';
 const mockReplace = jest.fn();
 const mockURLSearchParams = {
   page: '1',
+  query: 'John',
 };
 
 jest.mock('next/navigation', () => ({
@@ -21,5 +22,15 @@ describe('SearchCustomers component', () => {
     const { container } = render(<SearchCustomers />);
 
     expect(container).toMatchSnapshot();
+  });
+
+  it('sets search input value from URL search params', () => {
+    const { getByPlaceholderText } = render(<SearchCustomers />);
+
+    const input = getByPlaceholderText(
+      'Search by customer name',
+    ) as HTMLInputElement;
+
+    expect(input.value).toBe('John');
   });
 });
