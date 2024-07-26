@@ -8,11 +8,7 @@ interface TableRowProps extends ChakraTableRowProps {
 }
 
 const TableRowUI = ({ children, handleClickRow, ...rest }: TableRowProps) => (
-  <Tr
-    onClick={handleClickRow}
-    {...(handleClickRow && { cursor: 'pointer' })}
-    {...rest}
-  >
+  <Tr onClick={handleClickRow} {...rest}>
     {children}
   </Tr>
 );

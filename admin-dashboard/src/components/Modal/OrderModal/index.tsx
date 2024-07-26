@@ -9,7 +9,6 @@ import { getTotalCustomers } from '@/api';
 
 interface CustomerModalDetailModalProps {
   title?: string;
-  isLoading?: boolean;
   isOpen: boolean;
   previewData?: Order | null;
   onSubmitForm: (data: Partial<Order>) => void;
@@ -18,7 +17,6 @@ interface CustomerModalDetailModalProps {
 
 const OrderModal = async ({
   title = 'Add Order',
-  isLoading = false,
   isOpen,
   previewData,
   onClose,
@@ -32,7 +30,6 @@ const OrderModal = async ({
       isOpen={isOpen}
       title={title}
       previewData={previewData}
-      isLoading={isLoading}
       onClose={onClose}
       onSubmitForm={onSubmitForm}
     />

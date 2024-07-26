@@ -31,7 +31,6 @@ const customers = [
 
 const mockProps = {
   title: 'Add order',
-  isLoading: false,
   customers: customers,
   isOpen: true,
   onClose: mockOnclose,
