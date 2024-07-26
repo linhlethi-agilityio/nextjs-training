@@ -171,7 +171,11 @@ const LoginForm = ({ onSubmit }: LoginForm) => {
                 <PasswordIcon />
               </InputLeftElement>
               <InputRightElement>
-                <Button variant="icon" onClick={handleClickEyePassword}>
+                <Button
+                  variant="icon"
+                  aria-label="EyeIcon"
+                  onClick={handleClickEyePassword}
+                >
                   {showPassword ? <ShowEyeIcon /> : <HideEyeIcon />}
                 </Button>
               </InputRightElement>
