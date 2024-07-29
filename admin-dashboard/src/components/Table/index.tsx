@@ -1,4 +1,4 @@
-import { ReactNode, memo } from 'react';
+import { ReactNode, memo, MouseEvent } from 'react';
 import { Table as BaseTable, Tbody, Th, Thead, Tr } from '@chakra-ui/react';
 import isEqual from 'react-fast-compare';
 
@@ -55,15 +55,19 @@ const TableCustom = <T extends { id: string }>({
     if (typeof accessor === 'function') return accessor(item);
   };
 
-  const handleClickRow = (id: string) => {
-    onClickRow && onClickRow(id);
+  const handleClickRow = (event: MouseEvent<HTMLTableRowElement>) => {
+    const { dataset } = event.currentTarget as HTMLElement;
+
+    const id = dataset.id;
+
+    id && onClickRow && onClickRow(id);
   };
 
   return (
     <BaseTable bgColor="backgroundLight">
       <Thead>{headerRow}</Thead>
       <Tbody>
-        {data.map((item, index) => (
+        {data.map((item) => (
           <TableRow
             {...(onClickRow && {
               cursor: 'pointer',
@@ -71,9 +75,9 @@ const TableCustom = <T extends { id: string }>({
                 bgColor: 'gray.50',
               },
             })}
-            key={`table-row-${index}`}
+            key={`table-row-${item.id}`}
             data-id={item.id}
-            handleClickRow={() => handleClickRow(item.id)}
+            handleClickRow={handleClickRow}
           >
             {columns.map((columnConfig, indexColumn) => (
               <TableCell key={`table-cell-${indexColumn}`}>

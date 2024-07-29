@@ -1,10 +1,10 @@
-import { ReactNode, memo } from 'react';
+import { MouseEvent, ReactNode, memo } from 'react';
 import { Tr, TableRowProps as ChakraTableRowProps } from '@chakra-ui/react';
 import isEqual from 'react-fast-compare';
 
 interface TableRowProps extends ChakraTableRowProps {
   children: ReactNode;
-  handleClickRow?: () => void;
+  handleClickRow?: (event: MouseEvent<HTMLTableRowElement>) => void;
 }
 
 const TableRowUI = ({ children, handleClickRow, ...rest }: TableRowProps) => (
