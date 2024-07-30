@@ -16,25 +16,23 @@ interface CustomerModalDetailModalProps {
   onClose: () => void;
 }
 
-const OrderModal = async ({
+const OrderModal = ({
   title = 'Add Order',
   isLoading = false,
   isOpen,
   previewData,
   onClose,
   onSubmitForm,
-}: CustomerModalDetailModalProps) => {
-  return (
-    <OrderModalUI
-      isOpen={isOpen}
-      isLoading={isLoading}
-      title={title}
-      previewData={previewData}
-      onClose={onClose}
-      getTotalCustomers={getTotalCustomers}
-      onSubmitForm={onSubmitForm}
-    />
-  );
-};
+}: CustomerModalDetailModalProps) => (
+  <OrderModalUI
+    isOpen={isOpen}
+    isLoading={isLoading}
+    title={title}
+    previewData={previewData}
+    onClose={onClose}
+    getTotalCustomers={getTotalCustomers}
+    onSubmitForm={onSubmitForm}
+  />
+);
 
 export default OrderModal;
