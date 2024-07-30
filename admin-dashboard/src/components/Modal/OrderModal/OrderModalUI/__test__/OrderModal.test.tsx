@@ -4,10 +4,6 @@ import '@testing-library/jest-dom';
 // Components
 import OrderModal from '..';
 
-// Mock handleOnChange function
-const mockOnSubmitForm = jest.fn();
-const mockOnclose = jest.fn();
-
 const customers = [
   {
     createdAt: '2024-07-21T00:07:42.462Z',
@@ -29,12 +25,20 @@ const customers = [
   },
 ];
 
+// Mock handleOnChange function
+const mockOnSubmitForm = jest.fn();
+const mockOnclose = jest.fn();
+
 const mockProps = {
   title: 'Add order',
-  customers: customers,
   isOpen: true,
   onClose: mockOnclose,
   onSubmitForm: mockOnSubmitForm,
+  getTotalCustomers: jest.fn(() =>
+    Promise.resolve({
+      data: customers,
+    }),
+  ),
 };
 
 describe('OrderModal component', () => {

@@ -1,3 +1,4 @@
 export type ResponseData<T> = {
-  data: T;
+  data?: T;
+  error?: unknown;
 };
