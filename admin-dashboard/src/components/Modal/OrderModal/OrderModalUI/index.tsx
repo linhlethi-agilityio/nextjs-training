@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useMemo } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
   Box,
@@ -20,7 +20,7 @@ import {
 } from '@/constants';
 
 // Models
-import { Customer, Order } from '@/models';
+import { Customer, Order, ResponseData } from '@/models';
 
 // Utils
 import {
@@ -40,9 +40,9 @@ interface CustomerModalDetailModalProps {
   title?: string;
   isOpen: boolean;
   isLoading?: boolean;
-  customers: Customer[];
   previewData?: Order | null;
   onSubmitForm: (data: Partial<Order>) => void;
+  getTotalCustomers: () => Promise<ResponseData<Customer[]>>;
   onClose: () => void;
 }
 
@@ -56,13 +56,25 @@ const initFormData = {
 
 const OrderModalUI = ({
   isOpen,
-  customers,
   isLoading = false,
   title = 'Add Order',
   previewData = null,
   onClose,
   onSubmitForm,
+  getTotalCustomers,
 }: CustomerModalDetailModalProps) => {
+  const [customers, setCustomers] = useState<Customer[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data = [] } = await getTotalCustomers();
+
+      setCustomers(data);
+    }
+
+    fetchData();
+  }, [getTotalCustomers]);
+
   const formattedOrder = {
     ...previewData,
     deadline: formatDateString(previewData?.deadline ?? '', false, true),

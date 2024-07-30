@@ -24,16 +24,14 @@ const OrderModal = async ({
   onClose,
   onSubmitForm,
 }: CustomerModalDetailModalProps) => {
-  const { data: customers = [] } = await getTotalCustomers();
-
   return (
     <OrderModalUI
-      customers={customers}
       isOpen={isOpen}
       isLoading={isLoading}
       title={title}
       previewData={previewData}
       onClose={onClose}
+      getTotalCustomers={getTotalCustomers}
       onSubmitForm={onSubmitForm}
     />
   );
