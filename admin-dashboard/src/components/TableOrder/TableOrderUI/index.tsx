@@ -357,7 +357,7 @@ const TableOrder = ({
   const onEditOrder = async (selectedId: string) => {
     const response = await getOrderDetail(selectedId);
 
-    if (typeof response !== 'string') {
+    if (typeof response !== 'string' && response.data) {
       setPreviewData(response.data);
       onOpenOrderModal();
     }
